@@ -18,12 +18,17 @@ public class RoadRaceEvent {
     public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String provience,
             String category, String promotingClub, String primaryContactPerson, String primaryContactEmail,
             String primaryContactPhoneNumber, String moreInfoUrl, String locationDetails) {
+        
+        this.eventName = eventName;
         // TODO Implement this
     }
 
     public RoadRaceEvent(String signOnLocation, String endDate, List<StageDetail> stageDetails) {
         // TODO Implement this
     }
+    
+    /** Empty Constructor for easy Event Building. */
+    public RoadRaceEvent() {}
 
     public String getEventName() {
         return eventName;

@@ -3,6 +3,8 @@ package com.lukegjpotter.spring.application.model;
 import java.util.Date;
 import java.util.List;
 
+import com.lukegjpotter.spring.application.util.Utils;
+
 public class RoadRaceEvent {
 
     // Page 1 Details
@@ -15,16 +17,30 @@ public class RoadRaceEvent {
     private Date endDate;
     private List<StageDetail> stageDetails;
 
+    /** Constructor for the details on Page One. */
     public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String provience,
             String category, String promotingClub, String primaryContactPerson, String primaryContactEmail,
             String primaryContactPhoneNumber, String moreInfoUrl, String locationDetails) {
         
-        this.eventName = eventName;
-        // TODO Implement this
+        setEventName(eventName);
+        setStartDay(startDay);
+        setStartDate(Utils.convertStringToDate(startDate));
+        setSignOnTime(signOnTime);
+        setProvience(provience);
+        setCategory(category);
+        setPromotingClub(promotingClub);
+        setPrimaryContactPerson(primaryContactPerson);
+        setPrimaryContactEmail(primaryContactEmail);
+        setPrimaryContactPhoneNumber(primaryContactPhoneNumber);
+        setMoreInfoUrl(moreInfoUrl);
+        setLocationDetails(locationDetails);
     }
 
+    /** Constructor for the details on Page Two. */
     public RoadRaceEvent(String signOnLocation, String endDate, List<StageDetail> stageDetails) {
-        // TODO Implement this
+        setSignOnLocation(signOnLocation);
+        setEndDate(Utils.convertStringToDate(endDate));
+        setStageDetails(stageDetails);
     }
     
     /** Empty Constructor for easy Event Building. */

@@ -10,7 +10,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.lukegjpotter.spring.application.model.DayDateTimeModel;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.util.ParsingUtils;
 
 @Service
 public class HtmlParsingService {
@@ -24,9 +26,20 @@ public class HtmlParsingService {
         RoadRaceEvent roadRaceEvent = new RoadRaceEvent();
         try {
             Document pageOne = Jsoup.parse(new File(pageOneLocation), "utf-8");
+            
+            // Event Title
             Element eventTitleElement = pageOne.getElementById("event_title");
             roadRaceEvent.setEventName(eventTitleElement.child(0).text().trim());
-            log.info(roadRaceEvent.getEventName());
+            
+            // Day, Start Date, Sign On Time
+            Element eventDateTimeElement = pageOne.getElementById("event_date");
+            DayDateTimeModel dayDateTime = ParsingUtils.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
+            roadRaceEvent.setStartDay(dayDateTime.getDay());
+            roadRaceEvent.setStartDate(dayDateTime.getDate());
+            roadRaceEvent.setSignOnTime(dayDateTime.getTime());
+            
+            
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

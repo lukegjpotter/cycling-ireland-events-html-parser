@@ -2,16 +2,27 @@ package com.lukegjpotter.spring.application.model;
 
 import java.util.Date;
 
+import com.lukegjpotter.spring.application.util.Utils;
+
 public class StageDetail {
 
     private Date date;
     private int raceNumber;
-    private String stageNumber, raceTypes, category, signOnTime, startTime, routeLinkUrl;
+    private String stageNumber, raceType, category, signOnTime, startTime, routeLinkUrl;
     private double kilometers, miles;
 
     public StageDetail(String date, int raceNumber, String stageNumber, String raceType, int kilometers, double miles,
             String category, String signOnTime, String startTime, String routeLinkUrl) {
-        // TODO Auto-generated constructor stub
+        
+        setDate(Utils.convertStringToDate(date));
+        setRaceNumber(raceNumber);
+        setStageNumber(stageNumber);
+        setRaceType(raceType);
+        setKilometers(kilometers);
+        setMiles(miles);
+        setCategory(category);
+        setSignOnTime(signOnTime);
+        setRouteLinkUrl(routeLinkUrl);
     }
 
     public Date getDate() {
@@ -38,12 +49,12 @@ public class StageDetail {
         this.stageNumber = stageNumber;
     }
 
-    public String getRaceTypes() {
-        return raceTypes;
+    public String getRaceType() {
+        return raceType;
     }
 
-    public void setRaceTypes(String raceTypes) {
-        this.raceTypes = raceTypes;
+    public void setRaceType(String raceType) {
+        this.raceType = raceType;
     }
 
     public String getCategory() {

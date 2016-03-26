@@ -14,10 +14,11 @@ public class ParsingUtils {
      */
     public static DayDateTimeModel parseDayDateTimeString(String dayDateTime) {
         
-        String day = dayDateTime.split(",", 2)[0];
-        String [] dateAndTimeStringArray = dayDateTime.split("|");
-        String date = dateAndTimeStringArray[0];
-        String time = dateAndTimeStringArray[1];
+        String[] dayDateTimeStringArray = dayDateTime.split(",", 2);
+        String day = dayDateTimeStringArray[0].trim();
+        String [] dateAndTimeStringArray = dayDateTimeStringArray[1].split("\\|");
+        String date = dateAndTimeStringArray[0].trim();
+        String time = dateAndTimeStringArray[1].trim();
         
         return new DayDateTimeModel(day, date, time);
     }

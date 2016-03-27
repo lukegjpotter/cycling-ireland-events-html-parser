@@ -31,10 +31,14 @@ public class HtmlParsingService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        Element pageOneEventDetails = pageOne.getElementById("event_details");
+        String contactIndex = "Contact: ", emailIndex = "Email:", phoneIndex = "Phone:";
+        String pageOneEventDetailsText = pageOneEventDetails.text();
           
         // Event Title
-        Element eventTitleElement = pageOne.getElementById("event_title");
-        roadRaceEvent.setEventName(eventTitleElement.child(0).text().trim());
+        String eventTitle = pageOne.getElementById("event_title").child(0).text().trim();
+        roadRaceEvent.setEventName(eventTitle);
         
         // Day, Start Date, Sign On Time
         Element eventDateTimeElement = pageOne.getElementById("event_date");
@@ -42,8 +46,6 @@ public class HtmlParsingService {
         roadRaceEvent.setStartDay(dayDateTime.getDay());
         roadRaceEvent.setStartDate(dayDateTime.getDate());
         roadRaceEvent.setSignOnTime(dayDateTime.getTime());
-        
-        Element pageOneEventDetails = pageOne.getElementById("event_details");
         
         // Province
         String province = pageOneEventDetails.select("a").first().text().trim();
@@ -58,10 +60,12 @@ public class HtmlParsingService {
         roadRaceEvent.setPromotingClub(promotingClub);
         
         // Primary Contact Person Details
-        String startIndexString = "Contact: ", endIndexString = "Email:";
-        String pageOneEventDetailsText = pageOneEventDetails.text();
-        String primaryContactPerson = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(startIndexString) + startIndexString.length(), pageOneEventDetailsText.indexOf(endIndexString)).trim();
+        String primaryContactPerson = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(contactIndex) + contactIndex.length(), pageOneEventDetailsText.indexOf(emailIndex)).trim();
         roadRaceEvent.setPrimaryContactPerson(primaryContactPerson);
+        
+        // Primary Contact Email
+        String primaryContactEmail = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(emailIndex) + emailIndex.length(), pageOneEventDetailsText.indexOf(phoneIndex)).trim();
+        roadRaceEvent.setPrimaryContactEmail(primaryContactEmail);
 
         return roadRaceEvent;
     }

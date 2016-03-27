@@ -54,6 +54,7 @@ public class HtmlParsingServiceTest {
     @Test
     public void testParsePageOne() {
         RoadRaceEvent actualPageOne = htmlParsingService.parsePageOne();
+        
         assertTrue("Expected: " + expectedPageOne.getEventName() + ". Actual: " + actualPageOne.getEventName(), expectedPageOne.getEventName().equals(actualPageOne.getEventName()));
         assertTrue("Expected: " + expectedPageOne.getStartDay() + ". Actual: " + actualPageOne.getStartDay(), expectedPageOne.getStartDay().equals(actualPageOne.getStartDay()));
         assertTrue("Expected: " + expectedPageOne.getStartDate() + ". Actual: " + actualPageOne.getStartDate(), expectedPageOne.getStartDate().equals(actualPageOne.getStartDate()));
@@ -62,6 +63,7 @@ public class HtmlParsingServiceTest {
         assertTrue("Expected: " + expectedPageOne.getCategory() + ". Actual: " + actualPageOne.getCategory(), expectedPageOne.getCategory().equals(actualPageOne.getCategory()));
         assertTrue("Expected: " + expectedPageOne.getPromotingClub() + ". Actual: " + actualPageOne.getPromotingClub(), expectedPageOne.getPromotingClub().equals(actualPageOne.getPromotingClub()));
         assertTrue("Expected: " + expectedPageOne.getPrimaryContactPerson() + ". Actual: " + actualPageOne.getPrimaryContactPerson(), expectedPageOne.getPrimaryContactPerson().equals(actualPageOne.getPrimaryContactPerson()));
+        assertTrue("Expected: " + expectedPageOne.getPrimaryContactEmail() + ". Actual: " + actualPageOne.getPrimaryContactEmail(), expectedPageOne.getPrimaryContactEmail().equals(actualPageOne.getPrimaryContactEmail()));
     }
 
     @Test @Ignore

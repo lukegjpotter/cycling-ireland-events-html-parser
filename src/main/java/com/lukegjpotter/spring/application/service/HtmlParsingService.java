@@ -56,6 +56,12 @@ public class HtmlParsingService {
         // Promoting Club
         String promotingClub = pageOneEventDetails.select("div[style=\"word-wrap: break-word\"]").first().text().trim();
         roadRaceEvent.setPromotingClub(promotingClub);
+        
+        // Primary Contact Person Details
+        String startIndexString = "Contact: ", endIndexString = "Email:";
+        String pageOneEventDetailsText = pageOneEventDetails.text();
+        String primaryContactPerson = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(startIndexString) + startIndexString.length(), pageOneEventDetailsText.indexOf(endIndexString)).trim();
+        roadRaceEvent.setPrimaryContactPerson(primaryContactPerson);
 
         return roadRaceEvent;
     }

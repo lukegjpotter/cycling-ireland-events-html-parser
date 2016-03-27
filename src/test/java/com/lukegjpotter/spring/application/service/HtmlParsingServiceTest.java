@@ -56,6 +56,8 @@ public class HtmlParsingServiceTest {
         RoadRaceEvent actualPageOne = htmlParsingService.parsePageOne();
         assertTrue("Expected: " + expectedPageOne.getEventName() + ". Actual: " + actualPageOne.getEventName(), expectedPageOne.getEventName().equals(actualPageOne.getEventName()));
         assertTrue("Expected: " + expectedPageOne.getStartDay() + ". Actual: " + actualPageOne.getStartDay(), expectedPageOne.getStartDay().equals(actualPageOne.getStartDay()));
+        assertTrue("Expected: " + expectedPageOne.getStartDate() + ". Actual: " + actualPageOne.getStartDate(), expectedPageOne.getStartDate().equals(actualPageOne.getStartDate()));
+        assertTrue("Expected: " + expectedPageOne.getSignOnTime() + ". Actual: " + actualPageOne.getSignOnTime(), expectedPageOne.getSignOnTime().equals(actualPageOne.getSignOnTime()));
     }
 
     @Test @Ignore

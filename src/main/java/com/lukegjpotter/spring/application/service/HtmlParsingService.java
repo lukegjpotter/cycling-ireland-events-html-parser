@@ -52,6 +52,10 @@ public class HtmlParsingService {
         // Category
         String category = pageOneEventDetails.getElementById("cw_category_span").getElementsByTag("td").get(1).text().trim();
         roadRaceEvent.setCategory(category);
+        
+        // Promoting Club
+        String promotingClub = pageOneEventDetails.select("div[style=\"word-wrap: break-word\"]").first().text().trim();
+        roadRaceEvent.setPromotingClub(promotingClub);
 
         return roadRaceEvent;
     }

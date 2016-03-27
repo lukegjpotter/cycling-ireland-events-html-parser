@@ -33,7 +33,7 @@ public class HtmlParsingService {
         }
         
         Element pageOneEventDetails = pageOne.getElementById("event_details");
-        String contactIndex = "Contact: ", emailIndex = "Email:", phoneIndex = "Phone:";
+        String contactIndex = "Contact: ", emailIndex = "Email:", phoneIndex = "Phone:", moreInfoIndex = "More Info:";
         String pageOneEventDetailsText = pageOneEventDetails.text();
           
         // Event Title
@@ -66,6 +66,10 @@ public class HtmlParsingService {
         // Primary Contact Email
         String primaryContactEmail = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(emailIndex) + emailIndex.length(), pageOneEventDetailsText.indexOf(phoneIndex)).trim();
         roadRaceEvent.setPrimaryContactEmail(primaryContactEmail);
+        
+        // Primary Contact Person Phone
+        String primaryContactPhoneNumber = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(phoneIndex) + phoneIndex.length(), pageOneEventDetailsText.indexOf(moreInfoIndex)).trim();
+        roadRaceEvent.setPrimaryContactPhoneNumber(primaryContactPhoneNumber);
 
         return roadRaceEvent;
     }

@@ -59,6 +59,7 @@ public class HtmlParsingServiceTest {
         assertTrue("Expected: " + expectedPageOne.getStartDate() + ". Actual: " + actualPageOne.getStartDate(), expectedPageOne.getStartDate().equals(actualPageOne.getStartDate()));
         assertTrue("Expected: " + expectedPageOne.getSignOnTime() + ". Actual: " + actualPageOne.getSignOnTime(), expectedPageOne.getSignOnTime().equals(actualPageOne.getSignOnTime()));
         assertTrue("Expected: " + expectedPageOne.getProvince() + ". Actual: " + actualPageOne.getProvince(), expectedPageOne.getProvince().equals(actualPageOne.getProvince()));
+        assertTrue("Expected: " + expectedPageOne.getCategory() + ". Actual: " + actualPageOne.getCategory(), expectedPageOne.getCategory().equals(actualPageOne.getCategory()));
     }
 
     @Test @Ignore

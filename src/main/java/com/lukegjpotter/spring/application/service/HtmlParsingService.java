@@ -24,28 +24,35 @@ public class HtmlParsingService {
     public RoadRaceEvent parsePageOne() {
         
         RoadRaceEvent roadRaceEvent = new RoadRaceEvent();
+        
+        Document pageOne = null;
         try {
-            Document pageOne = Jsoup.parse(new File(pageOneLocation), "utf-8");
-            
-            // Event Title
-            Element eventTitleElement = pageOne.getElementById("event_title");
-            roadRaceEvent.setEventName(eventTitleElement.child(0).text().trim());
-            
-            // Day, Start Date, Sign On Time
-            Element eventDateTimeElement = pageOne.getElementById("event_date");
-            DayDateTimeModel dayDateTime = ParsingUtils.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
-            roadRaceEvent.setStartDay(dayDateTime.getDay());
-            roadRaceEvent.setStartDate(dayDateTime.getDate());
-            roadRaceEvent.setSignOnTime(dayDateTime.getTime());
-            
-            // Province
-            String province = pageOne.getElementById("event_details").select("a").first().text().trim();
-            roadRaceEvent.setProvince(province);
-            
+            pageOne = Jsoup.parse(new File(pageOneLocation), "utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
+          
+        // Event Title
+        Element eventTitleElement = pageOne.getElementById("event_title");
+        roadRaceEvent.setEventName(eventTitleElement.child(0).text().trim());
         
+        // Day, Start Date, Sign On Time
+        Element eventDateTimeElement = pageOne.getElementById("event_date");
+        DayDateTimeModel dayDateTime = ParsingUtils.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
+        roadRaceEvent.setStartDay(dayDateTime.getDay());
+        roadRaceEvent.setStartDate(dayDateTime.getDate());
+        roadRaceEvent.setSignOnTime(dayDateTime.getTime());
+        
+        Element pageOneEventDetails = pageOne.getElementById("event_details");
+        
+        // Province
+        String province = pageOneEventDetails.select("a").first().text().trim();
+        roadRaceEvent.setProvince(province);
+        
+        // Category
+        String category = pageOneEventDetails.getElementById("cw_category_span").getElementsByTag("td").get(1).text().trim();
+        roadRaceEvent.setCategory(category);
+
         return roadRaceEvent;
     }
 

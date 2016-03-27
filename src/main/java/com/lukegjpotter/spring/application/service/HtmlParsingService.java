@@ -38,7 +38,9 @@ public class HtmlParsingService {
             roadRaceEvent.setStartDate(dayDateTime.getDate());
             roadRaceEvent.setSignOnTime(dayDateTime.getTime());
             
-            
+            // Province
+            String province = pageOne.getElementById("event_details").select("a").first().text().trim();
+            roadRaceEvent.setProvience(province);
             
         } catch (IOException e) {
             e.printStackTrace();

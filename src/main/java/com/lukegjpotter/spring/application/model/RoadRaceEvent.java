@@ -8,7 +8,7 @@ import com.lukegjpotter.spring.application.util.Utils;
 public class RoadRaceEvent {
 
     // Page 1 Details
-    private String eventName, startDay, signOnTime, provience, category, promotingClub, primaryContactPerson,
+    private String eventName, startDay, signOnTime, province, category, promotingClub, primaryContactPerson,
             primaryContactEmail, primaryContactPhoneNumber, moreInfoUrl, locationDetails;
     private Date startDate;
 
@@ -18,7 +18,7 @@ public class RoadRaceEvent {
     private List<StageDetail> stageDetails;
 
     /** Constructor for the details on Page One. */
-    public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String provience,
+    public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String province,
             String category, String promotingClub, String primaryContactPerson, String primaryContactEmail,
             String primaryContactPhoneNumber, String moreInfoUrl, String locationDetails) {
         
@@ -26,7 +26,7 @@ public class RoadRaceEvent {
         setStartDay(startDay);
         setStartDate(Utils.convertStringToDate(startDate));
         setSignOnTime(signOnTime);
-        setProvience(provience);
+        setProvince(province);
         setCategory(category);
         setPromotingClub(promotingClub);
         setPrimaryContactPerson(primaryContactPerson);
@@ -70,12 +70,12 @@ public class RoadRaceEvent {
         this.signOnTime = signOnTime;
     }
 
-    public String getProvience() {
-        return provience;
+    public String getProvince() {
+        return province;
     }
 
-    public void setProvience(String provience) {
-        this.provience = provience;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCategory() {

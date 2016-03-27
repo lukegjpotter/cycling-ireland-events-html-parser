@@ -40,7 +40,7 @@ public class HtmlParsingService {
             
             // Province
             String province = pageOne.getElementById("event_details").select("a").first().text().trim();
-            roadRaceEvent.setProvience(province);
+            roadRaceEvent.setProvince(province);
             
         } catch (IOException e) {
             e.printStackTrace();

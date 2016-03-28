@@ -75,6 +75,12 @@ public class HtmlParsingService {
         String moreInfoUrl = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(moreInfoIndex) + moreInfoIndex.length(), pageOneEventDetailsText.indexOf(locationDetailsIndex)).trim();
         roadRaceEvent.setMoreInfoUrl(moreInfoUrl);
         
+        // Location Details
+        String locationDetails = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(locationDetailsIndex) + locationDetailsIndex.length()).trim();
+        int lastSpaceIndex = locationDetails.lastIndexOf(" ");
+        locationDetails = new StringBuilder(locationDetails).replace(lastSpaceIndex, ++lastSpaceIndex, ", ").toString();
+        roadRaceEvent.setLocationDetails(locationDetails);
+        
         return roadRaceEvent;
     }
 

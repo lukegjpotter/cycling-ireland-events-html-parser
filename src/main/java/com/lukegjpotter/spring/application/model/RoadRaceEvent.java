@@ -21,7 +21,7 @@ public class RoadRaceEvent {
     public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String province,
             String category, String promotingClub, String primaryContactPerson, String primaryContactEmail,
             String primaryContactPhoneNumber, String moreInfoUrl, String locationDetails) {
-        
+
         setEventName(eventName);
         setStartDay(startDay);
         setStartDate(Utils.convertStringToDate(startDate));
@@ -42,9 +42,10 @@ public class RoadRaceEvent {
         setEndDate(Utils.convertStringToDate(endDate));
         setStageDetails(stageDetails);
     }
-    
+
     /** Empty Constructor for easy Event Building. */
-    public RoadRaceEvent() {}
+    public RoadRaceEvent() {
+    }
 
     public String getEventName() {
         return eventName;
@@ -169,4 +170,28 @@ public class RoadRaceEvent {
     public void addStageDetail(StageDetail stageDetail) {
         this.stageDetails.add(stageDetail);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj instanceof RoadRaceEvent) {
+            RoadRaceEvent other = (RoadRaceEvent) obj;
+
+            return this.getEventName().equals(other.getEventName())
+                    && this.getStartDay().equals(other.getStartDay())
+                    && this.getStartDate().equals(other.getStartDate())
+                    && this.getSignOnTime().equals(other.getSignOnTime())
+                    && this.getProvince().equals(other.getProvince())
+                    && this.getCategory().equals(other.getCategory())
+                    && this.getPromotingClub().equals(other.getPromotingClub())
+                    && this.getPrimaryContactPerson().equals(other.getPrimaryContactPerson())
+                    && this.getPrimaryContactEmail().equals(other.getPrimaryContactEmail())
+                    && this.getPrimaryContactPhoneNumber().equals(other.getPrimaryContactPhoneNumber())
+                    && this.getMoreInfoUrl().equals(other.getMoreInfoUrl())
+                    && this.getLocationDetails().equals(other.getLocationDetails());
+        }
+
+        return false;
+    }
+
 }

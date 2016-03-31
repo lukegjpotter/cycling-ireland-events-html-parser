@@ -11,12 +11,10 @@ public class HtmlParsingService {
     private String pageOneLocation, pageTwoLocation;
 
     public RoadRaceEvent parsePageOne() {
-
         return ParserFactory.getPageOneParser(pageOneLocation).parse();
     }
 
     public RoadRaceEvent parsePageTwo() {
-        
         return ParserFactory.getPageTwoParser(pageTwoLocation).parse();
     }
 

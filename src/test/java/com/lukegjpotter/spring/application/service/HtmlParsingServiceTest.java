@@ -57,7 +57,7 @@ public class HtmlParsingServiceTest {
         assertTrue(expectedPageOne.equals(actual));
     }
 
-    @Test(expected = NullPointerException.class) 
+    @Test(expected = NullPointerException.class)
     public void testParsePageTwo() {
         RoadRaceEvent actual = htmlParsingService.parsePageTwo();
         assertTrue(expectedPageTwo.equals(actual));

@@ -3,7 +3,7 @@ package com.lukegjpotter.spring.application.parse;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 
 public class PageTwoParser implements Parser {
-    
+
     private String pageLocation;
 
     public PageTwoParser(String pageLocation) {

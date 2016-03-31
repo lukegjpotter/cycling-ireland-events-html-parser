@@ -16,8 +16,8 @@ public class HtmlParsingService {
     }
 
     public RoadRaceEvent parsePageTwo() {
-        // TODO Auto-generated method stub
-        return null;
+        
+        return ParserFactory.getPageTwoParser(pageTwoLocation).parse();
     }
 
     public void setPageOneLocation(String pageOneLocation) {

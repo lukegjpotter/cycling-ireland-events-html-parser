@@ -44,8 +44,7 @@ public class RoadRaceEvent {
     }
 
     /** Empty Constructor for easy Event Building. */
-    public RoadRaceEvent() {
-    }
+    public RoadRaceEvent() {}
 
     public String getEventName() {
         return eventName;

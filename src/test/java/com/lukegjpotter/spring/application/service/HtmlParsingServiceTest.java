@@ -33,7 +33,7 @@ public class HtmlParsingServiceTest {
         htmlParsingService.setPageOneLocation("./src/test/resources/Page1-SuirValleyThreeDay.html");
         // From
         // https://cyclingireland.azolve.com/portal/Moreeventdetails.aspx?EventId=213961
-        htmlParsingService.setPageTwoLocation("/src/test/resources/Page2-SuirValleyThreeDay.html");
+        htmlParsingService.setPageTwoLocation("./src/test/resources/Page2-SuirValleyThreeDay.html");
 
         expectedPageOne = new RoadRaceEvent("Suir Valley 3 Day", "Saturday", "July 30, 2016", "8:00am", "Munster",
                 "Road", "Clonmel CC", "Declan Byrne", "declanbyrne2006@gmail.com", "3.53879E+11",
@@ -57,9 +57,9 @@ public class HtmlParsingServiceTest {
         assertTrue(expectedPageOne.equals(actual));
     }
 
-    @Test @Ignore
+    @Test(expected = NullPointerException.class) 
     public void testParsePageTwo() {
-        RoadRaceEvent actualPageTwo = htmlParsingService.parsePageTwo();
-        assertTrue(expectedPageTwo.equals(actualPageTwo));
+        RoadRaceEvent actual = htmlParsingService.parsePageTwo();
+        assertTrue(expectedPageTwo.equals(actual));
     }
 }

@@ -10,6 +10,11 @@ buildscript {
 	}
 }
 
+plugins {
+    id "jacoco"
+    id "com.github.kt3k.coveralls" version "2.5.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot' 
@@ -18,6 +23,7 @@ jar {
 	baseName = 'cycling-ireland-events-html-scraper'
 	version = '0.0.1-SNAPSHOT'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -25,13 +31,11 @@ repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.jsoup:jsoup:1.8.3')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
-
 
 eclipse {
 	classpath {
@@ -46,11 +50,6 @@ task wrapper(type: Wrapper) {
 
 task stage {
   dependsOn build
-}
-
-plugins {
-    id "jacoco"
-    id "com.github.kt3k.coveralls" version "2.5.0"
 }
 
 jacocoTestReport {

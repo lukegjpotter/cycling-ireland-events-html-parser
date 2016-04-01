@@ -3,6 +3,7 @@ This project will Scrape and Parse the HTML from the Cycling Ireland Events into
 <br>The POJOs will be useful for the Cycling Ireland Events REST Service.
 
 [![Build Status](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper.svg?branch=master)](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper)
+[![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
 
 ### Version 1 Features
 Get the basic information from the initial Cycling Ireland Event page.

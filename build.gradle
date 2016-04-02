@@ -54,7 +54,6 @@ task stage {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
-        html.enabled = true
+        xml.enabled = true
     }
 }

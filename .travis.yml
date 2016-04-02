@@ -11,4 +11,4 @@ jdk:
   - oraclejdk8
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew check jacocoTestReport coveralls

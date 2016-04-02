@@ -29,12 +29,14 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.jsoup:jsoup:1.8.3')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.mockito:mockito-core:1.+')
 }
 
 eclipse {

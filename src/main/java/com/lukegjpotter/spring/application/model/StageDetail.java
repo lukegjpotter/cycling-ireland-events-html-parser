@@ -2,19 +2,36 @@ package com.lukegjpotter.spring.application.model;
 
 import java.util.Date;
 
+import com.lukegjpotter.spring.application.util.Constants;
 import com.lukegjpotter.spring.application.util.Utils;
 
 public class StageDetail {
 
     private Date date;
-    private int raceNumber;
-    private String stageNumber, raceType, category, signOnTime, startTime, routeLinkUrl;
+    private int raceNumber, stageNumber;
+    private String location, raceType, category, signOnTime, startTime, routeLinkUrl;
     private double kilometers, miles;
 
-    public StageDetail(String date, int raceNumber, String stageNumber, String raceType, int kilometers, double miles,
+    public StageDetail(String date, int raceNumber, int stageNumber, String raceType, int kilometers, double miles,
             String category, String signOnTime, String startTime, String routeLinkUrl) {
         
-        setDate(Utils.convertStringToDate(date));
+        setDate(Utils.convertStringToDate(date, Constants.DATE_FORMAT_DDMMYYYY));
+        setLocation("");
+        setRaceNumber(raceNumber);
+        setStageNumber(stageNumber);
+        setRaceType(raceType);
+        setKilometers(kilometers);
+        setMiles(miles);
+        setCategory(category);
+        setSignOnTime(signOnTime);
+        setRouteLinkUrl(routeLinkUrl);
+    }
+
+    public StageDetail(String date, String location, int raceNumber, int stageNumber, String raceType, double kilometers, double miles,
+            String category, String signOnTime, String startTime, String routeLinkUrl) {
+        
+        setDate(Utils.convertStringToDate(date, Constants.DATE_FORMAT_DDMMYYYY));
+        setLocation(location);
         setRaceNumber(raceNumber);
         setStageNumber(stageNumber);
         setRaceType(raceType);
@@ -33,6 +50,14 @@ public class StageDetail {
         this.date = date;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public int getRaceNumber() {
         return raceNumber;
     }
@@ -41,11 +66,11 @@ public class StageDetail {
         this.raceNumber = raceNumber;
     }
 
-    public String getStageNumber() {
+    public int getStageNumber() {
         return stageNumber;
     }
 
-    public void setStageNumber(String stageNumber) {
+    public void setStageNumber(int stageNumber) {
         this.stageNumber = stageNumber;
     }
 
@@ -103,5 +128,27 @@ public class StageDetail {
 
     public void setMiles(double miles) {
         this.miles = miles;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        if (obj instanceof StageDetail) {
+            StageDetail other = (StageDetail) obj;
+            
+            return this.getDate().equals(other.getDate())
+                    && this.getLocation().equals(other.getLocation())
+                    && this.getRaceNumber() == other.getRaceNumber()
+                    && this.getStageNumber() == other.getStageNumber()
+                    && this.getRaceType().equals(other.getRaceType())
+                    && this.getCategory().equals(other.getCategory())
+                    && this.getSignOnTime().equals(other.getSignOnTime())
+                    && this.getStartTime().equals(other.getStartTime())
+                    && this.getRouteLinkUrl().equals(other.getRouteLinkUrl())
+                    && this.getKilometers() == other.getKilometers()
+                    && this.getMiles() == other.getMiles();
+        }
+        
+        return false;
     }
 }

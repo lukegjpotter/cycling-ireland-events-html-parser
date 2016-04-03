@@ -46,9 +46,9 @@ public class PageOneParser implements Parser {
         // Day, Start Date, Sign On Time
         Element eventDateTimeElement = pageOne.getElementById(eventDateJSoup);
         DayDateTimeModel dayDateTime = ParsingUtils.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
-        roadRaceEvent.setStartDay(dayDateTime.getDay());
+        //roadRaceEvent.setStartDay(dayDateTime.getDay());
         roadRaceEvent.setStartDate(dayDateTime.getDate());
-        roadRaceEvent.setSignOnTime(dayDateTime.getTime());
+        //roadRaceEvent.setSignOnTime(dayDateTime.getTime());
         
         // Province
         String province = pageOneEventDetails.select(achorTag).first().text().trim();
@@ -56,7 +56,7 @@ public class PageOneParser implements Parser {
         
         // Category
         String category = pageOneEventDetails.getElementById(categoryJSoup).getElementsByTag(tdTag).get(1).text().trim();
-        roadRaceEvent.setCategory(category);
+        //roadRaceEvent.setCategory(category);
         
         // Promoting Club
         String promotingClub = pageOneEventDetails.select(promotingClubJSoup).first().text().trim();
@@ -64,25 +64,25 @@ public class PageOneParser implements Parser {
         
         // Primary Contact Person Details
         String primaryContactPerson = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(contactIndex) + contactIndex.length(), pageOneEventDetailsText.indexOf(emailIndex)).trim();
-        roadRaceEvent.setPrimaryContactPerson(primaryContactPerson);
+        //roadRaceEvent.setPrimaryContactPerson(primaryContactPerson);
         
         // Primary Contact Email
         String primaryContactEmail = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(emailIndex) + emailIndex.length(), pageOneEventDetailsText.indexOf(phoneIndex)).trim();
-        roadRaceEvent.setPrimaryContactEmail(primaryContactEmail);
+        //roadRaceEvent.setPrimaryContactEmail(primaryContactEmail);
         
         // Primary Contact Person Phone
         String primaryContactPhoneNumber = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(phoneIndex) + phoneIndex.length(), pageOneEventDetailsText.indexOf(moreInfoIndex)).trim();
-        roadRaceEvent.setPrimaryContactPhoneNumber(primaryContactPhoneNumber);
+        //roadRaceEvent.setPrimaryContactPhoneNumber(primaryContactPhoneNumber);
         
         // More Info URL
         String moreInfoUrl = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(moreInfoIndex) + moreInfoIndex.length(), pageOneEventDetailsText.indexOf(locationDetailsIndex)).trim();
-        roadRaceEvent.setMoreInfoUrl(moreInfoUrl);
+        //.setMoreInfoUrl(moreInfoUrl);
         
         // Location Details
         String locationDetails = pageOneEventDetailsText.substring(pageOneEventDetailsText.indexOf(locationDetailsIndex) + locationDetailsIndex.length()).trim();
         int lastSpaceIndex = locationDetails.lastIndexOf(spaceJSoup);
         locationDetails = new StringBuilder(locationDetails).replace(lastSpaceIndex, ++lastSpaceIndex, commaSpaceJSoup).toString();
-        roadRaceEvent.setLocationDetails(locationDetails);
+        //roadRaceEvent.setLocationDetails(locationDetails);
         
         return roadRaceEvent;
     }

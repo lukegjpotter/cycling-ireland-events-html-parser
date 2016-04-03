@@ -3,136 +3,34 @@ package com.lukegjpotter.spring.application.model;
 import java.util.Date;
 import java.util.List;
 
-import com.lukegjpotter.spring.application.util.Utils;
-
 public class RoadRaceEvent {
 
-    // Page 1 Details
-    private String eventName, startDay, signOnTime, province, category, promotingClub, primaryContactPerson,
-            primaryContactEmail, primaryContactPhoneNumber, moreInfoUrl, locationDetails;
-    private Date startDate;
-
-    // Page 2 Details
-    private String signOnLocation;
-    private Date endDate;
+    private Date startDate, bookingsOpenDate, bookingsCloseDate;
+    private String eventName, promotingClub, organiser, registerationLink, organiserPhoneNumber, organiserEmail,
+            location, province;
     private List<StageDetail> stageDetails;
-
-    /** Constructor for the details on Page One. */
-    public RoadRaceEvent(String eventName, String startDay, String startDate, String signOnTime, String province,
-            String category, String promotingClub, String primaryContactPerson, String primaryContactEmail,
-            String primaryContactPhoneNumber, String moreInfoUrl, String locationDetails) {
-
-        setEventName(eventName);
-        setStartDay(startDay);
-        setStartDate(Utils.convertStringToDate(startDate));
-        setSignOnTime(signOnTime);
-        setProvince(province);
-        setCategory(category);
-        setPromotingClub(promotingClub);
-        setPrimaryContactPerson(primaryContactPerson);
-        setPrimaryContactEmail(primaryContactEmail);
-        setPrimaryContactPhoneNumber(primaryContactPhoneNumber);
-        setMoreInfoUrl(moreInfoUrl);
-        setLocationDetails(locationDetails);
-    }
-
-    /** Constructor for the details on Page Two. */
-    public RoadRaceEvent(String signOnLocation, String endDate, List<StageDetail> stageDetails) {
-        setSignOnLocation(signOnLocation);
-        setEndDate(Utils.convertStringToDate(endDate));
-        setStageDetails(stageDetails);
-    }
 
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEvent() {
     }
 
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
+    /** Full Constructor */
+    public RoadRaceEvent(Date startDate, Date bookingsOpenDate, Date bookingsCloseDate, String eventName,
+            String promotingClub, String organiser, String registerationLink, String organiserPhoneNumber,
+            String organiserEmail, String location, String province, List<StageDetail> stageDetails) {
+        super();
+        this.startDate = startDate;
+        this.bookingsOpenDate = bookingsOpenDate;
+        this.bookingsCloseDate = bookingsCloseDate;
         this.eventName = eventName;
-    }
-
-    public String getStartDay() {
-        return startDay;
-    }
-
-    public void setStartDay(String startDay) {
-        this.startDay = startDay;
-    }
-
-    public String getSignOnTime() {
-        return signOnTime;
-    }
-
-    public void setSignOnTime(String signOnTime) {
-        this.signOnTime = signOnTime;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getPromotingClub() {
-        return promotingClub;
-    }
-
-    public void setPromotingClub(String promotingClub) {
         this.promotingClub = promotingClub;
-    }
-
-    public String getPrimaryContactPerson() {
-        return primaryContactPerson;
-    }
-
-    public void setPrimaryContactPerson(String primaryContactPerson) {
-        this.primaryContactPerson = primaryContactPerson;
-    }
-
-    public String getPrimaryContactEmail() {
-        return primaryContactEmail;
-    }
-
-    public void setPrimaryContactEmail(String primaryContactEmail) {
-        this.primaryContactEmail = primaryContactEmail;
-    }
-
-    public String getPrimaryContactPhoneNumber() {
-        return primaryContactPhoneNumber;
-    }
-
-    public void setPrimaryContactPhoneNumber(String primaryContactPhoneNumber) {
-        this.primaryContactPhoneNumber = primaryContactPhoneNumber;
-    }
-
-    public String getMoreInfoUrl() {
-        return moreInfoUrl;
-    }
-
-    public void setMoreInfoUrl(String moreInfoUrl) {
-        this.moreInfoUrl = moreInfoUrl;
-    }
-
-    public String getLocationDetails() {
-        return locationDetails;
-    }
-
-    public void setLocationDetails(String locationDetails) {
-        this.locationDetails = locationDetails;
+        this.organiser = organiser;
+        this.registerationLink = registerationLink;
+        this.organiserPhoneNumber = organiserPhoneNumber;
+        this.organiserEmail = organiserEmail;
+        this.location = location;
+        this.province = province;
+        this.stageDetails = stageDetails;
     }
 
     public Date getStartDate() {
@@ -143,20 +41,84 @@ public class RoadRaceEvent {
         this.startDate = startDate;
     }
 
-    public String getSignOnLocation() {
-        return signOnLocation;
+    public Date getBookingsOpenDate() {
+        return bookingsOpenDate;
     }
 
-    public void setSignOnLocation(String signOnLocation) {
-        this.signOnLocation = signOnLocation;
+    public void setBookingsOpenDate(Date bookingsOpenDate) {
+        this.bookingsOpenDate = bookingsOpenDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getBookingsCloseDate() {
+        return bookingsCloseDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setBookingsCloseDate(Date bookingsCloseDate) {
+        this.bookingsCloseDate = bookingsCloseDate;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getPromotingClub() {
+        return promotingClub;
+    }
+
+    public void setPromotingClub(String promotingClub) {
+        this.promotingClub = promotingClub;
+    }
+
+    public String getOrganiser() {
+        return organiser;
+    }
+
+    public void setOrganiser(String organiser) {
+        this.organiser = organiser;
+    }
+
+    public String getRegisterationLink() {
+        return registerationLink;
+    }
+
+    public void setRegisterationLink(String registerationLink) {
+        this.registerationLink = registerationLink;
+    }
+
+    public String getOrganiserPhoneNumber() {
+        return organiserPhoneNumber;
+    }
+
+    public void setOrganiserPhoneNumber(String organiserPhoneNumber) {
+        this.organiserPhoneNumber = organiserPhoneNumber;
+    }
+
+    public String getOrganiserEmail() {
+        return organiserEmail;
+    }
+
+    public void setOrganiserEmail(String organiserEmail) {
+        this.organiserEmail = organiserEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public List<StageDetail> getStageDetails() {
@@ -167,31 +129,24 @@ public class RoadRaceEvent {
         this.stageDetails = stageDetails;
     }
 
-    public void addStageDetail(StageDetail stageDetail) {
-        this.stageDetails.add(stageDetail);
-    }
-
     @Override
     public boolean equals(Object obj) {
 
         if (obj instanceof RoadRaceEvent) {
             RoadRaceEvent other = (RoadRaceEvent) obj;
 
-            return this.getEventName().equals(other.getEventName())
-                    && this.getStartDay().equals(other.getStartDay())
-                    && this.getStartDate().equals(other.getStartDate())
-                    && this.getSignOnTime().equals(other.getSignOnTime())
-                    && this.getProvince().equals(other.getProvince())
-                    && this.getCategory().equals(other.getCategory())
+            return this.getStartDate().equals(other.getStartDate()) && this.getEventName().equals(other.getEventName())
                     && this.getPromotingClub().equals(other.getPromotingClub())
-                    && this.getPrimaryContactPerson().equals(other.getPrimaryContactPerson())
-                    && this.getPrimaryContactEmail().equals(other.getPrimaryContactEmail())
-                    && this.getPrimaryContactPhoneNumber().equals(other.getPrimaryContactPhoneNumber())
-                    && this.getMoreInfoUrl().equals(other.getMoreInfoUrl())
-                    && this.getLocationDetails().equals(other.getLocationDetails());
+                    && this.getOrganiser().equals(other.getOrganiser())
+                    && this.getRegisterationLink().equals(other.getRegisterationLink())
+                    && this.getBookingsOpenDate().equals(other.getBookingsOpenDate())
+                    && this.getBookingsCloseDate().equals(other.getBookingsCloseDate())
+                    && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())
+                    && this.getOrganiserEmail().equals(other.getOrganiserEmail())
+                    && this.getLocation().equals(other.getLocation()) && this.getProvince().equals(other.getProvince());
+                    //&& this.getStageDetails().equals(other.getStageDetails());
         }
 
         return false;
     }
-
 }

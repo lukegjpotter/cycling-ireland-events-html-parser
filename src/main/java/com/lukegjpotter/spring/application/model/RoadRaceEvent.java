@@ -144,7 +144,6 @@ public class RoadRaceEvent {
                     && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())
                     && this.getOrganiserEmail().equals(other.getOrganiserEmail())
                     && this.getLocation().equals(other.getLocation()) && this.getProvince().equals(other.getProvince());
-                    //&& this.getStageDetails().equals(other.getStageDetails());
         }
 
         return false;

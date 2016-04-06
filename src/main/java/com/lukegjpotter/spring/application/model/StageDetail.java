@@ -39,6 +39,7 @@ public class StageDetail {
         setMiles(miles);
         setCategory(category);
         setSignOnTime(signOnTime);
+        setStartTime(startTime);
         setRouteLinkUrl(routeLinkUrl);
     }
 

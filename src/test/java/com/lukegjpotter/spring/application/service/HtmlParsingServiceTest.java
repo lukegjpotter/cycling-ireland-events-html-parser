@@ -1,6 +1,8 @@
 package com.lukegjpotter.spring.application.service;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.parse.ParsingLoop;
 import com.lukegjpotter.spring.application.util.Constants;
 import com.lukegjpotter.spring.application.util.Utils;
 
@@ -26,11 +29,21 @@ public class HtmlParsingServiceTest {
 
     @Autowired
     private HtmlParsingService htmlParsingService;
+    @Autowired
+    private ParsingLoop parsingLoop;
+    
+    @Before
+    public void setUp() {
+        
+        parsingLoop = mock(ParsingLoop.class);
+    }
 
     @Test
     public void testParseOneDayRace() {
-        RoadRaceEvent expected = setupOneDayRaceTestResources();
-        RoadRaceEvent actual = htmlParsingService.parse().get(0);
+        
+        List<RoadRaceEvent> expected = setupOneDayRaceTestResources();
+        when(parsingLoop.startParseLoop("")).thenReturn(expected);
+        List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }
 
@@ -42,7 +55,7 @@ public class HtmlParsingServiceTest {
         assertTrue(expected.equals(actual));
     }
 
-    private RoadRaceEvent setupOneDayRaceTestResources() {
+    private List<RoadRaceEvent> setupOneDayRaceTestResources() {
         RoadRaceEvent oneDayRace;
         List<StageDetail> stageDetails = new ArrayList<>();
         htmlParsingService.setHtmlFileLocation("./src/test/resources/DungarvanOpenRace.html");
@@ -71,7 +84,10 @@ public class HtmlParsingServiceTest {
         
         oneDayRace.setStageDetails(stageDetails);
         
-        return oneDayRace;
+        List<RoadRaceEvent> oneDayRaces = new ArrayList<>();
+        oneDayRaces.add(oneDayRace);
+        
+        return oneDayRaces;
     }
     
     private RoadRaceEvent setupStageRaceTestResources() {

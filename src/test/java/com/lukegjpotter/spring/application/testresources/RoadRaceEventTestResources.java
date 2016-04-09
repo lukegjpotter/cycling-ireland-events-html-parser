@@ -22,6 +22,10 @@ public class RoadRaceEventTestResources {
     public String getOneDayRaceFileName() {
         return "./src/test/resources/DungarvanOpenRace.html";
     }
+    
+    public String getOneDayRaceHeaderFileName() {
+        return "./src/test/resources/DungarvanOpenRaceHeader.html";
+    }
 
     public String getStageRaceFileName() {
         return "./src/test/resources/SuirValley3Day.html";

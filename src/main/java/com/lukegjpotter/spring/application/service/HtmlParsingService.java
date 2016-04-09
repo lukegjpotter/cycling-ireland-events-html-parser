@@ -12,8 +12,7 @@ import com.lukegjpotter.spring.application.parse.ParsingLoop;
 public class HtmlParsingService {
 
     private String htmlFileLocation;
-    @Autowired
-    private ParsingLoop parsingLoop;
+    @Autowired private ParsingLoop parsingLoop;
 
     public List<RoadRaceEvent> parse() {
 

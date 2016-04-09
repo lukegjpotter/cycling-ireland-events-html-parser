@@ -1,7 +1,7 @@
 package com.lukegjpotter.spring.application.service;
 
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,18 +26,18 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, HtmlParsingService.class })
 public class HtmlParsingServiceTest {
 
-    @Autowired HtmlParsingService htmlParsingService;
-    @Autowired ParsingLoop parsingLoop;
+    @InjectMocks HtmlParsingService htmlParsingService;
+    @Mock ParsingLoop parsingLoop;
     @Autowired RoadRaceEventTestResources rretr;
     
     @Before public void setUp() {
-        parsingLoop = mock(ParsingLoop.class);
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test public void testParseOneDayRace() {
         htmlParsingService.setHtmlFileLocation(rretr.getOneDayRaceFileName());
         List<RoadRaceEvent> expected = rretr.getOneDayRaceList();
-        when(parsingLoop.startParseLoop("")).thenReturn(expected);
+        when(parsingLoop.startParseLoop(any(String.class))).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }

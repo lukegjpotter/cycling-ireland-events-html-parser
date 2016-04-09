@@ -31,7 +31,8 @@ public class RoadRaceEventHeaderParser {
         String promotingClub = tableData.get(1).text().trim();
         race.setPromotingClub(promotingClub);
         
-        race.setOrganiser("John Coleman");
+        String organiser = tableData.get(2).text().trim();
+        race.setOrganiser(organiser);
         
         race.setOrganiserPhoneNumber("+353858500404");
         race.setOrganiserEmail("john.coleman@mts.ie");

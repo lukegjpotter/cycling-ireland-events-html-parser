@@ -28,7 +28,9 @@ public class RoadRaceEventHeaderParser {
         String eventTitle = tableData.get(0).text().trim();
         race.setEventName(eventTitle);
         
-        race.setPromotingClub("Dungarvan CC");
+        String promotingClub = tableData.get(1).text().trim();
+        race.setPromotingClub(promotingClub);
+        
         race.setOrganiser("John Coleman");
         
         race.setOrganiserPhoneNumber("+353858500404");

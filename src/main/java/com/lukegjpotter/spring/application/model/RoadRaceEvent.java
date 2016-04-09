@@ -18,7 +18,7 @@ public class RoadRaceEvent {
     public RoadRaceEvent(Date startDate, Date bookingsOpenDate, Date bookingsCloseDate, String eventName,
             String promotingClub, String organiser, String registerationLink, String organiserPhoneNumber,
             String organiserEmail, String location, String province, List<StageDetail> stageDetails) {
-        super();
+        
         this.startDate = startDate;
         this.bookingsOpenDate = bookingsOpenDate;
         this.bookingsCloseDate = bookingsCloseDate;
@@ -31,6 +31,15 @@ public class RoadRaceEvent {
         this.location = location;
         this.province = province;
         this.stageDetails = stageDetails;
+    }
+    
+    public void addDescription(Description description) {
+        setBookingsOpenDate(description.getBookingsOpenDate());
+        setBookingsCloseDate(description.getBookingsCloseDate());
+        setOrganiserPhoneNumber(description.getOrganiserPhoneNumber());
+        setOrganiserEmail(description.getOrganiserEmail());
+        setLocation(description.getLocation());
+        setProvince(description.getProvince());
     }
 
     public Date getStartDate() {

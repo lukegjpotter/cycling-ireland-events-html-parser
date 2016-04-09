@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lukegjpotter.spring.application.model.Description;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.UtilsService;
@@ -15,7 +16,7 @@ import com.lukegjpotter.spring.application.util.UtilsService;
  * @author lukegjpotter
  */
 @Component
-public class RoadRaceEventTestResources {
+public class TestResources {
     
     @Autowired UtilsService utils;
 
@@ -26,7 +27,15 @@ public class RoadRaceEventTestResources {
     public String getOneDayRaceHeaderFileName() {
         return "./src/test/resources/DungarvanOpenRaceHeader.html";
     }
-
+    
+    public String getOneDayRaceDescriptionFileName() {
+        return "./src/test/resources/DungarvanOpenRaceDescription.html";
+    }
+    
+    public String getOneDayRaceStageDetailFileName() {
+        return "./src/test/resources/DungarvanOpenRaceStageDetail.html";
+    }
+    
     public String getStageRaceFileName() {
         return "./src/test/resources/SuirValley3Day.html";
     }
@@ -50,6 +59,7 @@ public class RoadRaceEventTestResources {
     public RoadRaceEvent getOneDayRace() {
         
         RoadRaceEvent oneDayRace = getOneDayRaceHeader();
+        oneDayRace.addDescription(getOneDayRaceDescription());
         oneDayRace.setStageDetails(getOneDayRaceStageDetails());
         
         return oneDayRace;
@@ -67,18 +77,27 @@ public class RoadRaceEventTestResources {
         oneDayRace.setPromotingClub("Dungarvan CC");
         oneDayRace.setOrganiser("John Coleman");
         oneDayRace.setRegisterationLink(""); // TODO Parse this from CI Website.
-        oneDayRace.setBookingsOpenDate(utils.convertDDMMYYYYToDate("03/04/2016"));
-        oneDayRace.setBookingsCloseDate(utils.convertDDMMYYYYToDate("03/04/2016"));
-        oneDayRace.setOrganiserPhoneNumber("+353858500404");
-        oneDayRace.setOrganiserEmail("john.coleman@mts.ie");
-        oneDayRace.setLocation("Soccer Club, Dungarvan");
-        oneDayRace.setProvince("Munster");
         return oneDayRace;
     }
 
     /**
+     * Gets the {@link Description} for a One Day Race.
+     * @return {@link Description} for a One Day Race.
+     */
+    public Description getOneDayRaceDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("03/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("03/04/2016"));
+        description.setOrganiserPhoneNumber("+353858500404");
+        description.setOrganiserEmail("john.coleman@mts.ie");
+        description.setLocation("Soccer Club, Dungarvan");
+        description.setProvince("Munster");
+        return description;
+    }
+
+    /**
      * Gets the {@link StageDetail} for a One Day Race.
-     * @return {@link List} contatining {@link StageDetail} objects.
+     * @return {@link List} containing {@link StageDetail} objects.
      */
     public List<StageDetail> getOneDayRaceStageDetails() {
         

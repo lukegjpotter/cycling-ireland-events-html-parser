@@ -11,7 +11,8 @@ import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 @Component
 public class ParsingLoop {
 
-    @Autowired private RoadRaceEventHeaderParser roadRaceEventHeaderParser;
+    @Autowired private HeaderParser headerParser;
+    @Autowired private DescriptionParser descriptionParser;
     @Autowired private StageDetailParser stageDetailParser;
 
     public List<RoadRaceEvent> startParseLoop(String fileLocation) {
@@ -20,7 +21,8 @@ public class ParsingLoop {
 
         // TODO Parse File Determine Lines/HTML Nodes to parse, do this in a loop.
 
-        RoadRaceEvent roadRace = roadRaceEventHeaderParser.parse("");
+        RoadRaceEvent roadRace = headerParser.parse("");
+        roadRace.addDescription(descriptionParser.parse(""));
         roadRace.setStageDetails(stageDetailParser.parse(""));
         roadRaces.add(roadRace);
 

@@ -17,26 +17,28 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResources;
+import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, ParsingLoop.class })
 public class ParsingLoopTest {
 
     @InjectMocks ParsingLoop parsingLoop;
-    @Mock RoadRaceEventHeaderParser roadRaceEventHeaderParser;
+    @Mock HeaderParser headerParser;
+    @Mock DescriptionParser descriptionParser;
     @Mock StageDetailParser stageDetailParser;
-    @Autowired RoadRaceEventTestResources rretr;
+    @Autowired TestResources tr;
     
     @Before public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test public void testStartParseLoopOneDayRace() {
-        when(roadRaceEventHeaderParser.parse(any(String.class))).thenReturn(rretr.getOneDayRaceHeader());
-        when(stageDetailParser.parse(any(String.class))).thenReturn(rretr.getOneDayRaceStageDetails());
-        List<RoadRaceEvent> actual = parsingLoop.startParseLoop(rretr.getOneDayRaceFileName());
-        List<RoadRaceEvent> expected = rretr.getOneDayRaceList();
+        when(headerParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceHeader());
+        when(descriptionParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceDescription());
+        when(stageDetailParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceStageDetails());
+        List<RoadRaceEvent> actual = parsingLoop.startParseLoop(tr.getOneDayRaceFileName());
+        List<RoadRaceEvent> expected = tr.getOneDayRaceList();
         assertTrue(expected.equals(actual));
     }
 }

@@ -10,20 +10,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResources;
+import com.lukegjpotter.spring.application.testresources.TestResources;
 import com.lukegjpotter.spring.application.testresources.TestUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, RoadRaceEventHeaderParser.class })
-public class RoadRaceEventHeaderParserTest {
+@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, HeaderParser.class })
+public class HeaderParserTest {
 
-    @Autowired RoadRaceEventHeaderParser roadRaceEventHeaderParser;
-    @Autowired RoadRaceEventTestResources rretr;
+    @Autowired HeaderParser headerParser;
+    @Autowired TestResources tr;
     @Autowired TestUtils utils;
 
     @Test public void testParseOneDayRace() {
-        RoadRaceEvent actual = roadRaceEventHeaderParser.parse(utils.roadRaceHeaderRawHtml());
-        RoadRaceEvent expected = rretr.getOneDayRaceHeader();
+        RoadRaceEvent actual = headerParser.parse(utils.headerRawHtml());
+        RoadRaceEvent expected = tr.getOneDayRaceHeader();
         
         assertTrue("StartDate: Expected: " + expected.getStartDate() + ". Actual: " + actual.getStartDate(), expected.getStartDate().equals(actual.getStartDate()));
         assertTrue("EventName: Expected: " + expected.getEventName() + ". Actual: " + actual.getEventName(), expected.getEventName().equals(actual.getEventName()));

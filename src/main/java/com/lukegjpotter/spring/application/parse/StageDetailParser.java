@@ -10,11 +10,11 @@ import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class StageDetailParser {
+public class StageDetailParser implements Parser<List<StageDetail>> {
     
     @Autowired private UtilsService utils;
 
-    public List<StageDetail> parse(String htmlNodeToParse) {
+    @Override public List<StageDetail> parse(String htmlToParse) {
         
         List<StageDetail> stageDetails = new ArrayList<>();
         

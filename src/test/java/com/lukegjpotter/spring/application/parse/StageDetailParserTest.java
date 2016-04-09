@@ -12,18 +12,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResources;
+import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailParser.class })
 public class StageDetailParserTest {
 
     @Autowired StageDetailParser stageDetailParser;
-    @Autowired RoadRaceEventTestResources rretr;
+    @Autowired TestResources tr;
 
     @Test public void testParseForOneDayRace() {
         List<StageDetail> actual = stageDetailParser.parse("");
-        List<StageDetail> expected = rretr.getOneDayRaceStageDetails();
+        List<StageDetail> expected = tr.getOneDayRaceStageDetails();
         assertTrue(expected.equals(actual));
     }
 

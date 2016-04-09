@@ -10,12 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestUtils {
 
-    @Autowired RoadRaceEventTestResources rretr;
+    @Autowired TestResources tr;
 
-    public String roadRaceHeaderRawHtml() {
-
+    public String headerRawHtml() {
         try {
-            return new String(Files.readAllBytes(Paths.get(rretr.getOneDayRaceHeaderFileName()))).replace("\n", "");
+            return new String(Files.readAllBytes(Paths.get(tr.getOneDayRaceHeaderFileName()))).replace("\n", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    public String descriptionRawHtml() {
+        try {
+            return new String(Files.readAllBytes(Paths.get(tr.getOneDayRaceDescriptionFileName()))).replace("\n", "");
         } catch (IOException e) {
             e.printStackTrace();
         }

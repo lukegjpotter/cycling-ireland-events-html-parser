@@ -40,6 +40,8 @@ public class StageDetail {
         setRouteLinkUrl(routeLinkUrl);
     }
 
+    public StageDetail() {}
+
     public Date getDate() {
         return date;
     }

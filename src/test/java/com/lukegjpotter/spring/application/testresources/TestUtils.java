@@ -32,4 +32,14 @@ public class TestUtils {
         return "";
     }
 
+    public String stageDetailRawHtml() {
+        try {
+            return new String(Files.readAllBytes(Paths.get(tr.getOneDayRaceStageDetailFileName()))).replace("\n", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
 }

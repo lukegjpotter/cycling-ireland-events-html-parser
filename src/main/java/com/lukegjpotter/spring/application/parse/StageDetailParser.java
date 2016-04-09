@@ -3,6 +3,9 @@ package com.lukegjpotter.spring.application.parse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,17 +20,38 @@ public class StageDetailParser implements Parser<List<StageDetail>> {
     @Override public List<StageDetail> parse(String htmlToParse) {
         
         List<StageDetail> stageDetails = new ArrayList<>();
+        StageDetail stageDetail = null;
         
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 1, 1, "A1", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 2, 1, "A2", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 3, 1, "A3", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 4, 1, "A4", 70, 43.5, "Road", "10:00", "12:15", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 5, 1, "U16", 35.7, 22.2, "Road", "10:00", "13:15", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 6, 1, "U14", 18, 11.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 7, 1, "U12", 10.7, 6.6, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 8, 1, "Women", 70, 43.5, "Road", "09:00", "11:00", "http://www.dungarvancc.com"));
+        Element body = Jsoup.parseBodyFragment(htmlToParse).body();
+        Elements tableRows = body.getElementsByClass("trCourseItem");
+        
+        int i = 1; // The first row of the table is Headers, start from 1.
+        while (i < tableRows.size()) {
+            
+            stageDetail = new StageDetail();
+            Elements rowData = tableRows.get(i).getElementsByTag("td");
+            
+            stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text().trim()));
+            stageDetail.setLocation(rowData.get(1).text().trim());
+            stageDetail.setRaceNumber(Integer.parseInt(rowData.get(2).text().trim()));
+            stageDetail.setStageNumber(Integer.parseInt(rowData.get(3).text().trim()));
+            stageDetail.setRaceType(rowData.get(4).text().trim());
+            stageDetail.setKilometers(Double.parseDouble(rowData.get(5).text().trim()));
+            stageDetail.setMiles(Double.parseDouble(rowData.get(6).text().trim()));
+            stageDetail.setCategory(rowData.get(7).text().trim());
+            stageDetail.setSignOnTime(rowData.get(8).text().trim().replace(".", ":"));
+            stageDetail.setStartTime(rowData.get(9).text().trim().replace(".", ":"));
+            stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(10)));
+            
+            stageDetails.add(stageDetail);
+            i++;
+        }
         
         return stageDetails;
+    }
+
+    private String parseRouteLinkUrl(Element link) {
+        return link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim();
     }
 
 }

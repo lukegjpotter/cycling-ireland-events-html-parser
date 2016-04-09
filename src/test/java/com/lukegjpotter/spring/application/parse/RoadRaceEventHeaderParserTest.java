@@ -16,13 +16,12 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, RoadRaceEventHeaderParser.class })
 public class RoadRaceEventHeaderParserTest {
 
-    @Autowired
-    RoadRaceEventHeaderParser roadRaceEventHeaderParser;
+    @Autowired RoadRaceEventHeaderParser roadRaceEventHeaderParser;
+    @Autowired RoadRaceEventTestResources rretr;
 
-    @Test
-    public void testParseOneDayRace() {
+    @Test public void testParseOneDayRace() {
         RoadRaceEvent actual = roadRaceEventHeaderParser.parse("");
-        RoadRaceEvent expected = RoadRaceEventTestResources.getOneDayRaceHeader();
+        RoadRaceEvent expected = rretr.getOneDayRaceHeader();
         assertTrue(expected.equals(actual));
     }
 

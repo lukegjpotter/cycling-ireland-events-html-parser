@@ -19,11 +19,11 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 public class ParsingLoopTest {
 
     @Autowired ParsingLoop parsingLoop;
+    @Autowired RoadRaceEventTestResources rretr;
 
-    @Test
-    public void testStartParseLoopOneDayRace() {
-        List<RoadRaceEvent> actual = parsingLoop.startParseLoop(RoadRaceEventTestResources.ONE_DAY_RACE_FILE_LOCATION);
-        List<RoadRaceEvent> expected = RoadRaceEventTestResources.getOneDayRaceList();
+    @Test public void testStartParseLoopOneDayRace() {
+        List<RoadRaceEvent> actual = parsingLoop.startParseLoop(rretr.getOneDayRaceFileName());
+        List<RoadRaceEvent> expected = rretr.getOneDayRaceList();
         assertTrue(expected.equals(actual));
     }
 }

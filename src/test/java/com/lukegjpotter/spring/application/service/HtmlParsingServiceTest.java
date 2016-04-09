@@ -23,31 +23,25 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, HtmlParsingService.class })
 public class HtmlParsingServiceTest {
 
-    @Autowired
-    private HtmlParsingService htmlParsingService;
-    @Autowired
-    private ParsingLoop parsingLoop;
+    @Autowired private HtmlParsingService htmlParsingService;
+    @Autowired private ParsingLoop parsingLoop;
+    @Autowired RoadRaceEventTestResources rretr;
     
-    @Before
-    public void setUp() {
-        
+    @Before public void setUp() {
         parsingLoop = mock(ParsingLoop.class);
     }
 
-    @Test
-    public void testParseOneDayRace() {
-        htmlParsingService.setHtmlFileLocation(RoadRaceEventTestResources.ONE_DAY_RACE_FILE_LOCATION);
-        List<RoadRaceEvent> expected = RoadRaceEventTestResources.getOneDayRaceList();
+    @Test public void testParseOneDayRace() {
+        htmlParsingService.setHtmlFileLocation(rretr.getOneDayRaceFileName());
+        List<RoadRaceEvent> expected = rretr.getOneDayRaceList();
         when(parsingLoop.startParseLoop("")).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }
 
-    @Test
-    @Ignore
-    public void testParseStageRace() {
-        htmlParsingService.setHtmlFileLocation(RoadRaceEventTestResources.STAGE_RACE_FILE_LOCATION);
-        List<RoadRaceEvent> expected = RoadRaceEventTestResources.getStageRaceList();
+    @Test @Ignore public void testParseStageRace() {
+        htmlParsingService.setHtmlFileLocation(rretr.getStageRaceFileName());
+        List<RoadRaceEvent> expected = rretr.getStageRaceList();
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }

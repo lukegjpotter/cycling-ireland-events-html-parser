@@ -19,11 +19,11 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 public class StageDetailParserTest {
 
     @Autowired StageDetailParser stageDetailParser;
+    @Autowired RoadRaceEventTestResources rretr;
 
-    @Test
-    public void testParseForOneDayRace() {
+    @Test public void testParseForOneDayRace() {
         List<StageDetail> actual = stageDetailParser.parse("");
-        List<StageDetail> expected = RoadRaceEventTestResources.getOneDayRaceStageDetails();
+        List<StageDetail> expected = rretr.getOneDayRaceStageDetails();
         assertTrue(expected.equals(actual));
     }
 

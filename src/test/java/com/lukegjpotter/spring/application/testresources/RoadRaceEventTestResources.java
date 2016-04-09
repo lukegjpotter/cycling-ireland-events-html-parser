@@ -3,6 +3,8 @@ package com.lukegjpotter.spring.application.testresources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.Constants;
@@ -12,16 +14,22 @@ import com.lukegjpotter.spring.application.util.Utils;
  * This class is to reduce the boilerplate needed to create Road Race Events in the other actual test classes.
  * @author lukegjpotter
  */
+@Component
 public class RoadRaceEventTestResources {
 
-    public static final String ONE_DAY_RACE_FILE_LOCATION = "./src/test/resources/DungarvanOpenRace.html";
-    public static final String STAGE_RACE_FILE_LOCATION = "./src/test/resources/SuirValley3Day.html";
+    public String getOneDayRaceFileName() {
+        return "./src/test/resources/DungarvanOpenRace.html";
+    }
+
+    public String getStageRaceFileName() {
+        return "./src/test/resources/SuirValley3Day.html";
+    }
 
     /**
      * Gets a List with only one One Day Race in it.
      * @return List of one One Day Race.
      */
-    public static List<RoadRaceEvent> getOneDayRaceList() {
+    public List<RoadRaceEvent> getOneDayRaceList() {
        
         List<RoadRaceEvent> oneDayRaces = new ArrayList<>();
         oneDayRaces.add(getOneDayRace());
@@ -33,7 +41,7 @@ public class RoadRaceEventTestResources {
      * Gets a One Day Race.
      * @return {@link RoadRaceEvent} for a one day race.
      */
-    public static RoadRaceEvent getOneDayRace() {
+    public RoadRaceEvent getOneDayRace() {
         
         RoadRaceEvent oneDayRace = getOneDayRaceHeader();
         oneDayRace.setStageDetails(getOneDayRaceStageDetails());
@@ -45,7 +53,7 @@ public class RoadRaceEventTestResources {
      * Gets the header part of a One Day Race {@link RoadRaceEvent}. This does not include the {@link StageDetail} List.
      * @return {@link RoadRaceEvent} with only the headers filled in.
      */
-    public static RoadRaceEvent getOneDayRaceHeader() {
+    public RoadRaceEvent getOneDayRaceHeader() {
         
         RoadRaceEvent oneDayRace = new RoadRaceEvent();
         oneDayRace.setStartDate(Utils.convertStringToDate("03-Apr-16", Constants.DATE_FORMAT_DD_MMM_YY));
@@ -66,7 +74,7 @@ public class RoadRaceEventTestResources {
      * Gets the {@link StageDetail} for a One Day Race.
      * @return {@link List} contatining {@link StageDetail} objects.
      */
-    public static List<StageDetail> getOneDayRaceStageDetails() {
+    public List<StageDetail> getOneDayRaceStageDetails() {
         
         List<StageDetail> stageDetails = new ArrayList<>();
         stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 1, 1, "A1", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
@@ -84,7 +92,7 @@ public class RoadRaceEventTestResources {
      * Gets a List of a Stage Race {@link RoadRaceEvent}. It will contain one Stage Race.
      * @return {@link List} containing one Stage Race.
      */
-    public static List<RoadRaceEvent> getStageRaceList() {
+    public List<RoadRaceEvent> getStageRaceList() {
         
         List<RoadRaceEvent> stageRaces = new ArrayList<>();
         stageRaces.add(getStageRace());
@@ -96,7 +104,7 @@ public class RoadRaceEventTestResources {
      * Gets a stage race.
      * @return {@link RoadRaceEvent} for  stage race.
      */
-    public static RoadRaceEvent getStageRace() {
+    public RoadRaceEvent getStageRace() {
         
         RoadRaceEvent stageRace = new RoadRaceEvent();
         
@@ -114,7 +122,7 @@ public class RoadRaceEventTestResources {
      * Gets the {@link StageDetail} for a Stage Race.
      * @return {@link List} of {@link StageDetail} for stage race.
      */
-    public static List<StageDetail> getStageRaceStageDetails() {
+    public List<StageDetail> getStageRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
         stageDetails.add(new StageDetail("30/07/2016", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9.30", "13.00", "http://www.suirvalley3day.com/"));
         stageDetails.add(new StageDetail("31/07/2016", 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));

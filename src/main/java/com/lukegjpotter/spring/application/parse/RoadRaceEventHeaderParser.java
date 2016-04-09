@@ -19,12 +19,15 @@ public class RoadRaceEventHeaderParser {
         RoadRaceEvent race = new RoadRaceEvent();
         
         Element roadRaceHeader = Jsoup.parseBodyFragment(htmlNodeToParse).body();
-        Elements tableData = roadRaceHeader.select("span");
         
+        Elements tableData = roadRaceHeader.select("span");
         String startDate = tableData.first().text().trim();
         race.setStartDate(utils.convertDDMMMYYToDate(startDate));
         
-        race.setEventName("Dungarvan Open Race");
+        tableData = roadRaceHeader.getElementsByTag("div");
+        String eventTitle = tableData.get(0).text().trim();
+        race.setEventName(eventTitle);
+        
         race.setPromotingClub("Dungarvan CC");
         race.setOrganiser("John Coleman");
         

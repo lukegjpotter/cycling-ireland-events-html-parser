@@ -23,8 +23,8 @@ import com.lukegjpotter.spring.application.testresources.RoadRaceEventTestResour
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, HtmlParsingService.class })
 public class HtmlParsingServiceTest {
 
-    @Autowired private HtmlParsingService htmlParsingService;
-    @Autowired private ParsingLoop parsingLoop;
+    @Autowired HtmlParsingService htmlParsingService;
+    @Autowired ParsingLoop parsingLoop;
     @Autowired RoadRaceEventTestResources rretr;
     
     @Before public void setUp() {

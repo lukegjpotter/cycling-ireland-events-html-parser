@@ -11,10 +11,8 @@ import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 @Component
 public class ParsingLoop {
 
-    @Autowired
-    private RoadRaceEventHeaderParser roadRaceEventHeaderParser;
-    @Autowired
-    private StageDetailParser stageDetailParser;
+    @Autowired private RoadRaceEventHeaderParser roadRaceEventHeaderParser;
+    @Autowired private StageDetailParser stageDetailParser;
 
     public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 

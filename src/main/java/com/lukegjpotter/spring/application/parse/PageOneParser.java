@@ -6,15 +6,21 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.DayDateTimeModel;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.util.Constants;
-import com.lukegjpotter.spring.application.util.ParsingUtils;
+import com.lukegjpotter.spring.application.util.ParsingUtilsService;
 
+@Component
 public class PageOneParser implements Parser {
 
+    @Autowired private ParsingUtilsService parsingUtilsService;
     private String pageLocation;
+    
+    public PageOneParser() {}
     
     public PageOneParser(String pageLocation) {
         setPageLocation(pageLocation);
@@ -45,7 +51,7 @@ public class PageOneParser implements Parser {
         
         // Day, Start Date, Sign On Time
         Element eventDateTimeElement = pageOne.getElementById(eventDateJSoup);
-        DayDateTimeModel dayDateTime = ParsingUtils.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
+        DayDateTimeModel dayDateTime = parsingUtilsService.parseDayDateTimeString(eventDateTimeElement.child(0).text().trim());
         //roadRaceEvent.setStartDay(dayDateTime.getDay());
         roadRaceEvent.setStartDate(dayDateTime.getDate());
         //roadRaceEvent.setSignOnTime(dayDateTime.getTime());

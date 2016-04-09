@@ -3,12 +3,12 @@ package com.lukegjpotter.spring.application.testresources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.util.Constants;
-import com.lukegjpotter.spring.application.util.Utils;
+import com.lukegjpotter.spring.application.util.UtilsService;
 
 /**
  * This class is to reduce the boilerplate needed to create Road Race Events in the other actual test classes.
@@ -16,6 +16,8 @@ import com.lukegjpotter.spring.application.util.Utils;
  */
 @Component
 public class RoadRaceEventTestResources {
+    
+    @Autowired UtilsService utils;
 
     public String getOneDayRaceFileName() {
         return "./src/test/resources/DungarvanOpenRace.html";
@@ -56,13 +58,13 @@ public class RoadRaceEventTestResources {
     public RoadRaceEvent getOneDayRaceHeader() {
         
         RoadRaceEvent oneDayRace = new RoadRaceEvent();
-        oneDayRace.setStartDate(Utils.convertStringToDate("03-Apr-16", Constants.DATE_FORMAT_DD_MMM_YY));
+        oneDayRace.setStartDate(utils.convertDDMMMYYToDate("03-Apr-16"));
         oneDayRace.setEventName("Dungarvan Open Race");
         oneDayRace.setPromotingClub("Dungarvan CC");
         oneDayRace.setOrganiser("John Coleman");
         oneDayRace.setRegisterationLink(""); // TODO Parse this from CI Website.
-        oneDayRace.setBookingsOpenDate(Utils.convertStringToDate("03/04/2016", Constants.DATE_FORMAT_DDMMYYYY));
-        oneDayRace.setBookingsCloseDate(Utils.convertStringToDate("03/04/2016", Constants.DATE_FORMAT_DDMMYYYY));
+        oneDayRace.setBookingsOpenDate(utils.convertDDMMYYYYToDate("03/04/2016"));
+        oneDayRace.setBookingsCloseDate(utils.convertDDMMYYYYToDate("03/04/2016"));
         oneDayRace.setOrganiserPhoneNumber("+353858500404");
         oneDayRace.setOrganiserEmail("john.coleman@mts.ie");
         oneDayRace.setLocation("Soccer Club, Dungarvan");
@@ -77,14 +79,14 @@ public class RoadRaceEventTestResources {
     public List<StageDetail> getOneDayRaceStageDetails() {
         
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 1, 1, "A1", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 2, 1, "A2", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 3, 1, "A3", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 4, 1, "A4", 70, 43.5, "Road", "10:00", "12:15", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 5, 1, "U16", 35.7, 22.2, "Road", "10:00", "13:15", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 6, 1, "U14", 18, 11.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 7, 1, "U12", 10.7, 6.6, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
-        stageDetails.add(new StageDetail("03/04/2016", "Soccer Club", 8, 1, "Women", 70, 43.5, "Road", "09:00", "11:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 1, 1, "A1", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 2, 1, "A2", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 3, 1, "A3", 105, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 4, 1, "A4", 70, 43.5, "Road", "10:00", "12:15", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 5, 1, "U16", 35.7, 22.2, "Road", "10:00", "13:15", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 6, 1, "U14", 18, 11.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 7, 1, "U12", 10.7, 6.6, "Road", "10:00", "12:00", "http://www.dungarvancc.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 8, 1, "Women", 70, 43.5, "Road", "09:00", "11:00", "http://www.dungarvancc.com"));
         return stageDetails;
     }
     
@@ -124,10 +126,10 @@ public class RoadRaceEventTestResources {
      */
     public List<StageDetail> getStageRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail("30/07/2016", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9.30", "13.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail("31/07/2016", 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail("31/07/2016", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18.00", "19.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail("01/08/2016", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9.30", "13.00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18.00", "19.00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
         return stageDetails;
     }
 }

@@ -2,9 +2,6 @@ package com.lukegjpotter.spring.application.model;
 
 import java.util.Date;
 
-import com.lukegjpotter.spring.application.util.Constants;
-import com.lukegjpotter.spring.application.util.Utils;
-
 public class StageDetail {
 
     private Date date;
@@ -12,10 +9,10 @@ public class StageDetail {
     private String location, raceType, category, signOnTime, startTime, routeLinkUrl;
     private double kilometers, miles;
 
-    public StageDetail(String date, int raceNumber, int stageNumber, String raceType, int kilometers, double miles,
+    public StageDetail(Date date, int raceNumber, int stageNumber, String raceType, int kilometers, double miles,
             String category, String signOnTime, String startTime, String routeLinkUrl) {
         
-        setDate(Utils.convertStringToDate(date, Constants.DATE_FORMAT_DDMMYYYY));
+        setDate(date);
         setLocation("");
         setRaceNumber(raceNumber);
         setStageNumber(stageNumber);
@@ -27,10 +24,10 @@ public class StageDetail {
         setRouteLinkUrl(routeLinkUrl);
     }
 
-    public StageDetail(String date, String location, int raceNumber, int stageNumber, String raceType, double kilometers, double miles,
+    public StageDetail(Date date, String location, int raceNumber, int stageNumber, String raceType, double kilometers, double miles,
             String category, String signOnTime, String startTime, String routeLinkUrl) {
         
-        setDate(Utils.convertStringToDate(date, Constants.DATE_FORMAT_DDMMYYYY));
+        setDate(date);
         setLocation(location);
         setRaceNumber(raceNumber);
         setStageNumber(stageNumber);

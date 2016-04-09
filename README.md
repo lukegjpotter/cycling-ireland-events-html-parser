@@ -6,7 +6,6 @@ This project will Scrape and Parse the HTML from the Cycling Ireland Events into
 [![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
 [![Code Climate](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/gpa.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper)
 [![Issue Count](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/issue_count.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper)
-[![Test Coverage](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/coverage.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/coverage)
 
 
 ### Version 0.1 Features - In Progress

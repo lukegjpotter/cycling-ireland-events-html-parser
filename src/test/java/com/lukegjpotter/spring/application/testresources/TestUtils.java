@@ -16,7 +16,7 @@ public class TestUtils {
         return readFile(tr.getOneDayRaceHeaderFileName());
     }
 
-    public String descriptionRawHtml() {
+    public String oneDayRaceDescriptionRawHtml() {
         return readFile(tr.getOneDayRaceDescriptionFileName());
     }
 
@@ -28,6 +28,10 @@ public class TestUtils {
         return readFile(tr.getStageRaceHeaderFileName());
     }
 
+    public String stageRaceDescriptionRawHtml() {
+        return readFile(tr.getStageRaceDescriptionFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");

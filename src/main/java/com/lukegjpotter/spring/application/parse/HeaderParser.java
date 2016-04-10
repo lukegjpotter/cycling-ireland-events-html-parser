@@ -28,7 +28,7 @@ public class HeaderParser implements Parser<RoadRaceEvent> {
         race.setPromotingClub(tableData.get(1).text().trim());
         race.setOrganiser(tableData.get(2).text().trim());
         
-        race.setRegisterationLink(""); // TODO Parse this from CI Website.
+        race.setRegistrationLink(""); // TODO Parse this from CI Website.
         
         return race;
     }

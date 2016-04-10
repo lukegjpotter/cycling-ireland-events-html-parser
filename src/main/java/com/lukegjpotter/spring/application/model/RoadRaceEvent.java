@@ -6,7 +6,7 @@ import java.util.List;
 public class RoadRaceEvent {
 
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
-    private String eventName, promotingClub, organiser, registerationLink, organiserPhoneNumber, organiserEmail,
+    private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
             location, province;
     private List<StageDetail> stageDetails;
 
@@ -16,7 +16,7 @@ public class RoadRaceEvent {
 
     /** Full Constructor */
     public RoadRaceEvent(Date startDate, Date bookingsOpenDate, Date bookingsCloseDate, String eventName,
-            String promotingClub, String organiser, String registerationLink, String organiserPhoneNumber,
+            String promotingClub, String organiser, String registrationLink, String organiserPhoneNumber,
             String organiserEmail, String location, String province, List<StageDetail> stageDetails) {
         
         this.startDate = startDate;
@@ -25,7 +25,7 @@ public class RoadRaceEvent {
         this.eventName = eventName;
         this.promotingClub = promotingClub;
         this.organiser = organiser;
-        this.registerationLink = registerationLink;
+        this.registrationLink = registrationLink;
         this.organiserPhoneNumber = organiserPhoneNumber;
         this.organiserEmail = organiserEmail;
         this.location = location;
@@ -90,12 +90,12 @@ public class RoadRaceEvent {
         this.organiser = organiser;
     }
 
-    public String getRegisterationLink() {
-        return registerationLink;
+    public String getRegistrationLink() {
+        return registrationLink;
     }
 
-    public void setRegisterationLink(String registerationLink) {
-        this.registerationLink = registerationLink;
+    public void setRegistrationLink(String registrationLink) {
+        this.registrationLink = registrationLink;
     }
 
     public String getOrganiserPhoneNumber() {
@@ -147,7 +147,7 @@ public class RoadRaceEvent {
             return this.getStartDate().equals(other.getStartDate()) && this.getEventName().equals(other.getEventName())
                     && this.getPromotingClub().equals(other.getPromotingClub())
                     && this.getOrganiser().equals(other.getOrganiser())
-                    && this.getRegisterationLink().equals(other.getRegisterationLink())
+                    && this.getRegistrationLink().equals(other.getRegistrationLink())
                     && this.getBookingsOpenDate().equals(other.getBookingsOpenDate())
                     && this.getBookingsCloseDate().equals(other.getBookingsCloseDate())
                     && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())

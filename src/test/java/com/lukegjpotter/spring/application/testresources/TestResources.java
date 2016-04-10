@@ -76,7 +76,7 @@ public class TestResources {
         oneDayRace.setEventName("Dungarvan Open Race");
         oneDayRace.setPromotingClub("Dungarvan CC");
         oneDayRace.setOrganiser("John Coleman");
-        oneDayRace.setRegisterationLink(""); // TODO Parse this from CI Website.
+        oneDayRace.setRegistrationLink("");
         return oneDayRace;
     }
 

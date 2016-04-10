@@ -24,4 +24,4 @@ Write the POJOs, from the parsed Resource File, into the Database Using Spring D
 * Patch the POJOs in the Database with new information gleamed from the screen scraping.
 
 ### Version 3.0 Features
-Set a Timer service that will gather the Event's Regristration Link from the Events Page, to make the link available in the database for end user to use to sign up to the races.
+Set a Timer service that will gather the Event's Registration Link from the Events Page, to make the link available in the database for end user to use to sign up to the races.

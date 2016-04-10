@@ -22,8 +22,18 @@ public class HeaderParserTest {
     @Autowired TestUtils utils;
 
     @Test public void testParseOneDayRace() {
-        RoadRaceEvent actual = headerParser.parse(utils.headerRawHtml());
+        RoadRaceEvent actual = headerParser.parse(utils.oneDayRaceHeaderRawHtml());
         RoadRaceEvent expected = tr.getOneDayRaceHeader();
+        
+        assertTrue("StartDate: Expected: " + expected.getStartDate() + ". Actual: " + actual.getStartDate(), expected.getStartDate().equals(actual.getStartDate()));
+        assertTrue("EventName: Expected: " + expected.getEventName() + ". Actual: " + actual.getEventName(), expected.getEventName().equals(actual.getEventName()));
+        assertTrue("PromotingClub: Expected: " + expected.getPromotingClub() + ". Actual: " + actual.getPromotingClub(), expected.getPromotingClub().equals(actual.getPromotingClub()));
+        assertTrue("Organiser: Expected: " + expected.getOrganiser() + ". Actual: " + actual.getOrganiser(), expected.getOrganiser().equals(actual.getOrganiser()));
+    }
+    
+    @Test public void testParseStageRace() {
+        RoadRaceEvent actual = headerParser.parse(utils.stageRaceHeaderRawHtml());
+        RoadRaceEvent expected = tr.getStageRaceHeader();
         
         assertTrue("StartDate: Expected: " + expected.getStartDate() + ". Actual: " + actual.getStartDate(), expected.getStartDate().equals(actual.getStartDate()));
         assertTrue("EventName: Expected: " + expected.getEventName() + ". Actual: " + actual.getEventName(), expected.getEventName().equals(actual.getEventName()));

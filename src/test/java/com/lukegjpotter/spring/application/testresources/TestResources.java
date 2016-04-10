@@ -39,6 +39,10 @@ public class TestResources {
     public String getStageRaceFileName() {
         return "./src/test/resources/SuirValley3Day.html";
     }
+    
+    public String getStageRaceHeaderFileName() {
+        return "./src/test/resources/SuirValley3DayHeader.html";
+    }
 
     /**
      * Gets a List with only one One Day Race in it.

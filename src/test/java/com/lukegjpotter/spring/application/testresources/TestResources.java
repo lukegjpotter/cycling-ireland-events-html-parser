@@ -47,6 +47,10 @@ public class TestResources {
     public String getStageRaceDescriptionFileName() {
         return "./src/test/resources/SuirValley3DayDescription.html";
     }
+    
+    public String getStageRaceStageDetailFileName() {
+        return "./src/test/resources/SuirValley3DayStageDetail.html";
+    }
 
     /**
      * Gets a List with only one One Day Race in it.
@@ -182,10 +186,10 @@ public class TestResources {
      */
     public List<StageDetail> getStageRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9:30", "11:00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9:30", "11:00", "http://www.suirvalley3day.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com"));
         return stageDetails;
     }
 

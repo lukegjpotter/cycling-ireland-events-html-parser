@@ -20,7 +20,7 @@ public class TestUtils {
         return readFile(tr.getOneDayRaceDescriptionFileName());
     }
 
-    public String stageDetailRawHtml() {
+    public String oneDayRaceStageDetailRawHtml() {
         return readFile(tr.getOneDayRaceStageDetailFileName());
     }
 
@@ -30,6 +30,10 @@ public class TestUtils {
 
     public String stageRaceDescriptionRawHtml() {
         return readFile(tr.getStageRaceDescriptionFileName());
+    }
+    
+    public String stageRaceStageDetailRawHtml() {
+        return readFile(tr.getStageRaceStageDetailFileName());
     }
     
     private String readFile(String raceFileName) {

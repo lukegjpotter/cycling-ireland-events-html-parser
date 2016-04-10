@@ -9,11 +9,10 @@ This project will Scrape and Parse the HTML from the Cycling Ireland Events into
 
 
 ### Version 0.1 Features - In Progress
-Parse the Resource file to get the basic information from the initial Cycling Ireland Events page.
-<br>Just the Event Titles, Date and Organiser Contact Details.
+Parse a resource file to get the all information from an individual Cycling Event.
 
 ### Version 0.2 Features
-Parse the Resource File to get the information on the different races/stages of the event, e.g. the start time and distance of the A4 Race.
+Be able to loop through the file to get all the information from all the Cycling Events into POJOs
 
 ### Version 1.0 Features
 Write the POJOs, from the parsed Resource File, into the Database Using Spring Data and Heroku's PosgreSQL.

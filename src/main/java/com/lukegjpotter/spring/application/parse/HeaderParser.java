@@ -10,7 +10,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class HeaderParser implements Parser<RoadRaceEvent> {
+public class HeaderParser implements Parsable<RoadRaceEvent> {
     
     @Autowired UtilsService utils;
 

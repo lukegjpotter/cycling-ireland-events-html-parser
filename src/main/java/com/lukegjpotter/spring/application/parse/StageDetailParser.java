@@ -13,7 +13,7 @@ import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class StageDetailParser implements Parser<List<StageDetail>> {
+public class StageDetailParser implements Parsable<List<StageDetail>> {
     
     @Autowired private UtilsService utils;
 

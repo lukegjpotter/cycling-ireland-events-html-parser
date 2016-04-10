@@ -10,7 +10,7 @@ import com.lukegjpotter.spring.application.model.Description;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class DescriptionParser implements Parser<Description> {
+public class DescriptionParser implements Parsable<Description> {
 
     @Autowired UtilsService utils;
     

@@ -40,5 +40,13 @@ public class HtmlParsingServiceTest {
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }
+    
+    @Test public void testParseStageRace() {
+        htmlParsingService.setHtmlFileLocation(tr.getStageRaceFileName());
+        List<RoadRaceEvent> expected = tr.getStageRaceList();
+        when(parsingLoop.startParseLoop(any(String.class))).thenReturn(expected);
+        List<RoadRaceEvent> actual = htmlParsingService.parse();
+        assertTrue(expected.equals(actual));
+    }
 
 }

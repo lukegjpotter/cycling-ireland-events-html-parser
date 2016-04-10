@@ -131,16 +131,41 @@ public class TestResources {
      */
     public RoadRaceEvent getStageRace() {
         
-        RoadRaceEvent stageRace = new RoadRaceEvent();
-        
-        /*"Suir Valley 3 Day", "Saturday", "July 30, 2016", "8:00am", "Munster", "Road",
-                "Clonmel CC", "Declan Byrne", "declanbyrne2006@gmail.com", "3.53879E+11",
-                "https://cyclingireland.azolve.com/portal/Moreeventdetails.aspx?EventId=213961", "Munster, Munster");*/
-        //stageRace.setSignOnLocation("HEARNS HOTEL, CLONMEL");
-        //stageRace.setEndDate(Utils.convertStringToDate("01/08/2016", Constants.DATE_FORMAT_DDMMYYYY));
+        RoadRaceEvent stageRace = getStageRaceHeader();
+        stageRace.addDescription(getStageRaceDescription());
         stageRace.setStageDetails(getStageRaceStageDetails());
         
         return stageRace;
+    }
+    
+    /**
+     * Gets the header part of a Stage Race {@link RoadRaceEvent}. This does not include the {@link StageDetail} List.
+     * @return {@link RoadRaceEvent} with only the headers filled in.
+     */
+    public RoadRaceEvent getStageRaceHeader() {
+        
+        RoadRaceEvent stageRace = new RoadRaceEvent();
+        stageRace.setStartDate(utils.convertDDMMMYYToDate("30-Jul-16"));
+        stageRace.setEventName("Suir Valley 3 Day");
+        stageRace.setPromotingClub("Clonmel CC");
+        stageRace.setOrganiser("Declan Byrne");
+        stageRace.setRegistrationLink("");
+        return stageRace;
+    }
+
+    /**
+     * Gets the {@link Description} for a Stage Race.
+     * @return {@link Description} for a Stage Race.
+     */
+    public Description getStageRaceDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("30/07/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("01/08/2016"));
+        description.setOrganiserPhoneNumber("+353879369628");
+        description.setOrganiserEmail("declanbyrne2006@gmail.com");
+        description.setLocation("HEARNS HOTEL, CLONMEL");
+        description.setProvince("Munster");
+        return description;
     }
 
     /**
@@ -149,10 +174,11 @@ public class TestResources {
      */
     public List<StageDetail> getStageRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9.30", "13.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18.00", "19.00", "http://www.suirvalley3day.com/"));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9.30", "11.00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 2, "APlus,A1,A2,A3", 92, 57.2, "Road", "9:30", "11:00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com/"));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com/"));
         return stageDetails;
     }
+
 }

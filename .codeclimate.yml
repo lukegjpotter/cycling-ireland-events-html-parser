@@ -1,5 +1,12 @@
 engines:
   fixme:
     enabled: true
+    config:
+      strings:
+      - FIXME
+      - BUG
+      - TODO
+      - todo
+      - CUSTOM
   markdownlint:
     enabled: true

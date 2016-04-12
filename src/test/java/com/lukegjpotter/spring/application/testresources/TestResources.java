@@ -51,6 +51,17 @@ public class TestResources {
     public String getStageRaceStageDetailFileName() {
         return "./src/test/resources/SuirValley3DayStageDetail.html";
     }
+    
+    public String getTwoRacesFileName() {
+        return "./src/test/resources/TwoRaces.html";
+    }
+    
+    public List<RoadRaceEvent> getTwoRaceList() {
+        List<RoadRaceEvent> twoRaces = getOneDayRaceList();
+        twoRaces.addAll(getStageRaceList());
+        
+        return twoRaces;
+    }
 
     /**
      * Gets a List with only one One Day Race in it.

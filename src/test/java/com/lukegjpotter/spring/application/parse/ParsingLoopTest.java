@@ -50,4 +50,16 @@ public class ParsingLoopTest {
         List<RoadRaceEvent> expected = tr.getStageRaceList();
         assertTrue(expected.equals(actual));
     }
+    
+    @Test public void testStartParseLoopTwoRaces() {
+        when(headerParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceHeader(), tr.getStageRaceHeader());
+        when(descriptionParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceDescription(), tr.getStageRaceDescription());
+        when(stageDetailParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceStageDetails(), tr.getStageRaceStageDetails());
+        List<RoadRaceEvent> actual = parsingLoop.startParseLoop(tr.getTwoRacesFileName());
+        List<RoadRaceEvent> expected = tr.getTwoRaceList();
+        verify(headerParser, times(2)).parse(any(String.class));
+        verify(descriptionParser, times(2)).parse(any(String.class));
+        verify(stageDetailParser, times(2)).parse(any(String.class));
+        assertTrue(expected.equals(actual));
+    }
 }

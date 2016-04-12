@@ -1,5 +1,8 @@
 package com.lukegjpotter.spring.application.util;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,5 +30,15 @@ public class UtilsService {
         } catch (ParseException e) {
             return null;
         }
+    }
+    
+    public String readFile(String fileName) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(fileName))).replace("\n", "").replace("\t", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 }

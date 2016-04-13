@@ -1,137 +1,165 @@
-<div id="MainContent" style="margin:7px 10px 7px 10px;">
-   <div id="courseDetails" style="margin-bottom: 10px; border: 1px solid rgb(0, 0, 0);">
-      <span class="newlist">
-         <table style="" id="headdeTable">
-            <tbody>
-               <tr>
-                  <td style="width: 80px; background-color: rgb(184, 184, 184);">Date</td>
-                  <td style="width: 250px; background-color: rgb(184, 184, 184);">Event</td>
-                  <td style="width: 160px; background-color: rgb(184, 184, 184);">Club</td>
-                  <td style="width: 100px; background-color: rgb(184, 184, 184);">Organiser</td>
-                  <td style="width: 44px; background-color: rgb(184, 184, 184);">Details</td>
-                  <td style="width: 57px; background-color: rgb(184, 184, 184);">Register</td>
-               </tr>
-            </tbody>
-         </table>
-      </span>
-      <span class="newlist">
-         <div style="height:180px; overflow-y:scroll">
-            <table id="AllEventsTable" style="">
-               <tbody>
-                  <tr style="background-color:#E6E6FA">
-                     <td style="width:80px;"><span>30-Jul-16</span></td>
-                     <td style="width:250px;" class="tdCourseItemRight" title="Suir Valley 3 Day">
-                        <div style="width: 250px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">Suir Valley 3 Day</div>
-                     </td>
-                     <td style="width:160px;" class="tdCourseItemRight" title="Clonmel CC">
-                        <div style="width: 160px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">Clonmel CC</div>
-                     </td>
-                     <td style="width:100px;" class="" title="Declan Byrne">
-                        <div style="width: 100px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">Declan Byrne</div>
-                     </td>
-                     <td style="width:43px;"><span id="icon"><a href="javascript:;" onclick="getDetails(213961)" id="ReadMore_213961" class="details">Show</a></span></td>
-                     <td style="width:57px;"><span>Not Open</span></td>
-                  </tr>
-                  <tr>
-                     <td colspan="6">
-                        <span id="jobDetails_213961" style="height:auto;display:none;border: 1px solid #DCBDCF; margin-top: 8px; text-align: left;">
-                           <div style="margin:5px;">
-                              <span style="font-weight: bold;font-size: 14px;">Description</span><br>
-                              <table>
-                                 <tbody>
-                                    <tr class="trCourseItem">
-                                       <td class="tdLebelItem"> <span style="font-weight: bold;">Bookings 	  Open:</span></td>
-                                       <td class="tdvalueItem">30/07/2016</td>
-                                       <td class="tdLebelItem"><span style="font-weight: bold;"> Contact Number:</span></td>
-                                       <td class="tdLebelItem"><span style="font-weight: bold;"> Email:</span></td>
-                                       <td class="tdLebelItem"><span style="font-weight: bold;"> Event Location:</span></td>
-                                    </tr>
-                                    <tr class="trCourseItem">
-                                       <td class="tdLebelItem" style="text-align:right;"> <span style="font-weight: bold;margin-right:15px;">  Close:</span></td>
-                                       <td class="tdvalueItem">01/08/2016</td>
-                                       <td class="tdvalueItem">+353879369628</td>
-                                       <td class="tdvalueItem">declanbyrne2006@gmail.com</td>
-                                       <td class="tdvalueItem" style="cursor:pointer;"><a style="font-family:Arial;font-size:12px;color:blue;" onclick="showEventMapByAddress(213961)">HEARNS HOTEL, CLONMEL</a></td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
-                           <table>
-                              <tbody>
-                                 <tr class="trCourseItem">
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;">Date</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Location</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Race</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Stage</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> All Race Types</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> KM</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Miles</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Category</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Sign On</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;"> Start Time:</span></td>
-                                    <td class="tdLebelItem" align="center"><span style="font-weight: bold;">Map:</span></td>
-                                 </tr>
-                                 <tr class="trCourseItem">
-                                    <td style="width:150px;" align="center">30/07/2016</td>
-                                    <td style="width:1000px;" align="center">HEARNS HOTEL</td>
-                                    <td style="width:50px" align="center">1</td>
-                                    <td style="width:50px" align="center">1</td>
-                                    <td style="width:800px" align="center">APlus,A1,A2,A3</td>
-                                    <td style="width:50px" align="center">120</td>
-                                    <td style="width:50px" align="center">74.6</td>
-                                    <td style="width:150px" align="center">Road</td>
-                                    <td style="width:100px" align="center">9.30</td>
-                                    <td style="width:100px" align="center">13.00</td>
-                                    <td style="width:100px" align="center"><a style="font-family:Arial;font-size:12px;color:blue;cursor:pointer;" onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;">Route</a></td>
-                                 </tr>
-                                 <tr class="trCourseItem">
-                                    <td style="width:150px;" align="center">31/07/2016</td>
-                                    <td style="width:1000px;" align="center">HEARNS HOTEL</td>
-                                    <td style="width:50px" align="center">1</td>
-                                    <td style="width:50px" align="center">2</td>
-                                    <td style="width:800px" align="center">APlus,A1,A2,A3</td>
-                                    <td style="width:50px" align="center">92</td>
-                                    <td style="width:50px" align="center">57.2</td>
-                                    <td style="width:150px" align="center">Road</td>
-                                    <td style="width:100px" align="center">9.30</td>
-                                    <td style="width:100px" align="center">11.00</td>
-                                    <td style="width:100px" align="center"><a style="font-family:Arial;font-size:12px;color:blue;cursor:pointer;" onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;">Route</a></td>
-                                 </tr>
-                                 <tr class="trCourseItem">
-                                    <td style="width:150px;" align="center">31/07/2016</td>
-                                    <td style="width:1000px;" align="center">HEARNS HOTEL</td>
-                                    <td style="width:50px" align="center">1</td>
-                                    <td style="width:50px" align="center">3</td>
-                                    <td style="width:800px" align="center">APlus,A1,A2,A3</td>
-                                    <td style="width:50px" align="center">35</td>
-                                    <td style="width:50px" align="center">21.7</td>
-                                    <td style="width:150px" align="center">Criterium</td>
-                                    <td style="width:100px" align="center">18.00</td>
-                                    <td style="width:100px" align="center">19.00</td>
-                                    <td style="width:100px" align="center"><a style="font-family:Arial;font-size:12px;color:blue;cursor:pointer;" onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;">Route</a></td>
-                                 </tr>
-                                 <tr class="trCourseItem">
-                                    <td style="width:150px;" align="center">01/08/2016</td>
-                                    <td style="width:1000px;" align="center">HEARNS HOTEL</td>
-                                    <td style="width:50px" align="center">1</td>
-                                    <td style="width:50px" align="center">4</td>
-                                    <td style="width:800px" align="center">APlus,A1,A2,A3</td>
-                                    <td style="width:50px" align="center">122</td>
-                                    <td style="width:50px" align="center">75.8</td>
-                                    <td style="width:150px" align="center">Road</td>
-                                    <td style="width:100px" align="center">9.30</td>
-                                    <td style="width:100px" align="center">11.00</td>
-                                    <td style="width:100px" align="center"><a style="font-family:Arial;font-size:12px;color:blue;cursor:pointer;" onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;">Route</a></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </span>
-                        <input type="text" style="display:none;" id="FocusInput_213961">
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </span>
-   </div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="MainContent" style="margin:7px 10px 7px 10px;">
+    <div id="courseDetails" style="margin-bottom: 10px; border: 1px solid rgb(0, 0, 0);">
+      <span class="newlist"></span>
+      <table id="headdeTable" style="">
+        <tbody>
+          <tr>
+            <td style="width: 80px; background-color: rgb(184, 184, 184);">Date</td>
+            <td style="width: 250px; background-color: rgb(184, 184, 184);">Event</td>
+            <td style="width: 160px; background-color: rgb(184, 184, 184);">Club</td>
+            <td style="width: 100px; background-color: rgb(184, 184, 184);">Organiser</td>
+            <td style="width: 44px; background-color: rgb(184, 184, 184);">Details</td>
+            <td style="width: 57px; background-color: rgb(184, 184, 184);">Register</td>
+          </tr>
+        </tbody>
+      </table><span class="newlist"></span>
+      <div style="height:180px; overflow-y:scroll">
+        <span class="newlist"></span>
+        <table id="AllEventsTable" style="">
+          <tbody>
+            <tr style="background-color:#E6E6FA">
+              <td style="width:80px;"><span>30-Jul-16</span></td>
+              <td class="tdCourseItemRight" style="width:250px;" title="Suir Valley 3 Day">
+                <div style="width: 250px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">
+                  Suir Valley 3 Day
+                </div>
+              </td>
+              <td class="tdCourseItemRight" style="width:160px;" title="Clonmel CC">
+                <div style="width: 160px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">
+                  Clonmel CC
+                </div>
+              </td>
+              <td class="" style="width:100px;" title="Declan Byrne">
+                <div style="width: 100px;white-space:nowrap;overflow: hidden;text-overflow:ellipsis;">
+                  Declan Byrne
+                </div>
+              </td>
+              <td style="width:43px;"><span id="icon"><a class="details" href="javascript:;" id="ReadMore_213961" onclick=
+              "getDetails(213961)">Show</a></span></td>
+              <td style="width:57px;"><span>Not Open</span></td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <span id="jobDetails_213961" style=
+                "height:auto;display:none;border: 1px solid #DCBDCF; margin-top: 8px; text-align: left;"></span>
+                <div style="margin:5px;">
+                  <span style="font-weight: bold;font-size: 14px;">Description</span><br>
+                  <table>
+                    <tbody>
+                      <tr class="trCourseItem">
+                        <td class="tdLebelItem"><span style="font-weight: bold;">Bookings Open:</span></td>
+                        <td class="tdvalueItem">30/07/2016</td>
+                        <td class="tdLebelItem"><span style="font-weight: bold;">Contact Number:</span></td>
+                        <td class="tdLebelItem"><span style="font-weight: bold;">Email:</span></td>
+                        <td class="tdLebelItem"><span style="font-weight: bold;">Event Location:</span></td>
+                      </tr>
+                      <tr class="trCourseItem">
+                        <td class="tdLebelItem" style="text-align:right;"><span style=
+                        "font-weight: bold;margin-right:15px;">Close:</span></td>
+                        <td class="tdvalueItem">01/08/2016</td>
+                        <td class="tdvalueItem">+353879369628</td>
+                        <td class="tdvalueItem">declanbyrne2006@gmail.com</td>
+                        <td class="tdvalueItem" style="cursor:pointer;">
+                          <a onclick="showEventMapByAddress(213961)" style="font-family:Arial;font-size:12px;color:blue;">HEARNS HOTEL,
+                          CLONMEL</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <table>
+                  <tbody>
+                    <tr class="trCourseItem">
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Date</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Location</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Race</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Stage</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">All Race Types</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">KM</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Miles</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Category</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Sign On</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Start Time:</span></td>
+                      <td align="center" class="tdLebelItem"><span style="font-weight: bold;">Map:</span></td>
+                    </tr>
+                    <tr class="trCourseItem">
+                      <td align="center" style="width:150px;">30/07/2016</td>
+                      <td align="center" style="width:1000px;">HEARNS HOTEL</td>
+                      <td align="center" style="width:50px">1</td>
+                      <td align="center" style="width:50px">1</td>
+                      <td align="center" style="width:800px">APlus,A1,A2,A3</td>
+                      <td align="center" style="width:50px">120</td>
+                      <td align="center" style="width:50px">74.6</td>
+                      <td align="center" style="width:150px">Road</td>
+                      <td align="center" style="width:100px">9.30</td>
+                      <td align="center" style="width:100px">13.00</td>
+                      <td align="center" style="width:100px">
+                        <a onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;" style=
+                        "font-family:Arial;font-size:12px;color:blue;cursor:pointer;">Route</a>
+                      </td>
+                    </tr>
+                    <tr class="trCourseItem">
+                      <td align="center" style="width:150px;">31/07/2016</td>
+                      <td align="center" style="width:1000px;">HEARNS HOTEL</td>
+                      <td align="center" style="width:50px">1</td>
+                      <td align="center" style="width:50px">2</td>
+                      <td align="center" style="width:800px">APlus,A1,A2,A3</td>
+                      <td align="center" style="width:50px">92</td>
+                      <td align="center" style="width:50px">57.2</td>
+                      <td align="center" style="width:150px">Road</td>
+                      <td align="center" style="width:100px">9.30</td>
+                      <td align="center" style="width:100px">11.00</td>
+                      <td align="center" style="width:100px">
+                        <a onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;" style=
+                        "font-family:Arial;font-size:12px;color:blue;cursor:pointer;">Route</a>
+                      </td>
+                    </tr>
+                    <tr class="trCourseItem">
+                      <td align="center" style="width:150px;">31/07/2016</td>
+                      <td align="center" style="width:1000px;">HEARNS HOTEL</td>
+                      <td align="center" style="width:50px">1</td>
+                      <td align="center" style="width:50px">3</td>
+                      <td align="center" style="width:800px">APlus,A1,A2,A3</td>
+                      <td align="center" style="width:50px">35</td>
+                      <td align="center" style="width:50px">21.7</td>
+                      <td align="center" style="width:150px">Criterium</td>
+                      <td align="center" style="width:100px">18.00</td>
+                      <td align="center" style="width:100px">19.00</td>
+                      <td align="center" style="width:100px">
+                        <a onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;" style=
+                        "font-family:Arial;font-size:12px;color:blue;cursor:pointer;">Route</a>
+                      </td>
+                    </tr>
+                    <tr class="trCourseItem">
+                      <td align="center" style="width:150px;">01/08/2016</td>
+                      <td align="center" style="width:1000px;">HEARNS HOTEL</td>
+                      <td align="center" style="width:50px">1</td>
+                      <td align="center" style="width:50px">4</td>
+                      <td align="center" style="width:800px">APlus,A1,A2,A3</td>
+                      <td align="center" style="width:50px">122</td>
+                      <td align="center" style="width:50px">75.8</td>
+                      <td align="center" style="width:150px">Road</td>
+                      <td align="center" style="width:100px">9.30</td>
+                      <td align="center" style="width:100px">11.00</td>
+                      <td align="center" style="width:100px">
+                        <a onclick="window.top.location = &quot; http://www.suirvalley3day.com&quot;" style=
+                        "font-family:Arial;font-size:12px;color:blue;cursor:pointer;">Route</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table><input id="FocusInput_213961" style="display:none;" type="text">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

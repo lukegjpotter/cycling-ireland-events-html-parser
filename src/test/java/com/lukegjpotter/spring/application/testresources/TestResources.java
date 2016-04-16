@@ -234,4 +234,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberDoubleNorthernIrelandPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberDoubleNorthernIrelandPrefixDescription.html";
+    }
+
+    public Description getPhoneDoubleNorthernIrelandPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("29/05/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("31/05/2015"));
+        description.setOrganiserPhoneNumber("+447747444241");
+        description.setOrganiserEmail("stevie_mc_kenna@yahoo.com");
+        description.setLocation("Killyclogher GAA, Omagh");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

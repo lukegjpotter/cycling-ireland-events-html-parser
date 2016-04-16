@@ -44,6 +44,12 @@ public class DescriptionParserTest {
         Description expected = tr.getPhoneNumberNorthernIrelandDescription();
         performTestChecks(actual, expected);
     }
+    
+    @Test public void testParsePhoneNumberDoubleNorthernIrelandPrefix() {
+        Description actual = descriptionParser.parse(utils.phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml());
+        Description expected = tr.getPhoneDoubleNorthernIrelandPrefixDescription();
+        performTestChecks(actual, expected);
+    }
 
     public void performTestChecks(Description actual, Description expected) {
         assertTrue("BookingsOpenDate: Expected: " + expected.getBookingsOpenDate() + ". Actual: " + actual.getBookingsOpenDate(), expected.getBookingsOpenDate().equals(actual.getBookingsOpenDate()));

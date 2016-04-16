@@ -39,8 +39,13 @@ public class TestUtils {
     public String phoneNumberWithSpacesDescriptionRawHtml() {
         return readFile(tr.getPhoneNumberWithSpacesDescriptionFileName());
     }
+    
     public String phoneNumberNorthernIrelandDescriptionRawHtml() {
         return readFile(tr.getPhoneNumberNorthernIrelandDescriptionFileName());
+    }
+    
+    public String phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberDoubleNorthernIrelandPrefixDescriptionFileName());
     }
     
     private String readFile(String raceFileName) {

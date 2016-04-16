@@ -32,7 +32,7 @@ public class DescriptionParser implements Parsable<Description> {
     }
 
     private String formatPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.startsWith("+353")) {
+        if (!phoneNumber.startsWith("+")) {
             return "+353" + phoneNumber;
         }
         return phoneNumber;

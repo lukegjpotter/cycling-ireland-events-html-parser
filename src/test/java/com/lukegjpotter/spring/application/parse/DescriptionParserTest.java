@@ -38,6 +38,12 @@ public class DescriptionParserTest {
         Description expected = tr.getPhoneNumberWithSpacesDescription();
         performTestChecks(actual, expected);
     }
+    
+    @Test public void testParsePhoneNumberNorthernIreland() {
+        Description actual = descriptionParser.parse(utils.phoneNumberNorthernIrelandDescriptionRawHtml());
+        Description expected = tr.getPhoneNumberNorthernIrelandDescription();
+        performTestChecks(actual, expected);
+    }
 
     public void performTestChecks(Description actual, Description expected) {
         assertTrue("BookingsOpenDate: Expected: " + expected.getBookingsOpenDate() + ". Actual: " + actual.getBookingsOpenDate(), expected.getBookingsOpenDate().equals(actual.getBookingsOpenDate()));

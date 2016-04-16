@@ -60,6 +60,10 @@ public class TestResources {
         return "./src/test/resources/PhoneNumberWithSpaceDescription.html";
     }
     
+    public String getPhoneNumberNorthernIrelandDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberNorthernIrelandDescription.html";
+    }
+    
     public List<RoadRaceEvent> getTwoRaceList() {
         List<RoadRaceEvent> twoRaces = getOneDayRaceList();
         twoRaces.addAll(getStageRaceList());
@@ -215,6 +219,17 @@ public class TestResources {
         description.setOrganiserPhoneNumber("+353879764249");
         description.setOrganiserEmail("stdigby@hotmail.com");
         description.setLocation("AIT Athlone, Athlone");
+        description.setProvince("Munster");
+        return description;
+    }
+
+    public Description getPhoneNumberNorthernIrelandDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("10/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("10/04/2016"));
+        description.setOrganiserPhoneNumber("+4407742118970");
+        description.setOrganiserEmail("info@bannvalley.co.uk");
+        description.setLocation("Clady Hall, Portglenone");
         description.setProvince("Munster");
         return description;
     }

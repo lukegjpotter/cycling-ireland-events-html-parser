@@ -36,6 +36,10 @@ public class TestUtils {
         return readFile(tr.getStageRaceStageDetailFileName());
     }
     
+    public String phoneNumberWithSpacesDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberWithSpacesDescriptionFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");
@@ -45,5 +49,5 @@ public class TestUtils {
 
         return "";
     }
-
+    
 }

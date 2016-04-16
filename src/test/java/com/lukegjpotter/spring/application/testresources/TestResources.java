@@ -56,6 +56,10 @@ public class TestResources {
         return "./src/test/resources/TwoRaces.html";
     }
     
+    public String getPhoneNumberWithSpacesDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberWithSpaceDescription.html";
+    }
+    
     public List<RoadRaceEvent> getTwoRaceList() {
         List<RoadRaceEvent> twoRaces = getOneDayRaceList();
         twoRaces.addAll(getStageRaceList());
@@ -202,6 +206,17 @@ public class TestResources {
         stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com"));
         stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com"));
         return stageDetails;
+    }
+
+    public Description getPhoneNumberWithSpacesDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("02/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("02/04/2016"));
+        description.setOrganiserPhoneNumber("+353879764249");
+        description.setOrganiserEmail("stdigby@hotmail.com");
+        description.setLocation("AIT Athlone, Athlone");
+        description.setProvince("Munster");
+        return description;
     }
 
 }

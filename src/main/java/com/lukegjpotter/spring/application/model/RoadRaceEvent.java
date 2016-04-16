@@ -157,4 +157,13 @@ public class RoadRaceEvent {
 
         return false;
     }
+    
+    @Override public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getEventName()).append(" by ").append(this.getPromotingClub());
+        sb.append(" in ").append(this.getLocation());
+        this.getStageDetails().forEach(stagedetail -> sb.append(stagedetail.toString()));
+        return sb.toString();
+    }
+    
 }

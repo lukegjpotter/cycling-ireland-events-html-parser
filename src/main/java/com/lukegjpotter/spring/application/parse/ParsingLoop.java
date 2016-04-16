@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -22,6 +23,8 @@ public class ParsingLoop {
     @Autowired private StageDetailParser stageDetailParser;
 
     public List<RoadRaceEvent> startParseLoop(String fileLocation) {
+        
+        final Logger LOG = Logger.getLogger(RoadRaceEvent.class.getName());
 
         List<RoadRaceEvent> roadRaces = new ArrayList<>();
 
@@ -50,6 +53,7 @@ public class ParsingLoop {
             }
 
             if (isRaceHeaderSet && isRacePopulated) {
+                LOG.info("Storing: " + roadRace.toString());
                 roadRaces.add(roadRace);
                 roadRace = new RoadRaceEvent();
                 isRaceHeaderSet = false;

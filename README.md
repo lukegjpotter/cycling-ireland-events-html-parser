@@ -8,13 +8,21 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 [![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
 [![Issue Count](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/issue_count.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper)
 
-### Version 0.1 Features - In Progress
+## Build, Run and Test
 
-Parse a resource file to get the all information from an individual Cycling Event.
+1. To Build and Run the Application, open a Terminal and use:  
+`./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
+2. To Test that the running Application is functional, open a new Terminal tab
+and use:  
+`curl localhost:8080/start`
+3. To Stop the Application, in the first Terminal, use:  
+`ctrl+C`
 
-### Version 0.2 Features
+### Alpha Features - In Progress
 
-Be able to loop through the file to get all the information from all the
+* Parse a resource file to get the all information from an individual Cycling
+Event.
+* Be able to loop through the file to get all the information from all the
 Cycling Events into POJOs
 
 ### Version 1.0 Features

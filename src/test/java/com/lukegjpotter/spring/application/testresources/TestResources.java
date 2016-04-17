@@ -248,5 +248,20 @@ public class TestResources {
         description.setProvince("Munster");
         return description;
     }
+    
+    public String getPhoneNumberNiAndRoiAndZeroPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberNiAndRoiAndZeroPrefixDescription.html";
+    }
+
+    public Description getPhoneDoubleNiAndRoiAndZeroPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("13/07/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("13/07/2016"));
+        description.setOrganiserPhoneNumber("+353878037543");
+        description.setOrganiserEmail("v.gleeson@hotmail.com");
+        description.setLocation("Limerick Racecourse, Patrickswell");
+        description.setProvince("Munster");
+        return description;
+    }
 
 }

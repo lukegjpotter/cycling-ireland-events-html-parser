@@ -32,14 +32,29 @@ public class DescriptionParser implements Parsable<Description> {
     }
 
     private String formatPhoneNumber(String phoneNumber) {
-        if (phoneNumber.startsWith("+44+3530")) {
-            return phoneNumber.replace("+44+3530", "+353");
-        } else if (phoneNumber.startsWith("+44+44")) {
-            return phoneNumber.replace("+44+44", "+44");
-        } else if (!phoneNumber.startsWith("+")) {
-            return "+353" + phoneNumber;
+        
+        if (phoneNumber.startsWith(Prefix.N_IRELAND_IRELAND_ZERO.code)) {
+            return phoneNumber.replace(Prefix.N_IRELAND_IRELAND_ZERO.code, Prefix.IRELAND.code);
+        } else if (phoneNumber.startsWith(Prefix.N_IRELAND_DOUBLE.code)) {
+            return phoneNumber.replace(Prefix.N_IRELAND_DOUBLE.code, Prefix.N_IRELAND.code);
+        } else if (!phoneNumber.startsWith(Prefix.PLUS.code)) {
+            return Prefix.IRELAND + phoneNumber;
         }
         return phoneNumber;
+    }
+    
+    private enum Prefix {
+        PLUS("+"), IRELAND("+353"), N_IRELAND("+44"), N_IRELAND_DOUBLE("+44+44"), N_IRELAND_IRELAND_ZERO("+44+3530");
+        
+        private String code;
+        
+        private Prefix(String code) {
+            this.code = code;
+        }
+        
+        @Override public String toString() {
+            return code;
+        }
     }
 
 }

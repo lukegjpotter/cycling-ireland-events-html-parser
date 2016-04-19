@@ -47,13 +47,19 @@ public class DescriptionParserTest {
     
     @Test public void testParsePhoneNumberDoubleNorthernIrelandPrefix() {
         Description actual = descriptionParser.parse(utils.phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneDoubleNorthernIrelandPrefixDescription();
+        Description expected = tr.getPhoneNumberDoubleNorthernIrelandPrefixDescription();
         performTestChecks(actual, expected);
     }
     
     @Test public void testParsePhoneNumberNiAndRoiAndZeroPrefix() {
         Description actual = descriptionParser.parse(utils.phoneNumberNiAndRoiAndZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneDoubleNiAndRoiAndZeroPrefixDescription();
+        Description expected = tr.getPhoneNumberDoubleNiAndRoiAndZeroPrefixDescription();
+        performTestChecks(actual, expected);
+    }
+    
+    @Test public void testParsePhoneNumberDoubleNorthernIrelandAndZeroPrefix() {
+        Description actual = descriptionParser.parse(utils.phoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionRawHtml());
+        Description expected = tr.getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescription();
         performTestChecks(actual, expected);
     }
 

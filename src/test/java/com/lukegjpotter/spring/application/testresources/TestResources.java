@@ -238,7 +238,7 @@ public class TestResources {
         return "./src/test/resources/PhoneNumberDoubleNorthernIrelandPrefixDescription.html";
     }
 
-    public Description getPhoneDoubleNorthernIrelandPrefixDescription() {
+    public Description getPhoneNumberDoubleNorthernIrelandPrefixDescription() {
         Description description = new Description();
         description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("29/05/2016"));
         description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("31/05/2015"));
@@ -253,13 +253,28 @@ public class TestResources {
         return "./src/test/resources/PhoneNumberNiAndRoiAndZeroPrefixDescription.html";
     }
 
-    public Description getPhoneDoubleNiAndRoiAndZeroPrefixDescription() {
+    public Description getPhoneNumberDoubleNiAndRoiAndZeroPrefixDescription() {
         Description description = new Description();
         description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("13/07/2016"));
         description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("13/07/2016"));
         description.setOrganiserPhoneNumber("+353878037543");
         description.setOrganiserEmail("v.gleeson@hotmail.com");
         description.setLocation("Limerick Racecourse, Patrickswell");
+        description.setProvince("Munster");
+        return description;
+    }
+
+    public String getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberDoubleNorthernIrelandAndZeroPrefixDescription.html";
+    }
+
+    public Description getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("02/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("02/04/2016"));
+        description.setOrganiserPhoneNumber("+447803178916");
+        description.setOrganiserEmail("reuben@bruce-eng.co.uk");
+        description.setLocation("Lissan GAA , Cookstown");
         description.setProvince("Munster");
         return description;
     }

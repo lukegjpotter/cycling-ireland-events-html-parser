@@ -39,6 +39,8 @@ public class DescriptionParser implements Parsable<Description> {
             return phoneNumber.replace(Prefix.N_IRELAND_DOUBLE_ZERO.code, Prefix.N_IRELAND.code);
         } else if (phoneNumber.startsWith(Prefix.N_IRELAND_DOUBLE.code)) {
             return phoneNumber.replace(Prefix.N_IRELAND_DOUBLE.code, Prefix.N_IRELAND.code);
+        } else if (phoneNumber.startsWith(Prefix.N_IRELAND_ZERO.code)) {
+            return phoneNumber.replace(Prefix.N_IRELAND_ZERO.code, Prefix.N_IRELAND.code);
         } else if (!phoneNumber.startsWith(Prefix.PLUS.code)) {
             return Prefix.IRELAND + phoneNumber;
         }
@@ -46,7 +48,7 @@ public class DescriptionParser implements Parsable<Description> {
     }
     
     private enum Prefix {
-        PLUS("+"), IRELAND("+353"), N_IRELAND("+44"), N_IRELAND_DOUBLE("+44+44"), N_IRELAND_IRELAND_ZERO("+44+3530"), N_IRELAND_DOUBLE_ZERO("+44+440");
+        PLUS("+"), IRELAND("+353"), N_IRELAND("+44"), N_IRELAND_DOUBLE("+44+44"), N_IRELAND_IRELAND_ZERO("+44+3530"), N_IRELAND_DOUBLE_ZERO("+44+440"), N_IRELAND_ZERO("+440");
         
         private String code;
         

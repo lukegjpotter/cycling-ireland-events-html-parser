@@ -40,10 +40,6 @@ public class TestUtils {
         return readFile(tr.getPhoneNumberWithSpacesDescriptionFileName());
     }
     
-    public String phoneNumberNorthernIrelandDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberNorthernIrelandDescriptionFileName());
-    }
-    
     public String phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml() {
         return readFile(tr.getPhoneNumberDoubleNorthernIrelandPrefixDescriptionFileName());
     }
@@ -56,6 +52,10 @@ public class TestUtils {
         return readFile(tr.getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionFileName());
     }
     
+    public String phoneNumberNorthernIrelandAndZeroPrefixDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberNorthernIrelandAndZeroPrefixDescriptionFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");
@@ -65,7 +65,5 @@ public class TestUtils {
 
         return "";
     }
-
-    
 
 }

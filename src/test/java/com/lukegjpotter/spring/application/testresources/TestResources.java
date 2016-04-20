@@ -60,10 +60,6 @@ public class TestResources {
         return "./src/test/resources/PhoneNumberWithSpaceDescription.html";
     }
     
-    public String getPhoneNumberNorthernIrelandDescriptionFileName() {
-        return "./src/test/resources/PhoneNumberNorthernIrelandDescription.html";
-    }
-    
     public List<RoadRaceEvent> getTwoRaceList() {
         List<RoadRaceEvent> twoRaces = getOneDayRaceList();
         twoRaces.addAll(getStageRaceList());
@@ -223,17 +219,6 @@ public class TestResources {
         return description;
     }
 
-    public Description getPhoneNumberNorthernIrelandDescription() {
-        Description description = new Description();
-        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("10/04/2016"));
-        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("10/04/2016"));
-        description.setOrganiserPhoneNumber("+4407742118970");
-        description.setOrganiserEmail("info@bannvalley.co.uk");
-        description.setLocation("Clady Hall, Portglenone");
-        description.setProvince("Munster");
-        return description;
-    }
-
     public String getPhoneNumberDoubleNorthernIrelandPrefixDescriptionFileName() {
         return "./src/test/resources/PhoneNumberDoubleNorthernIrelandPrefixDescription.html";
     }
@@ -275,6 +260,21 @@ public class TestResources {
         description.setOrganiserPhoneNumber("+447803178916");
         description.setOrganiserEmail("reuben@bruce-eng.co.uk");
         description.setLocation("Lissan GAA , Cookstown");
+        description.setProvince("Munster");
+        return description;
+    }
+
+    public String getPhoneNumberNorthernIrelandAndZeroPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberNorthernIrelandAndZeroPrefixDescription.html";
+    }
+
+    public Description getPhoneNumberNorthernIrelandAndZeroPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("10/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("10/04/2016"));
+        description.setOrganiserPhoneNumber("+447742118970");
+        description.setOrganiserEmail("info@bannvalley.co.uk");
+        description.setLocation("Clady Hall, Portglenone");
         description.setProvince("Munster");
         return description;
     }

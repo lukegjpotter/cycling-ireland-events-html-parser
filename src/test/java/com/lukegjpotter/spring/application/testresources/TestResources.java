@@ -324,4 +324,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescription.html";
+    }
+
+    public Description getPhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("08/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("19/08/2016"));
+        description.setOrganiserPhoneNumber("+353876744400");
+        description.setOrganiserEmail("pberg41@eircom.net");
+        description.setLocation("Birdhill, Nenagh");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

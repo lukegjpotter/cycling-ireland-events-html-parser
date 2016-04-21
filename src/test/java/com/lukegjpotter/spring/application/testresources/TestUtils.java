@@ -56,6 +56,10 @@ public class TestUtils {
         return readFile(tr.getPhoneNumberNorthernIrelandAndZeroPrefixDescriptionFileName());
     }
     
+    public String phoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");

@@ -279,4 +279,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberNorthernIrelandPrefixForIrelandNumberDescription.html";
+    }
+
+    public Description getPhoneNumberNorthernIrelandPrefixForIrelandNumberDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("15/05/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("15/05/2016"));
+        description.setOrganiserPhoneNumber("+353857392915");
+        description.setOrganiserEmail("richbarry_17@yahoo.ie");
+        description.setLocation("Whitechurch Community Centre, Whitechurch");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

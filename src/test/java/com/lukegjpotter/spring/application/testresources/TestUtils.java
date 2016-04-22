@@ -72,6 +72,10 @@ public class TestUtils {
         return readFile(tr.getPhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescriptionFileName());
     }
     
+    public String phoneNumberIrelandWithZeroPrefixDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberIrelandWithZeroPrefixDescriptionFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");

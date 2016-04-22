@@ -339,4 +339,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberIrelandWithZeroPrefixDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberIrelandWithZeroPrefixDescription.html";
+    }
+
+    public Description getPhoneNumberIrelandWithZeroPrefixDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("19/04/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("19/04/2016"));
+        description.setOrganiserPhoneNumber("+353949022966");
+        description.setOrganiserEmail("brennan.john56@yahoo.com");
+        description.setLocation("Castlebar");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

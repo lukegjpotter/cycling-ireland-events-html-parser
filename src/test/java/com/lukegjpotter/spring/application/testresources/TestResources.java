@@ -354,4 +354,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberIrelandPrefixForNorthernIrelandNumberDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberIrelandPrefixForNorthernIrelandNumberDescription.html";
+    }
+
+    public Description getPhoneNumberIrelandPrefixForNorthernIrelandNumberDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("08/05/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("08/05/2016"));
+        description.setOrganiserPhoneNumber("+447976133386");
+        description.setOrganiserEmail("drewmckinley@hotmail.com");
+        description.setLocation("Newry sports centre, Newry");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

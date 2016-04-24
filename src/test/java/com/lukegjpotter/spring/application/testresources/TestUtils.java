@@ -90,4 +90,8 @@ public class TestUtils {
         return "";
     }
 
+    public String phoneNumberIrelandPrefixWithMisplacedPlusDescriptionRawHtml() {
+        return readFile(tr.getPhoneNumberIrelandPrefixWithMisplacedPlusDescriptionFileName());
+    }
+
 }

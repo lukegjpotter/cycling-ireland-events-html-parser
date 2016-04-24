@@ -369,4 +369,19 @@ public class TestResources {
         return description;
     }
 
+    public String getPhoneNumberIrelandPrefixWithMisplacedPlusDescriptionFileName() {
+        return "./src/test/resources/PhoneNumberIrelandPrefixWithMisplacedPlusDescription.html";
+    }
+
+    public Description getPhoneNumberIrelandPrefixWithMisplacedPlusDescription() {
+        Description description = new Description();
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate("22/06/2016"));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate("22/06/2016"));
+        description.setOrganiserPhoneNumber("+353879281513");
+        description.setOrganiserEmail("sean_gallagher@baxter.com");
+        description.setLocation("Rugby Club, Ballyhaunis");
+        description.setProvince("Munster");
+        return description;
+    }
+
 }

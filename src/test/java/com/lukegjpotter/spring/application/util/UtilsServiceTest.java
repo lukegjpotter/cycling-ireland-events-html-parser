@@ -39,19 +39,103 @@ public class UtilsServiceTest {
     @Test public void testFormatLocationEmptyString() {
         String expected = "";
         String actual = utilsService.formatLocation("");
-        assertTrue(expected.equals(actual));
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
     
     @Test public void testFormatLocationStandardLocation() {
         String expected = "Rugby Club, Ballyhaunis";
         String actual = utilsService.formatLocation("Rugby Club, Ballyhaunis");
-        assertTrue(expected.equals(actual));
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
     
     @Test public void testFormatLocationLeadingComma() {
         String expected = "Castlebar";
         String actual = utilsService.formatLocation(", Castlebar");
-        assertTrue(expected.equals(actual));
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberEmptyString() {
+        String expected = "";
+        String actual = utilsService.formatPhoneNumber("");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberWithSpace() {
+        String expected = "+353879764249";
+        String actual = utilsService.formatPhoneNumber("+353 879764249");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberNorthernIreland() {
+        String expected = "+447747444241";
+        String actual = utilsService.formatPhoneNumber("+447747444241");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberDoubleNorthernIrelandPrefix() {
+        String expected = "+447747444241";
+        String actual = utilsService.formatPhoneNumber("+44+44 7747444241");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberNiAndRoiAndZeroPrefix() {
+        String expected = "+353878037543";
+        String actual = utilsService.formatPhoneNumber("+44+353 087 8037543");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberDoubleNorthernIrelandAndZeroPrefix() {
+        String expected = "+447803178916";
+        String actual = utilsService.formatPhoneNumber("+44+44 078 0317 8916");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberNorthernIrelandAndZeroPrefix() {
+        String expected = "+447742118970";
+        String actual = utilsService.formatPhoneNumber("+4407742118970");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberNorthernIrelandPrefixForIrelandNumber() {
+        String expected = "+353857392915";
+        String actual = utilsService.formatPhoneNumber("+44+353 857392915");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberDoubleIrelandPrefix() {
+        String expected = "+353876744400";
+        String actual = utilsService.formatPhoneNumber("+353+353 876744400");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberDoubleIrelandAndZeroPrefix() {
+        String expected = "+353876744400";
+        String actual = utilsService.formatPhoneNumber("+353+353 087 6744 400");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberDoubleIrelandNoSecondPlusSignPrefix() {
+        String expected = "+353876744400";
+        String actual = utilsService.formatPhoneNumber("+353353876744400");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberIrelandWithZeroPrefix() {
+        String expected = "+353949022966";
+        String actual = utilsService.formatPhoneNumber("+353 0949022966");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberIrelandPrefixForNorthernIrelandNumber() {
+        String expected = "+447976133386";
+        String actual = utilsService.formatPhoneNumber("+353+44 7976133386");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberIrelandPrefixWithMisplacedPlus() {
+        String expected = "+353879281513";
+        String actual = utilsService.formatPhoneNumber("+353+879281513");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
 
 }

@@ -2,7 +2,6 @@ package com.lukegjpotter.spring.application.parse;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,82 +30,6 @@ public class DescriptionParserTest {
     @Test public void testParseStageRace() {
         Description actual = descriptionParser.parse(utils.stageRaceDescriptionRawHtml());
         Description expected = tr.getStageRaceDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberWithSpace() {
-        Description actual = descriptionParser.parse(utils.phoneNumberWithSpacesDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberWithSpacesDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test @Ignore public void testParsePhoneNumberNorthernIreland() {
-        // TODO Add this test
-    }
-    
-    @Test public void testParsePhoneNumberDoubleNorthernIrelandPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleNorthernIrelandPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberNiAndRoiAndZeroPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberNiAndRoiAndZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleNiAndRoiAndZeroPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberDoubleNorthernIrelandAndZeroPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberNorthernIrelandAndZeroPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberNorthernIrelandAndZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberNorthernIrelandAndZeroPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberNorthernIrelandPrefixForIrelandNumber() {
-        Description actual = descriptionParser.parse(utils.phoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberNorthernIrelandPrefixForIrelandNumberDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberDoubleIrelandPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberDoubleIrelandPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleIrelandPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberDoubleIrelandAndZeroPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberDoubleIrelandAndZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleIrelandAndZeroPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberDoubleIrelandNoSecondPlusSignPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberDoubleIrelandNoSecondPlusSignPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberIrelandWithZeroPrefix() {
-        Description actual = descriptionParser.parse(utils.phoneNumberIrelandWithZeroPrefixDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberIrelandWithZeroPrefixDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberIrelandPrefixForNorthernIrelandNumber() {
-        Description actual = descriptionParser.parse(utils.phoneNumberIrelandPrefixForNorthernIrelandNumberDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberIrelandPrefixForNorthernIrelandNumberDescription();
-        performTestChecks(actual, expected);
-    }
-    
-    @Test public void testParsePhoneNumberIrelandPrefixWithMisplacedPlus() {
-        Description actual = descriptionParser.parse(utils.phoneNumberIrelandPrefixWithMisplacedPlusDescriptionRawHtml());
-        Description expected = tr.getPhoneNumberIrelandPrefixWithMisplacedPlusDescription();
         performTestChecks(actual, expected);
     }
 

@@ -36,50 +36,6 @@ public class TestUtils {
         return readFile(tr.getStageRaceStageDetailFileName());
     }
     
-    public String phoneNumberWithSpacesDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberWithSpacesDescriptionFileName());
-    }
-    
-    public String phoneNumberDoubleNorthernIrelandPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberDoubleNorthernIrelandPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberNiAndRoiAndZeroPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberNiAndRoiAndZeroPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberDoubleNorthernIrelandAndZeroPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberNorthernIrelandAndZeroPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberNorthernIrelandAndZeroPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberNorthernIrelandPrefixForIrelandNumberDescriptionFileName());
-    }
-    
-    public String phoneNumberDoubleIrelandPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberDoubleIrelandPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberDoubleIrelandAndZeroPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberDoubleIrelandAndZeroPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberDoubleIrelandNoSecondPlusSignPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberDoubleIrelandNoSecondPlusSignPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberIrelandWithZeroPrefixDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberIrelandWithZeroPrefixDescriptionFileName());
-    }
-    
-    public String phoneNumberIrelandPrefixForNorthernIrelandNumberDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberIrelandPrefixForNorthernIrelandNumberDescriptionFileName());
-    }
-    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");
@@ -88,10 +44,6 @@ public class TestUtils {
         }
 
         return "";
-    }
-
-    public String phoneNumberIrelandPrefixWithMisplacedPlusDescriptionRawHtml() {
-        return readFile(tr.getPhoneNumberIrelandPrefixWithMisplacedPlusDescriptionFileName());
     }
 
 }

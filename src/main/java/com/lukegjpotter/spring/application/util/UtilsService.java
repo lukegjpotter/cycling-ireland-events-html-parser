@@ -44,6 +44,8 @@ public class UtilsService {
     
     public String formatLocation(String location) {
         
+        location = location.trim();
+        
         if (!location.isEmpty() && ((Character)location.charAt(0)).equals(',')) {
             int i;
             for (i = 1; !Character.isLetter(location.charAt(i)); i++) ;
@@ -56,7 +58,11 @@ public class UtilsService {
 
     public String formatPhoneNumber(String phoneNumber) {
         
-        if (phoneNumber.startsWith(Prefix.N_IRELAND_IRELAND_ZERO.code)) {
+        phoneNumber = phoneNumber.trim().replace(" ", "").replace("-", "");
+        
+        if (phoneNumber.isEmpty()) {
+            return phoneNumber;
+        } else if (phoneNumber.startsWith(Prefix.N_IRELAND_IRELAND_ZERO.code)) {
             return phoneNumber.replace(Prefix.N_IRELAND_IRELAND_ZERO.code, Prefix.IRELAND.code);
         } else if (phoneNumber.startsWith(Prefix.N_IRELAND_IRELAND.code)) {
             return phoneNumber.replace(Prefix.N_IRELAND_IRELAND.code, Prefix.IRELAND.code);

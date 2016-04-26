@@ -24,9 +24,9 @@ public class UtilsService {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MM_YYYY);
     }
 
-    public Date convertDateUsingFormat(String date, String format) {
+    private Date convertDateUsingFormat(String date, String format) {
         try {
-            return new SimpleDateFormat(format).parse(date);
+            return new SimpleDateFormat(format).parse(date.trim());
         } catch (ParseException e) {
             return null;
         }

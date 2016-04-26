@@ -21,8 +21,8 @@ public class DescriptionParser implements Parsable<Description> {
         Element body = Jsoup.parseBodyFragment(htmlToParse).body();
         Elements tableData = body.getElementsByClass("tdvalueItem");
         
-        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate(tableData.get(0).text().trim()));
-        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate(tableData.get(1).text().trim()));
+        description.setBookingsOpenDate(utils.convertDDMMYYYYToDate(tableData.get(0).text()));
+        description.setBookingsCloseDate(utils.convertDDMMYYYYToDate(tableData.get(1).text()));
         description.setOrganiserPhoneNumber(utils.formatPhoneNumber(tableData.get(2).text()));
         description.setOrganiserEmail(tableData.get(3).text().trim());
         description.setLocation(utils.formatLocation(tableData.get(4).text()));

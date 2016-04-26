@@ -35,5 +35,23 @@ public class UtilsServiceTest {
         Date npeDate =  utilsService.convertDDMMYYYYToDate("Contiune-Commit-Streak");
         assertTrue(npeDate.equals(new Date()));
     }
+    
+    @Test public void testFormatLocationEmptyString() {
+        String expected = "";
+        String actual = utilsService.formatLocation("");
+        assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testFormatLocationStandardLocation() {
+        String expected = "Rugby Club, Ballyhaunis";
+        String actual = utilsService.formatLocation("Rugby Club, Ballyhaunis");
+        assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testFormatLocationLeadingComma() {
+        String expected = "Castlebar";
+        String actual = utilsService.formatLocation(", Castlebar");
+        assertTrue(expected.equals(actual));
+    }
 
 }

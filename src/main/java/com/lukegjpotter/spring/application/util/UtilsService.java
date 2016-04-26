@@ -44,7 +44,7 @@ public class UtilsService {
     
     public String formatLocation(String location) {
         
-        if (((Character)location.charAt(0)).equals(',')) {
+        if (!location.isEmpty() && ((Character)location.charAt(0)).equals(',')) {
             int i;
             for (i = 1; !Character.isLetter(location.charAt(i)); i++) ;
                 

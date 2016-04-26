@@ -137,5 +137,17 @@ public class UtilsServiceTest {
         String actual = utilsService.formatPhoneNumber("+353+879281513");
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
+    
+    @Test public void testFormatPhoneNumberIrelandPrefixWithHyphen() {
+        String expected = "+353871375036";
+        String actual = utilsService.formatPhoneNumber("+353+353 087-1375036");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
+    @Test public void testFormatPhoneNumberNorthernIrelandPrefixWithZero() {
+        String expected = "+447714696789";
+        String actual = utilsService.formatPhoneNumber("07714696789");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
 
 }

@@ -26,7 +26,7 @@ public class DescriptionParser implements Parsable<Description> {
         description.setOrganiserPhoneNumber(utils.formatPhoneNumber(tableData.get(2).text()));
         description.setOrganiserEmail(tableData.get(3).text().trim());
         description.setLocation(utils.formatLocation(tableData.get(4).text()));
-        description.setProvince("Munster");
+        description.setProvince("Munster"); // TODO Source Province from somewhere, maybe CSV file.
         
         return description;
     }

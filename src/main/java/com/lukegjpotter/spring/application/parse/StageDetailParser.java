@@ -31,7 +31,7 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
             stageDetail = new StageDetail();
             Elements rowData = tableRows.get(i).getElementsByTag("td");
             
-            stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text().trim()));
+            stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
             stageDetail.setLocation(rowData.get(1).text().trim());
             stageDetail.setRaceNumber(Integer.parseInt(rowData.get(2).text().trim()));
             stageDetail.setStageNumber(Integer.parseInt(rowData.get(3).text().trim()));

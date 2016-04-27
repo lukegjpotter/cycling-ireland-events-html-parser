@@ -22,8 +22,4 @@ public class HtmlParsingService {
     public void setHtmlFileLocation(String htmlFileLocation) {
         this.htmlFileLocation = htmlFileLocation;
     }
-
-    public void setParsingLoop(ParsingLoop parsingLoop) {
-        this.parsingLoop = parsingLoop;
-    }
 }

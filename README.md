@@ -1,4 +1,5 @@
 # Cycling Ireland Events HTML Scraper
+
 This project will Scrape and Parse the HTML from the Cycling Ireland Events
 into POJOs.
 
@@ -12,10 +13,10 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 
 1. To Build and Run the Application, open a Terminal and use:  
 `./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
-2. To Test that the running Application is functional, open a new Terminal tab
+1. To Test that the running Application is functional, open a new Terminal tab
 and use:  
 `curl localhost:8080/start`
-3. To Stop the Application, in the first Terminal, use:  
+1. To Stop the Application, in the first Terminal, use:  
 `ctrl+C`
 
 ### Alpha Features - In Progress

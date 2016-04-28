@@ -7,19 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 import com.lukegjpotter.spring.application.service.HtmlParsingService;
+import com.lukegjpotter.spring.application.service.RoadRaceEventToDatabaseRecordTransformService;
 
 @RestController
 public class CyclingIrelandEventsHtmlScraperController {
 
     @Autowired private HtmlParsingService htmlParsingService;
+    @Autowired private RoadRaceEventToDatabaseRecordTransformService transformService;
+    
     private List<RoadRaceEvent> roadRaces;
+    private List<RoadRaceEventDatabaseRecord> databaseRecords;
     
     @RequestMapping("/start") public void start() {
         extract();
         transform();
         load();
-        
     }
 
     private void extract() {
@@ -27,11 +31,12 @@ public class CyclingIrelandEventsHtmlScraperController {
     }
     
     private void transform() {
-        // TODO Transform RoadRaceEvents into RoadRaceEventDatabaseRecords.
+        databaseRecords = transformService.transform(roadRaces);
     }
     
     private void load() {
-        roadRaces.forEach(roadRace -> System.out.println(roadRace.toString()));
+        databaseRecords.forEach(roadRace -> System.out.println(roadRace.toString()));
+        // TODO load into Database
     }
     
 }

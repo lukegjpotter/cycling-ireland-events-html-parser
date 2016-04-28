@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.Description;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
@@ -202,6 +203,39 @@ public class TestResources {
         stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com"));
         stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com"));
         return stageDetails;
+    }
+
+    public List<RoadRaceEventDatabaseRecord> getOneDayRaceDatabaseRecordList() {
+        List<RoadRaceEventDatabaseRecord> oneDayRaceRecords = new ArrayList<>();
+        RoadRaceEventDatabaseRecord oneDayRaceRecord = new RoadRaceEventDatabaseRecord();
+        
+        oneDayRaceRecord.setStartDate(utils.convertDDMMMYYToDate("03-Apr-16"));
+        oneDayRaceRecord.setEventName("Dungarvan Open Race");
+        oneDayRaceRecord.setPromotingClub("Dungarvan CC");
+        oneDayRaceRecord.setOrganiser("John Coleman");
+        oneDayRaceRecord.setRegistrationLink("");
+        oneDayRaceRecord.addDescription(getOneDayRaceDescription());
+        oneDayRaceRecord.setStageDetails(getOneDayRaceStageDetails());
+        
+        oneDayRaceRecords.add(oneDayRaceRecord);
+        
+        return oneDayRaceRecords;
+    }
+
+    public List<RoadRaceEventDatabaseRecord> getTwoRaceDatabaseRecordList() {
+        List<RoadRaceEventDatabaseRecord> raceRecords = getOneDayRaceDatabaseRecordList();
+        RoadRaceEventDatabaseRecord stageRaceRecord = new RoadRaceEventDatabaseRecord();
+
+        stageRaceRecord.setStartDate(utils.convertDDMMMYYToDate("30-Jul-16"));
+        stageRaceRecord.setEventName("Suir Valley 3 Day");
+        stageRaceRecord.setPromotingClub("Clonmel CC");
+        stageRaceRecord.setOrganiser("Declan Byrne");
+        stageRaceRecord.setRegistrationLink("");
+        stageRaceRecord.addDescription(getStageRaceDescription());
+        stageRaceRecord.setStageDetails(getStageRaceStageDetails());
+        
+        raceRecords.add(stageRaceRecord);
+        return raceRecords;
     }
 
 }

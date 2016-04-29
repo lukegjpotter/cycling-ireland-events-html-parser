@@ -44,6 +44,10 @@ public class RoadRaceEventDatabaseRecord {
         setLocation(description.getLocation());
         setProvince(description.getProvince());
     }
+    
+    public void addStageDetail(StageDetail stageDetail) {
+        this.getStageDetails().add(stageDetail);
+    }
 
     public Date getStartDate() {
         return startDate;
@@ -165,7 +169,7 @@ public class RoadRaceEventDatabaseRecord {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getEventName()).append(" by ").append(this.getPromotingClub());
         sb.append(" in ").append(this.getLocation());
-        sb.append(". Stages: ").append(this.getStageDetails().size()).append(". ");
+        sb.append(". Stages: ").append(this.getStageDetails().size()).append(".");
         this.getStageDetails().forEach(stagedetail -> sb.append(stagedetail.toString()));
         return sb.toString();
     }

@@ -139,9 +139,10 @@ public class StageDetail {
     
     @Override public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Race ").append(this.getRaceNumber()).append(": ");
+        sb.append("\n\tRace ").append(this.getRaceNumber()).append(": ");
         sb.append("Stage ").append(this.getStageNumber()).append(": ");
-        sb.append(this.getCategory()).append(this.getKilometers());
+        sb.append(this.getCategory()).append(" - ");
+        sb.append(this.getKilometers()).append("km");
         return sb.toString();
     }
 }

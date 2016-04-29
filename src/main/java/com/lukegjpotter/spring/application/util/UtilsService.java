@@ -45,10 +45,13 @@ public class UtilsService {
     public String formatLocation(String location) {
         
         location = location.trim();
+        int i = 0;
         
-        if (!location.isEmpty() && ((Character)location.charAt(0)).equals(',')) {
-            int i;
-            for (i = 1; !Character.isLetter(location.charAt(i)); i++) ;
+        if (!location.isEmpty() && ((Character)location.charAt(i)).equals(',')) {
+            
+            try {
+                for (; !Character.isLetter(location.charAt(i)); ++i) ;
+            } catch (StringIndexOutOfBoundsException e) {}
                 
             return location.substring(i);
         }

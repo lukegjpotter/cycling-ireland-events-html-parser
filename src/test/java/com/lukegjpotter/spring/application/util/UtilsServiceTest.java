@@ -42,6 +42,12 @@ public class UtilsServiceTest {
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
     
+    @Test public void testFormatLocationCommaSpace() {
+        String expected = "";
+        String actual = utilsService.formatLocation(", ");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
+    
     @Test public void testFormatLocationStandardLocation() {
         String expected = "Rugby Club, Ballyhaunis";
         String actual = utilsService.formatLocation("Rugby Club, Ballyhaunis");

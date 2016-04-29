@@ -1,5 +1,6 @@
 package com.lukegjpotter.spring.application.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class RoadRaceEvent {
 
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEvent() {
+        stageDetails = new ArrayList<>();
     }
 
     /** Full Constructor */
@@ -162,6 +164,7 @@ public class RoadRaceEvent {
         StringBuilder sb = new StringBuilder();
         sb.append(this.getEventName()).append(" by ").append(this.getPromotingClub());
         sb.append(" in ").append(this.getLocation());
+        sb.append(". Stages: ").append(this.getStageDetails().size()).append(". ");
         this.getStageDetails().forEach(stagedetail -> sb.append(stagedetail.toString()));
         return sb.toString();
     }

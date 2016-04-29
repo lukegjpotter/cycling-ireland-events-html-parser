@@ -20,10 +20,10 @@ public class CyclingIrelandEventsHtmlScraperController {
     private List<RoadRaceEvent> roadRaces;
     private List<RoadRaceEventDatabaseRecord> databaseRecords;
     
-    @RequestMapping("/start") public void start() {
+    @RequestMapping("/start") public List<RoadRaceEventDatabaseRecord> start() {
         extract();
         transform();
-        load();
+        return load();
     }
 
     private void extract() {
@@ -34,9 +34,11 @@ public class CyclingIrelandEventsHtmlScraperController {
         databaseRecords = transformService.transform(roadRaces);
     }
     
-    private void load() {
-        databaseRecords.forEach(roadRace -> System.out.println(roadRace.toString()));
+    private List<RoadRaceEventDatabaseRecord> load() {
+        //databaseRecords.forEach(roadRace -> System.out.println(roadRace.toString()));
         // TODO load into Database
+        
+        return databaseRecords;
     }
     
 }

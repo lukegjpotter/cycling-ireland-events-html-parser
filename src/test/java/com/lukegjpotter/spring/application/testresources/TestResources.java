@@ -238,4 +238,27 @@ public class TestResources {
         return raceRecords;
     }
 
+    public RoadRaceEventDatabaseRecord getFirstRaceFromHtmlFile() {
+        RoadRaceEventDatabaseRecord raceRecord = new RoadRaceEventDatabaseRecord();
+        
+        raceRecord.setStartDate(utils.convertDDMMMYYToDate("02-Apr-16"));
+        raceRecord.setEventName("Invacare Paracycling TT round 2");
+        raceRecord.setPromotingClub("Shannonside Cycling Club");
+        raceRecord.setOrganiser("Stephen Digby");
+        raceRecord.setRegistrationLink("");
+        
+        raceRecord.setBookingsOpenDate(utils.convertDDMMYYYYToDate("02/04/2016"));
+        raceRecord.setBookingsCloseDate(utils.convertDDMMYYYYToDate("01/01/1900"));
+        raceRecord.setOrganiserPhoneNumber("+353879764249");
+        raceRecord.setOrganiserEmail("stdigby@hotmail.com");
+        raceRecord.setLocation("Buccaneers RFC, Athlone");
+        raceRecord.setProvince("Munster");
+        
+        List<StageDetail> stageDetails = new ArrayList<>();
+        //stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com"));
+        raceRecord.setStageDetails(stageDetails);
+        
+        return raceRecord;
+    }
+
 }

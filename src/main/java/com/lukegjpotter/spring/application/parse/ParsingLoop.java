@@ -48,6 +48,7 @@ public class ParsingLoop {
                 isRaceHeaderSet = true;
             } else if (isRaceHeaderSet) {
                 roadRace.addDescription(descriptionParser.parse(event.html()));
+                event = switchToStageDetailsElement(event);
                 roadRace.setStageDetails(stageDetailParser.parse(event.html()));
                 isRacePopulated = true;
             }
@@ -62,5 +63,13 @@ public class ParsingLoop {
         }
 
         return roadRaces;
+    }
+
+    private Element switchToStageDetailsElement(Element descriptionAndStageDetailsEvent) {
+        
+        Element body = Jsoup.parseBodyFragment(descriptionAndStageDetailsEvent.html()).body();
+        Element stageDetailsElement = body.getElementsByTag("table").get(1);
+        
+        return stageDetailsElement;
     }
 }

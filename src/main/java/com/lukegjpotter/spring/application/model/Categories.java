@@ -89,4 +89,23 @@ public class Categories {
         this.isYouth = isYouth;
     }
     
+    @Override public boolean equals(Object obj) {
+
+        if (obj instanceof Categories) {
+            Categories other = (Categories) obj;
+
+            return this.isAPlus() == other.isAPlus()
+                    && this.isA1() == other.isA1()
+                    && this.isA2() == other.isA2()
+                    && this.isA3() == other.isA3()
+                    && this.isA4() == other.isA4()
+                    && this.isVets() == other.isVets()
+                    && this.isWoman() == other.isWoman()
+                    && this.isJunior() == other.isJunior()
+                    && this.isYouth() == other.isYouth();
+        }
+
+        return false;
+    }
+    
 }

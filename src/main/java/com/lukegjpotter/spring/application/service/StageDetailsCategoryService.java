@@ -1,12 +1,14 @@
 package com.lukegjpotter.spring.application.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.lukegjpotter.spring.application.model.Categories;
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.util.Constants;
 
 @Service public class StageDetailsCategoryService {
 
@@ -15,7 +17,7 @@ import com.lukegjpotter.spring.application.model.StageDetail;
         List<String> categoryStrings = new ArrayList<>();
         
         stageDetails.forEach(stageDetail -> {
-            categoryStrings.add(stageDetail.getCategory().toLowerCase());
+            categoryStrings.add(stageDetail.getRaceType().toLowerCase());
         });
         
         if (categoryStrings.contains("a+")) categories.setAPlus(true);
@@ -24,10 +26,10 @@ import com.lukegjpotter.spring.application.model.StageDetail;
         if (categoryStrings.contains("a3")) categories.setA3(true);
         if (categoryStrings.contains("a4")) categories.setA4(true);
         if (categoryStrings.contains("vets")) categories.setVets(true);
-        if (categoryStrings.contains("woman")) categories.setWoman(true);
+        if (categoryStrings.contains("women")) categories.setWoman(true);
+        // TODO Determine a way to check for A3/Junior races.
         if (categoryStrings.contains("junior")) categories.setJunior(true);
-        // TODO check for "U16", "U-16", "Under 16", etc, for the ages.
-        if (categoryStrings.contains("youth")) categories.setYouth(true);
+        if (!Collections.disjoint(categoryStrings, Constants.YOUTH_CATEGORIES)) categories.setYouth(true);
         
         return categories;
     }

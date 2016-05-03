@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lukegjpotter.spring.application.model.Categories;
+import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 
@@ -20,7 +20,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
  */
 @Service public class RoadRaceEventToDatabaseRecordTransformService {
 
-    @Autowired StageDetailsCategoryService categoryService;
+    @Autowired StageDetailsRaceTypesService categoryService;
     
     public List<RoadRaceEventDatabaseRecord> transform(List<RoadRaceEvent> roadRaces) {
         
@@ -42,8 +42,8 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
             databaseRecord.setStageDetails(roadRace.getStageDetails());
             databaseRecord.setStartDate(roadRace.getStartDate());
             
-            Categories categories = categoryService.determineCategories(roadRace.getStageDetails());
-            databaseRecord.addCategories(categories);
+            RaceTypesHolder raceTypes = categoryService.determineCategories(roadRace.getStageDetails());
+            databaseRecord.addRaceTypes(raceTypes);
             
             databaseRecords.add(databaseRecord);
         });

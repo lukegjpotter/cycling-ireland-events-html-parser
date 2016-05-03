@@ -66,7 +66,7 @@ public class ParsingLoop {
     }
 
     private Element switchToStageDetailsElement(Element descriptionAndStageDetailsEvent) {
-        
+        // FIXME Get this working.
         Element body = Jsoup.parseBodyFragment(descriptionAndStageDetailsEvent.html()).body();
         Element stageDetailsElement = body.getElementsByTag("table").get(1);
         

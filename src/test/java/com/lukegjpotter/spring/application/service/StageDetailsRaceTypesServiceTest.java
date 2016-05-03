@@ -12,25 +12,25 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
-import com.lukegjpotter.spring.application.model.Categories;
+import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailsCategoryService.class })
-public class StageDetailsCategoryServiceTest {
+@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailsRaceTypesService.class })
+public class StageDetailsRaceTypesServiceTest {
     
-    @Autowired StageDetailsCategoryService categoryService;
+    @Autowired StageDetailsRaceTypesService categoryService;
     @Autowired TestResources tr;
 
     @Test public void testDetermineCategoriesEmptyCategories() {
-        Categories expected = new Categories();
-        Categories actual = categoryService.determineCategories(new ArrayList<StageDetail>());
+        RaceTypesHolder expected = new RaceTypesHolder();
+        RaceTypesHolder actual = categoryService.determineCategories(new ArrayList<StageDetail>());
         assertTrue(expected.equals(actual));
     }
 
     @Test public void testDetermineCategoriesOneCategories() {
-        Categories expected = new Categories();
+        RaceTypesHolder expected = new RaceTypesHolder();
         expected.setA1(true);
         
         List<StageDetail> stageDetails = new ArrayList<>();
@@ -38,13 +38,13 @@ public class StageDetailsCategoryServiceTest {
         stageDetail.setRaceType("A1");
         stageDetails.add(stageDetail);
         
-        Categories actual = categoryService.determineCategories(stageDetails);
+        RaceTypesHolder actual = categoryService.determineCategories(stageDetails);
         
         assertTrue(expected.equals(actual));
     }
 
     @Test public void testDetermineCategoriesMultipleCategories() {
-        Categories expected = new Categories();
+        RaceTypesHolder expected = new RaceTypesHolder();
         expected.setA1(true);
         expected.setA2(true);
         expected.setA3(true);
@@ -52,7 +52,7 @@ public class StageDetailsCategoryServiceTest {
         expected.setWoman(true);
         expected.setYouth(true);
         
-        Categories actual = categoryService.determineCategories(tr.getOneDayRaceStageDetails());
+        RaceTypesHolder actual = categoryService.determineCategories(tr.getOneDayRaceStageDetails());
         assertTrue(expected.equals(actual));
     }
 

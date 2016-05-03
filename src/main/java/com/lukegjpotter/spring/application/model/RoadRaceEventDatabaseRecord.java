@@ -50,16 +50,16 @@ public class RoadRaceEventDatabaseRecord {
         this.getStageDetails().add(stageDetail);
     }
     
-    public void addCategories(Categories categories) {
-        setAPlus(categories.isAPlus());
-        setA1(categories.isA1());
-        setA2(categories.isA2());
-        setA3(categories.isA3());
-        setA4(categories.isA4());
-        setVets(categories.isVets());
-        setWoman(categories.isWoman());
-        setJunior(categories.isJunior());
-        setYouth(categories.isYouth());
+    public void addRaceTypes(RaceTypesHolder raceTypes) {
+        setAPlus(raceTypes.isAPlus());
+        setA1(raceTypes.isA1());
+        setA2(raceTypes.isA2());
+        setA3(raceTypes.isA3());
+        setA4(raceTypes.isA4());
+        setVets(raceTypes.isVets());
+        setWoman(raceTypes.isWoman());
+        setJunior(raceTypes.isJunior());
+        setYouth(raceTypes.isYouth());
     }
 
     public Date getStartDate() {
@@ -245,6 +245,7 @@ public class RoadRaceEventDatabaseRecord {
                     && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())
                     && this.getOrganiserEmail().equals(other.getOrganiserEmail())
                     && this.getLocation().equals(other.getLocation()) && this.getProvince().equals(other.getProvince());
+            // TODO Add RaceTypes to this Equals Method.
         }
 
         return false;

@@ -1,11 +1,11 @@
 package com.lukegjpotter.spring.application.model;
 
-public class Categories {
+public class RaceTypesHolder {
 
     private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth;
     
     /** Empty Constructor. */
-    public Categories() {
+    public RaceTypesHolder() {
         setAPlus(false);
         setA1(false);
         setA2(false);
@@ -91,8 +91,8 @@ public class Categories {
     
     @Override public boolean equals(Object obj) {
 
-        if (obj instanceof Categories) {
-            Categories other = (Categories) obj;
+        if (obj instanceof RaceTypesHolder) {
+            RaceTypesHolder other = (RaceTypesHolder) obj;
 
             return this.isAPlus() == other.isAPlus()
                     && this.isA1() == other.isA1()

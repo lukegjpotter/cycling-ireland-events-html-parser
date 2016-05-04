@@ -8,5 +8,11 @@ engines:
       - TODO
       - todo
       - CUSTOM
+    exclude_fingerprints:
+    - 20ab32dc2c69716052f903ec7f45bb61
+    - 281a311d61be4873f95753e81960d6cd
+    - bbed74227cbf61e6882c1605bf0296e3
+    - e00b711ca7b33bf6bf2e0a399505b929
+    - bb3393de5ea14a9da02a4a98f25887e3
   markdownlint:
     enabled: true

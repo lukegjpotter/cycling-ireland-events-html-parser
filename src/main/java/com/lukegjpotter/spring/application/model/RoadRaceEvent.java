@@ -15,25 +15,6 @@ public class RoadRaceEvent {
     public RoadRaceEvent() {
         stageDetails = new ArrayList<>();
     }
-
-    /** Full Constructor */
-    public RoadRaceEvent(Date startDate, Date bookingsOpenDate, Date bookingsCloseDate, String eventName,
-            String promotingClub, String organiser, String registrationLink, String organiserPhoneNumber,
-            String organiserEmail, String location, String province, List<StageDetail> stageDetails) {
-        
-        this.startDate = startDate;
-        this.bookingsOpenDate = bookingsOpenDate;
-        this.bookingsCloseDate = bookingsCloseDate;
-        this.eventName = eventName;
-        this.promotingClub = promotingClub;
-        this.organiser = organiser;
-        this.registrationLink = registrationLink;
-        this.organiserPhoneNumber = organiserPhoneNumber;
-        this.organiserEmail = organiserEmail;
-        this.location = location;
-        this.province = province;
-        this.stageDetails = stageDetails;
-    }
     
     public void addDescription(Description description) {
         setBookingsOpenDate(description.getBookingsOpenDate());

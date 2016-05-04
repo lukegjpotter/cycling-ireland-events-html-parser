@@ -32,16 +32,6 @@ public class UtilsService {
         }
     }
     
-    public String readFile(String fileName) {
-        try {
-            return new String(Files.readAllBytes(Paths.get(fileName))).replace("\n", "").replace("\t", "");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-    
     public String formatLocation(String location) {
         
         location = location.trim();

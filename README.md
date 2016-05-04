@@ -12,19 +12,20 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 ## Build, Run and Test
 
 1. To Build and Run the Application, open a Terminal and use:  
-`./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
+   `./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
 1. To Test that the running Application is functional, open a new Terminal tab
-and use:  
-`curl localhost:8080/start`
+   and use:  
+   `curl localhost:8080/start`
 1. To Stop the Application, in the first Terminal, use:  
-`ctrl+C`
+   `ctrl+C`
 
 ### Alpha Features - In Progress
 
-* Parse a resource file to get the all information from an individual Cycling
+* [x] Be able to loop through the file to get all the information from all the
+      Cycling Events into POJOs
+* [x] Expose a REST API to enable the screen scraping to happen when this is called.
+* [ ] Parse a resource file to get the all information from an individual Cycling
 Event.
-* Be able to loop through the file to get all the information from all the
-Cycling Events into POJOs
 
 ### Version 1.0 Features
 
@@ -34,9 +35,8 @@ Data and Heroku's PosgreSQL.
 ### Version 2.0 Features
 
 * Be able to Screen Scrape directly from the Web Page.
-* Expose a REST API to enable the screen scraping to happen when this is called.
 * Patch the POJOs in the Database with new information gleamed from the screen
-scraping.
+  scraping.
 
 ### Version 3.0 Features
 

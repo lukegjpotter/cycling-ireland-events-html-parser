@@ -31,9 +31,8 @@ public class ParsingLoop {
         Element document = null;
         try {
             document = Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
+        
         Elements allEventsTable = document.select("table#AllEventsTable");
         Element table = allEventsTable.first();
         Elements allEvents = table.getElementsByTag("tr");

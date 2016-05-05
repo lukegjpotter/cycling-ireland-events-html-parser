@@ -16,9 +16,9 @@ import com.lukegjpotter.spring.application.util.Constants;
         RaceTypesHolder raceTypesHolder = new RaceTypesHolder();
         List<String> categoryStrings = new ArrayList<>();
         
-        stageDetails.forEach(stageDetail -> {
+        for (StageDetail stageDetail : stageDetails) {
             categoryStrings.add(stageDetail.getRaceType().toLowerCase());
-        });
+        }
         
         if (categoryStrings.contains("aplus")) raceTypesHolder.setAPlus(true);
         if (categoryStrings.contains("a1")) raceTypesHolder.setA1(true);

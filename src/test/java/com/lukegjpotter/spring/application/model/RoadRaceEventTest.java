@@ -1,6 +1,9 @@
 package com.lukegjpotter.spring.application.model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +45,10 @@ public class RoadRaceEventTest {
                 + "\n\tRace 1: Stage 1: A1 - 120.0km";
         String actual = roadRace.toString();
         assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testEqualsOtherObject() {
+        assertFalse(roadRace.equals(new Date()));
     }
 
 }

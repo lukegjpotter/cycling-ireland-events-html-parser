@@ -217,7 +217,8 @@ public class RoadRaceEventDatabaseRecord {
         if (obj instanceof RoadRaceEventDatabaseRecord) {
             RoadRaceEventDatabaseRecord other = (RoadRaceEventDatabaseRecord) obj;
 
-            return this.getStartDate().equals(other.getStartDate()) && this.getEventName().equals(other.getEventName())
+            return this.getStartDate().equals(other.getStartDate())
+                    && this.getEventName().equals(other.getEventName())
                     && this.getPromotingClub().equals(other.getPromotingClub())
                     && this.getOrganiser().equals(other.getOrganiser())
                     && this.getRegistrationLink().equals(other.getRegistrationLink())
@@ -225,8 +226,17 @@ public class RoadRaceEventDatabaseRecord {
                     && this.getBookingsCloseDate().equals(other.getBookingsCloseDate())
                     && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())
                     && this.getOrganiserEmail().equals(other.getOrganiserEmail())
-                    && this.getLocation().equals(other.getLocation()) && this.getProvince().equals(other.getProvince());
-            // TODO Add RaceTypes to this Equals Method.
+                    && this.getLocation().equals(other.getLocation())
+                    && this.getProvince().equals(other.getProvince())
+                    && this.isAPlus() == other.isAPlus()
+                    && this.isA1() == other.isA1()
+                    && this.isA2() == other.isA2()
+                    && this.isA3() == other.isA3()
+                    && this.isA4() == other.isA4()
+                    && this.isWoman() == other.isWoman()
+                    && this.isVets() == other.isVets()
+                    && this.isJunior() == other.isJunior()
+                    && this.isYouth() == other.isYouth();
         }
 
         return false;

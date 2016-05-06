@@ -21,16 +21,16 @@ import com.lukegjpotter.spring.application.testresources.TestResources;
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailsRaceTypesService.class })
 public class StageDetailsRaceTypesServiceTest {
     
-    @Autowired StageDetailsRaceTypesService categoryService;
+    @Autowired StageDetailsRaceTypesService raceTypeService;
     @Autowired TestResources tr;
 
-    @Test public void testDetermineCategoriesEmptyCategories() {
+    @Test public void testDetermineRaceTypesEmptyRaceTypes() {
         RaceTypesHolder expected = new RaceTypesHolder();
-        RaceTypesHolder actual = categoryService.determineCategories(new ArrayList<StageDetail>());
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(new ArrayList<StageDetail>());
         assertTrue(expected.equals(actual));
     }
 
-    @Test public void testDetermineCategoriesOneCategories() {
+    @Test public void testDetermineRaceTypesOneRaceType() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setA1(true);
         
@@ -39,12 +39,12 @@ public class StageDetailsRaceTypesServiceTest {
         stageDetail.setRaceType("A1");
         stageDetails.add(stageDetail);
         
-        RaceTypesHolder actual = categoryService.determineCategories(stageDetails);
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
         
         assertTrue(expected.equals(actual));
     }
 
-    @Test public void testDetermineCategoriesMultipleCategories() {
+    @Test public void testDetermineRaceTypesMultipleRaceTypes() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setAPlus(true);
         expected.setA1(true);
@@ -56,7 +56,7 @@ public class StageDetailsRaceTypesServiceTest {
         expected.setJunior(true);
         expected.setYouth(true);
         
-        RaceTypesHolder actual = categoryService.determineCategories(tr.getStageDetailsAllTypes());
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(tr.getStageDetailsAllTypes());
         assertTrue(expected.equals(actual));
     }
     

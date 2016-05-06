@@ -23,7 +23,7 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTest {
     @Autowired RoadRaceEventToDatabaseRecordTransformService transformService;
     @Autowired TestResources tr;
     
-    // TODO Mock Category Service
+    // TODO Mock StageDetailsRaceTypesService
 
     @Test public void testTransformEmptyList() {
         List<RoadRaceEventDatabaseRecord> actual = transformService.transform(new ArrayList<>());

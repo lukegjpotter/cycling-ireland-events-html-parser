@@ -12,7 +12,7 @@ import com.lukegjpotter.spring.application.util.Constants;
 
 @Service public class StageDetailsRaceTypesService {
 
-    public RaceTypesHolder determineCategories(List<StageDetail> stageDetails) {
+    public RaceTypesHolder determineRaceTypes(List<StageDetail> stageDetails) {
         RaceTypesHolder raceTypesHolder = new RaceTypesHolder();
         List<String> categoryStrings = new ArrayList<>();
         

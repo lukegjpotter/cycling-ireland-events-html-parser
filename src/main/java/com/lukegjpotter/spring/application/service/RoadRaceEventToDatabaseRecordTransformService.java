@@ -20,7 +20,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
  */
 @Service public class RoadRaceEventToDatabaseRecordTransformService {
 
-    @Autowired StageDetailsRaceTypesService categoryService;
+    @Autowired StageDetailsRaceTypesService raceTypeService;
     
     public List<RoadRaceEventDatabaseRecord> transform(List<RoadRaceEvent> roadRaces) {
         
@@ -42,7 +42,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
             databaseRecord.setStageDetails(roadRace.getStageDetails());
             databaseRecord.setStartDate(roadRace.getStartDate());
             
-            RaceTypesHolder raceTypes = categoryService.determineCategories(roadRace.getStageDetails());
+            RaceTypesHolder raceTypes = raceTypeService.determineRaceTypes(roadRace.getStageDetails());
             databaseRecord.addRaceTypes(raceTypes);
             
             databaseRecords.add(databaseRecord);

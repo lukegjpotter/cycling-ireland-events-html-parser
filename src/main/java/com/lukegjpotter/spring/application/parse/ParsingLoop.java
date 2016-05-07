@@ -17,6 +17,8 @@ import com.lukegjpotter.spring.application.util.Constants;
 
 @Component
 public class ParsingLoop {
+    
+    final Logger LOG = Logger.getLogger(RoadRaceEvent.class.getName());
 
     @Autowired private HeaderParser headerParser;
     @Autowired private DescriptionParser descriptionParser;
@@ -24,11 +26,9 @@ public class ParsingLoop {
 
     public List<RoadRaceEvent> startParseLoop(String fileLocation) {
         
-        final Logger LOG = Logger.getLogger(RoadRaceEvent.class.getName());
-
         List<RoadRaceEvent> roadRaces = new ArrayList<>();
-
         Element document = null;
+        
         try {
             document = Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }

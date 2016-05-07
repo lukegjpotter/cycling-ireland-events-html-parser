@@ -35,9 +35,7 @@ public class CyclingIrelandEventsHtmlScraperController {
     }
     
     private List<RoadRaceEventDatabaseRecord> load() {
-        //databaseRecords.forEach(roadRace -> System.out.println(roadRace.toString()));
         // TODO load into Database
-        
         return databaseRecords;
     }
     

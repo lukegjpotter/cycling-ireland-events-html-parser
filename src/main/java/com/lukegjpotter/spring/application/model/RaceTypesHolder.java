@@ -2,7 +2,7 @@ package com.lukegjpotter.spring.application.model;
 
 public class RaceTypesHolder {
 
-    private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth;
+    private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth, isParacycling;
     
     /** Empty Constructor. */
     public RaceTypesHolder() {
@@ -15,6 +15,7 @@ public class RaceTypesHolder {
         setWoman(false);
         setJunior(false);
         setYouth(false);
+        setParacycling(false);
     }
 
     public boolean isAPlus() {
@@ -89,6 +90,14 @@ public class RaceTypesHolder {
         this.isYouth = isYouth;
     }
     
+    public boolean isParacycling() {
+        return isParacycling;
+    }
+
+    public void setParacycling(boolean isParacycling) {
+        this.isParacycling = isParacycling;
+    }
+    
     @Override public boolean equals(Object obj) {
 
         if (obj instanceof RaceTypesHolder) {
@@ -102,7 +111,8 @@ public class RaceTypesHolder {
                     && this.isVets() == other.isVets()
                     && this.isWoman() == other.isWoman()
                     && this.isJunior() == other.isJunior()
-                    && this.isYouth() == other.isYouth();
+                    && this.isYouth() == other.isYouth()
+                    && this.isParacycling() == other.isParacycling();
         }
 
         return false;

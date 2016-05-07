@@ -303,5 +303,20 @@ public class TestResources {
         
         return raceTypesHolder;
     }
+    
+    public RaceTypesHolder getRaceTypesAllEnabled() {
+        RaceTypesHolder raceTypesHolder = new RaceTypesHolder();
+        raceTypesHolder.setAPlus(true);
+        raceTypesHolder.setA1(true);
+        raceTypesHolder.setA2(true);
+        raceTypesHolder.setA3(true);
+        raceTypesHolder.setA4(true);
+        raceTypesHolder.setVets(true);
+        raceTypesHolder.setWoman(true);
+        raceTypesHolder.setJunior(true);
+        raceTypesHolder.setYouth(true);
+        
+        return raceTypesHolder;
+    }
 
 }

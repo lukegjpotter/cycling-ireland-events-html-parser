@@ -1,8 +1,11 @@
 package com.lukegjpotter.spring.application.util;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,8 @@ import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplic
 public class UtilsServiceTest {
 
     @Autowired UtilsService utilsService;
+    
+    List<String> elements = Arrays.asList("one", "two", "three");
 
     @Test(expected = NullPointerException.class)
     public void testConvertMMMMDDYYYYToDate_NPECheck() {
@@ -34,6 +39,16 @@ public class UtilsServiceTest {
     public void testConvertDDMMYYYYToDate_NPECheck() {
         Date npeDate =  utilsService.convertDDMMYYYYToDate("Contiune-Commit-Streak");
         assertTrue(npeDate.equals(new Date()));
+    }
+    
+    @Test public void testIsListElementInStringElementsMatch() {
+        String string = "one,two,three";
+        assertTrue(utilsService.isListElementInString(string, elements));
+    }
+    
+    @Test public void testIsListElementInStringElementsDontMatch() {
+        String string = "horse";
+        assertFalse(utilsService.isListElementInString(string, elements));
     }
     
     @Test public void testFormatLocationEmptyString() {

@@ -1,37 +1,51 @@
 package com.lukegjpotter.spring.application.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.Constants;
+import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Service public class StageDetailsRaceTypesService {
 
+    @Autowired UtilsService utils;
+    
     public RaceTypesHolder determineRaceTypes(List<StageDetail> stageDetails) {
         RaceTypesHolder raceTypesHolder = new RaceTypesHolder();
-        List<String> categoryStrings = new ArrayList<>();
         
         for (StageDetail stageDetail : stageDetails) {
-            categoryStrings.add(stageDetail.getRaceType().toLowerCase());
+            String raceType = stageDetail.getRaceType().toLowerCase();
+            
+            if (raceType.contains("aplus")) raceTypesHolder.setAPlus(true);
+            if (raceType.contains("a1")) raceTypesHolder.setA1(true);
+            if (raceType.contains("a2")) raceTypesHolder.setA2(true);
+            if (raceType.contains("a3")) raceTypesHolder.setA3(true);
+            if (raceType.contains("a4")) raceTypesHolder.setA4(true);
+            if (raceType.contains("vets")) raceTypesHolder.setVets(true);
+            if (raceType.contains("women")) raceTypesHolder.setWoman(true);
+            if (raceType.contains("junior")) raceTypesHolder.setJunior(true);
+            if (hasYouthRaceTypes(raceType)) raceTypesHolder.setYouth(true);
+            if (hasVetRaceTypes(raceType)) raceTypesHolder.setVets(true);
+            if (hasParacyclingRaceTypes(raceType)) raceTypesHolder.setParacycling(true);
         }
         
-        if (categoryStrings.contains("aplus")) raceTypesHolder.setAPlus(true);
-        if (categoryStrings.contains("a1")) raceTypesHolder.setA1(true);
-        if (categoryStrings.contains("a2")) raceTypesHolder.setA2(true);
-        if (categoryStrings.contains("a3")) raceTypesHolder.setA3(true);
-        if (categoryStrings.contains("a4")) raceTypesHolder.setA4(true);
-        if (categoryStrings.contains("vets")) raceTypesHolder.setVets(true);
-        if (categoryStrings.contains("women")) raceTypesHolder.setWoman(true);
-        // TODO Determine a way to check for A3/Junior races.
-        if (categoryStrings.contains("junior")) raceTypesHolder.setJunior(true);
-        if (!Collections.disjoint(categoryStrings, Constants.YOUTH_CATEGORIES)) raceTypesHolder.setYouth(true);
-        
         return raceTypesHolder;
+    }
+
+    private boolean hasYouthRaceTypes(String raceType) {
+        return utils.isListElementInString(raceType, Constants.YOUTH_RACE_TYPES);
+    }
+    
+    private boolean hasVetRaceTypes(String raceType) {
+        return utils.isListElementInString(raceType, Constants.VETS_RACE_TYPES);
+    }
+    
+    private boolean hasParacyclingRaceTypes(String raceType) {
+        return utils.isListElementInString(raceType, Constants.PARACYCLING_RACE_TYPES);
     }
 
 }

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,13 @@ public class StageDetailsRaceTypesServiceTest {
     
     @Autowired StageDetailsRaceTypesService raceTypeService;
     @Autowired TestResources tr;
+    
+    List<StageDetail> stageDetails = new ArrayList<>();
+    
+    @Before public void setUp() {
+        StageDetail stageDetail = new StageDetail();
+        stageDetails.add(stageDetail);
+    }
 
     @Test public void testDetermineRaceTypesEmptyRaceTypes() {
         RaceTypesHolder expected = new RaceTypesHolder();
@@ -33,39 +40,47 @@ public class StageDetailsRaceTypesServiceTest {
     @Test public void testDetermineRaceTypesOneRaceType() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setA1(true);
-        
-        List<StageDetail> stageDetails = new ArrayList<>();
-        StageDetail stageDetail = new StageDetail();
-        stageDetail.setRaceType("A1");
-        stageDetails.add(stageDetail);
-        
+        stageDetails.get(0).setRaceType("A1");
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
-        
         assertTrue(expected.equals(actual));
     }
 
-    @Test public void testDetermineRaceTypesMultipleRaceTypes() {
-        RaceTypesHolder expected = new RaceTypesHolder();
-        expected.setAPlus(true);
-        expected.setA1(true);
-        expected.setA2(true);
-        expected.setA3(true);
-        expected.setA4(true);
-        expected.setVets(true);
-        expected.setWoman(true);
-        expected.setJunior(true);
-        expected.setYouth(true);
-        
+    @Test public void testDetermineRaceTypesMultipleRaceTypesSeparateStageDetails() {
+        RaceTypesHolder expected = tr.getRaceTypesAllEnabled();
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(tr.getStageDetailsAllTypes());
         assertTrue(expected.equals(actual));
     }
     
-    @Test @Ignore public void testDetermineRaceTypesWithLongStringOfTypes() {
-        // TODO Parse a race with RaceTypes = "APlus,A1,A2,A3,A4,Vets,Woman,Junior,U16,U14,U12".
+    @Test public void testDetermineRaceTypesStringYouthRaces() {
+        RaceTypesHolder expected = new RaceTypesHolder();
+        expected.setYouth(true);
+        stageDetails.get(0).setRaceType("U16,U14,U12,U10");
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
+        assertTrue(expected.equals(actual));
     }
     
-    @Test @Ignore public void testDetermineRaceTypesWithA3Junior() {
-        // TODO Parse a race with RaceTypes = "A3,Junior".
+    @Test public void testDetermineRaceTypesStringVetsRaces() {
+        RaceTypesHolder expected = new RaceTypesHolder();
+        expected.setVets(true);
+        stageDetails.get(0).setRaceType("M40,M50,M60");
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
+        assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testDetermineRaceTypesStringParacyclingRaces() {
+        RaceTypesHolder expected = new RaceTypesHolder();
+        expected.setParacycling(true);
+        stageDetails.get(0).setRaceType("Tandem_B1_B3,HandCycling_H1_H5,SoloBikes_C1_C5,Tricycle_T1_T3");
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
+        assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testDetermineRaceTypesWithStringOfTypes() {
+        RaceTypesHolder expected = tr.getRaceTypesAllEnabled();
+        expected.setYouth(false);
+        stageDetails.get(0).setRaceType("APlus,A1,A2,A3,A4,Vets,Women,Junior");
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
+        assertTrue(expected.equals(actual));
     }
 
 }

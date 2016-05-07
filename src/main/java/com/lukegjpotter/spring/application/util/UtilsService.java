@@ -3,6 +3,7 @@ package com.lukegjpotter.spring.application.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,16 @@ public class UtilsService {
         } catch (ParseException e) {
             return null;
         }
+    }
+    
+    public boolean isListElementInString(String string, List<String> elements) {
+        
+        for (String element : elements) {
+            if (string.contains(element))
+                return true;
+        }
+
+        return false;
     }
     
     public String formatLocation(String location) {

@@ -36,6 +36,18 @@ public class TestUtils {
         return readFile(tr.getStageRaceStageDetailFileName());
     }
     
+    public String emptyHeaderRawHtml() {
+        return readFile(tr.getEmptyHeaderFileName());
+    }
+    
+    public String emptyDescriptionRawHtml() {
+        return readFile(tr.getEmptyDescriptionFileName());
+    }
+    
+    public String emptyStageDetailRawHtml() {
+        return readFile(tr.getEmptyStageDetailFileName());
+    }
+    
     private String readFile(String raceFileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(raceFileName))).replace("\n", "").replace("\t", "");

@@ -58,6 +58,18 @@ public class TestResources {
         return "./src/test/resources/TwoRaces.html";
     }
     
+    public String getEmptyHeaderFileName() {
+        return "./src/test/resources/EmptyHeader.html";
+    }
+    
+    public String getEmptyDescriptionFileName() {
+        return "./src/test/resources/EmptyDescription.html";
+    }
+    
+    public String getEmptyStageDetailFileName() {
+        return "./src/test/resources/EmptyStageDetail.html";
+    }
+    
     public List<RoadRaceEvent> getTwoRaceList() {
         List<RoadRaceEvent> twoRaces = getOneDayRaceList();
         twoRaces.addAll(getStageRaceList());

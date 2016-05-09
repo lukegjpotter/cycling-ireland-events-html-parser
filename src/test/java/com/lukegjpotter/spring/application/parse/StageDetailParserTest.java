@@ -2,6 +2,7 @@ package com.lukegjpotter.spring.application.parse;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -27,12 +28,20 @@ public class StageDetailParserTest {
         List<StageDetail> actual = stageDetailParser.parse(utils.oneDayRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getOneDayRaceStageDetails();
         performTestChecks(actual, expected);
+        assertTrue(expected.equals(actual));
     }
 
     @Test public void testParseStageRace() {
         List<StageDetail> actual = stageDetailParser.parse(utils.stageRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getStageRaceStageDetails();
         performTestChecks(actual, expected);
+        assertTrue(expected.equals(actual));
+    }
+    
+    @Test public void testParseEmptyStageDetailsElements() {
+        StageDetail actual = stageDetailParser.parse(utils.emptyStageDetailRawHtml()).get(0);
+        StageDetail expected = Arrays.asList(new StageDetail()).get(0);
+        assertTrue(expected.equals(actual));
     }
     
     private void performTestChecks(List<StageDetail> actual, List<StageDetail> expected) {
@@ -43,11 +52,11 @@ public class StageDetailParserTest {
             
             assertTrue(i + " Date Expected: " + e.getDate() + ". Actual: " + a.getDate(), e.getDate().equals(a.getDate()));
             assertTrue(i + " Location Expected: " + e.getLocation() + ". Actual: " + a.getLocation(), e.getLocation().equals(a.getLocation()));
-            assertTrue(i + " RaceNumber Expected: " + e.getRaceNumber() + ". Actual: " + a.getRaceNumber(), e.getRaceNumber() == a.getRaceNumber());
-            assertTrue(i + " StageNumber Expected: " + e.getStageNumber() + ". Actual: " + a.getStageNumber(), e.getStageNumber() == a.getStageNumber());
+            assertTrue(i + " RaceNumber Expected: " + e.getRaceNumber() + ". Actual: " + a.getRaceNumber(), e.getRaceNumber().equals(a.getRaceNumber()));
+            assertTrue(i + " StageNumber Expected: " + e.getStageNumber() + ". Actual: " + a.getStageNumber(), e.getStageNumber().equals(a.getStageNumber()));
             assertTrue(i + " RaceType Expected: " + e.getRaceType() + ". Actual: " + a.getRaceType(), e.getRaceType().equals(a.getRaceType()));
-            assertTrue(i + " Kilometers Expected: " + e.getKilometers() + ". Actual: " + a.getKilometers(), e.getKilometers() == a.getKilometers());
-            assertTrue(i + " Miles Expected: " + e.getMiles() + ". Actual: " + a.getMiles(), e.getMiles() == a.getMiles());
+            assertTrue(i + " Kilometers Expected: " + e.getKilometers() + ". Actual: " + a.getKilometers(), e.getKilometers().equals(a.getKilometers()));
+            assertTrue(i + " Miles Expected: " + e.getMiles() + ". Actual: " + a.getMiles(), e.getMiles().equals(a.getMiles()));
             assertTrue(i + " Category Expected: " + e.getCategory() + ". Actual: " + a.getCategory(), e.getCategory().equals(a.getCategory()));
             assertTrue(i + " SignOnTime Expected: " + e.getSignOnTime() + ". Actual: " + a.getSignOnTime(), e.getSignOnTime().equals(a.getSignOnTime()));
             assertTrue(i + " StartTime Expected: " + e.getStartTime() + ". Actual: " + a.getStartTime(), e.getStartTime().equals(a.getStartTime()));

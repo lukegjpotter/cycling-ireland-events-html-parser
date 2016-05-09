@@ -19,39 +19,79 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
 
     @Override public List<StageDetail> parse(String htmlToParse) {
         
-        List<StageDetail> stageDetails = new ArrayList<>();
-        StageDetail stageDetail = null;
+        htmlToParse = wrapHtmlInTableTags(htmlToParse);
         
         Element body = Jsoup.parseBodyFragment(htmlToParse).body();
         Elements tableRows = body.getElementsByClass("trCourseItem");
         
-        int i = 1; // The first row of the table is Headers, start from 1.
-        while (i < tableRows.size()) {
+        List<StageDetail> stageDetails = new ArrayList<>();
+        StageDetail stageDetail = null;
+        
+         // The first row of the table is Headers, starts from 1.
+        for (int i = 1; i < tableRows.size(); i++) {
             
-            stageDetail = new StageDetail();
             Elements rowData = tableRows.get(i).getElementsByTag("td");
             
+            stageDetail = new StageDetail();
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
-            stageDetail.setLocation(rowData.get(1).text().trim());
-            stageDetail.setRaceNumber(Integer.parseInt(rowData.get(2).text().trim()));
-            stageDetail.setStageNumber(Integer.parseInt(rowData.get(3).text().trim()));
-            stageDetail.setRaceType(rowData.get(4).text().trim());
-            stageDetail.setKilometers(Double.parseDouble(rowData.get(5).text().trim()));
-            stageDetail.setMiles(Double.parseDouble(rowData.get(6).text().trim()));
-            stageDetail.setCategory(rowData.get(7).text().trim());
-            stageDetail.setSignOnTime(rowData.get(8).text().trim().replace(".", ":"));
-            stageDetail.setStartTime(rowData.get(9).text().trim().replace(".", ":"));
+            stageDetail.setLocation(stringNullCheck(rowData.get(1).text()));
+            stageDetail.setRaceNumber(integerNullCheck(rowData.get(2).text()));
+            stageDetail.setStageNumber(integerNullCheck(rowData.get(3).text()));
+            stageDetail.setRaceType(stringNullCheck(rowData.get(4).text()));
+            stageDetail.setKilometers(doubleNullCheck(rowData.get(5).text()));
+            stageDetail.setMiles(doubleNullCheck(rowData.get(6).text()));
+            stageDetail.setCategory(stringNullCheck(rowData.get(7).text()));
+            stageDetail.setSignOnTime(timeNullCheck(rowData.get(8).text()));
+            stageDetail.setStartTime(timeNullCheck(rowData.get(9).text()));
             stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(10)));
             
             stageDetails.add(stageDetail);
-            i++;
         }
         
         return stageDetails;
     }
 
+    private String timeNullCheck(String time) {
+        return stringNullCheck(time.trim().replace(".", ":"));
+    }
+
+    private Double doubleNullCheck(String string) {
+        try {
+            return Double.parseDouble(string.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
+    private Integer integerNullCheck(String string) {
+        try {
+            return Integer.parseInt(string.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private String wrapHtmlInTableTags(String html) {
+        String tableOpen = "<table>", tableClose = "</table>";
+        
+        if (!html.startsWith(tableOpen))
+            html = tableOpen + html;
+        
+        if (!html.endsWith(tableClose))
+            html = html + tableClose;
+        
+        return html;
+    }
+    
+    private String stringNullCheck(String string) {
+        if (string.trim().isEmpty())
+            return null;
+        
+        return string.trim();
+    }
+
     private String parseRouteLinkUrl(Element link) {
-        return link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim();
+        return stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
     }
 
 }

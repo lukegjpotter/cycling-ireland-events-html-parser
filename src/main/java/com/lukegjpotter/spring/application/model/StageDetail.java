@@ -5,13 +5,14 @@ import java.util.Date;
 public class StageDetail {
 
     private Date date;
-    private int raceNumber, stageNumber;
+    private Integer raceNumber, stageNumber;
     private String location, raceType, category, signOnTime, startTime, routeLinkUrl;
-    private double kilometers, miles;
+    private Double kilometers, miles;
 
-    public StageDetail(Date date, String location, int raceNumber, int stageNumber, String raceType, double kilometers, double miles,
-            String category, String signOnTime, String startTime, String routeLinkUrl) {
-        
+    public StageDetail(Date date, String location, Integer raceNumber, Integer stageNumber, String raceType,
+            Double kilometers, Double miles, String category, String signOnTime, String startTime,
+            String routeLinkUrl) {
+
         setDate(date);
         setLocation(location);
         setRaceNumber(raceNumber);
@@ -43,19 +44,19 @@ public class StageDetail {
         this.location = location;
     }
 
-    public int getRaceNumber() {
+    public Integer getRaceNumber() {
         return raceNumber;
     }
 
-    public void setRaceNumber(int raceNumber) {
+    public void setRaceNumber(Integer raceNumber) {
         this.raceNumber = raceNumber;
     }
 
-    public int getStageNumber() {
+    public Integer getStageNumber() {
         return stageNumber;
     }
 
-    public void setStageNumber(int stageNumber) {
+    public void setStageNumber(Integer stageNumber) {
         this.stageNumber = stageNumber;
     }
 
@@ -99,44 +100,58 @@ public class StageDetail {
         this.routeLinkUrl = routeLinkUrl;
     }
 
-    public double getKilometers() {
+    public Double getKilometers() {
         return kilometers;
     }
 
-    public void setKilometers(double kilometers) {
+    public void setKilometers(Double kilometers) {
         this.kilometers = kilometers;
     }
 
-    public double getMiles() {
+    public Double getMiles() {
         return miles;
     }
 
-    public void setMiles(double miles) {
+    public void setMiles(Double miles) {
         this.miles = miles;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        
+    @Override public boolean equals(Object obj) {
+
         if (obj instanceof StageDetail) {
             StageDetail other = (StageDetail) obj;
-            
-            return this.getDate().equals(other.getDate())
-                    && this.getLocation().equals(other.getLocation())
-                    && this.getRaceNumber() == other.getRaceNumber()
-                    && this.getStageNumber() == other.getStageNumber()
-                    && this.getRaceType().equals(other.getRaceType())
-                    && this.getCategory().equals(other.getCategory())
+
+            if (performNullEqualsChecks(this, other))
+                return true;
+
+            return this.getDate().equals(other.getDate()) && this.getLocation().equals(other.getLocation())
+                    && this.getRaceNumber().equals(other.getRaceNumber())
+                    && this.getStageNumber().equals(other.getStageNumber())
+                    && this.getRaceType().equals(other.getRaceType()) && this.getCategory().equals(other.getCategory())
                     && this.getSignOnTime().equals(other.getSignOnTime())
                     && this.getStartTime().equals(other.getStartTime())
                     && this.getRouteLinkUrl().equals(other.getRouteLinkUrl())
-                    && this.getKilometers() == other.getKilometers()
-                    && this.getMiles() == other.getMiles();
+                    && this.getKilometers().equals(other.getKilometers()) && this.getMiles().equals(other.getMiles());
         }
-        
+
         return false;
     }
-    
+
+    private boolean performNullEqualsChecks(StageDetail stageDetail, StageDetail other) {
+
+        return stageDetail.getDate() == other.getDate()
+                && stageDetail.getLocation() == other.getLocation()
+                && stageDetail.getRaceNumber() == other.getRaceNumber()
+                && stageDetail.getStageNumber() == other.getStageNumber()
+                && stageDetail.getRaceType() == other.getRaceType()
+                && stageDetail.getCategory() == other.getCategory()
+                && stageDetail.getSignOnTime() == other.getSignOnTime()
+                && stageDetail.getStartTime() == other.getStartTime()
+                && stageDetail.getRouteLinkUrl() == other.getRouteLinkUrl()
+                && stageDetail.getKilometers() == other.getKilometers()
+                && stageDetail.getMiles() == other.getMiles();
+    }
+
     @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n\tRace ").append(this.getRaceNumber()).append(": ");

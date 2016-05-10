@@ -28,14 +28,14 @@ public class StageDetailParserTest {
         List<StageDetail> actual = stageDetailParser.parse(utils.oneDayRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getOneDayRaceStageDetails();
         performTestChecks(actual, expected);
-        assertTrue(expected.equals(actual));
+        assertTrue(expected.get(0).equals(actual.get(0)));
     }
 
     @Test public void testParseStageRace() {
         List<StageDetail> actual = stageDetailParser.parse(utils.stageRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getStageRaceStageDetails();
         performTestChecks(actual, expected);
-        assertTrue(expected.equals(actual));
+        assertTrue(expected.get(0).equals(actual.get(0)));
     }
     
     @Test public void testParseEmptyStageDetailsElements() {

@@ -40,6 +40,33 @@ public class UtilsService {
         return false;
     }
     
+    public String timeNullCheck(String time) {
+        return stringNullCheck(time.trim().replace(".", ":"));
+    }
+    
+    public String stringNullCheck(String string) {
+        if (string.trim().isEmpty())
+            return null;
+        
+        return string.trim();
+    }
+
+    public Double doubleNullCheck(String string) {
+        try {
+            return Double.parseDouble(string.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
+    public Integer integerNullCheck(String string) {
+        try {
+            return Integer.parseInt(string.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+    
     public String formatLocation(String location) {
         
         location = location.trim();

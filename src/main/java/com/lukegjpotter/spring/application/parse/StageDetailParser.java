@@ -34,41 +34,21 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
             
             stageDetail = new StageDetail();
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
-            stageDetail.setLocation(stringNullCheck(rowData.get(1).text()));
-            stageDetail.setRaceNumber(integerNullCheck(rowData.get(2).text()));
-            stageDetail.setStageNumber(integerNullCheck(rowData.get(3).text()));
-            stageDetail.setRaceType(stringNullCheck(rowData.get(4).text()));
-            stageDetail.setKilometers(doubleNullCheck(rowData.get(5).text()));
-            stageDetail.setMiles(doubleNullCheck(rowData.get(6).text()));
-            stageDetail.setCategory(stringNullCheck(rowData.get(7).text()));
-            stageDetail.setSignOnTime(timeNullCheck(rowData.get(8).text()));
-            stageDetail.setStartTime(timeNullCheck(rowData.get(9).text()));
+            stageDetail.setLocation(utils.stringNullCheck(rowData.get(1).text()));
+            stageDetail.setRaceNumber(utils.integerNullCheck(rowData.get(2).text()));
+            stageDetail.setStageNumber(utils.integerNullCheck(rowData.get(3).text()));
+            stageDetail.setRaceType(utils.stringNullCheck(rowData.get(4).text()));
+            stageDetail.setKilometers(utils.doubleNullCheck(rowData.get(5).text()));
+            stageDetail.setMiles(utils.doubleNullCheck(rowData.get(6).text()));
+            stageDetail.setCategory(utils.stringNullCheck(rowData.get(7).text()));
+            stageDetail.setSignOnTime(utils.timeNullCheck(rowData.get(8).text()));
+            stageDetail.setStartTime(utils.timeNullCheck(rowData.get(9).text()));
             stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(10)));
             
             stageDetails.add(stageDetail);
         }
         
         return stageDetails;
-    }
-
-    private String timeNullCheck(String time) {
-        return stringNullCheck(time.trim().replace(".", ":"));
-    }
-
-    private Double doubleNullCheck(String string) {
-        try {
-            return Double.parseDouble(string.trim());
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-    
-    private Integer integerNullCheck(String string) {
-        try {
-            return Integer.parseInt(string.trim());
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
     private String wrapHtmlInTableTags(String html) {
@@ -83,15 +63,8 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
         return html;
     }
     
-    private String stringNullCheck(String string) {
-        if (string.trim().isEmpty())
-            return null;
-        
-        return string.trim();
-    }
-
     private String parseRouteLinkUrl(Element link) {
-        return stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
+        return utils.stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
     }
 
 }

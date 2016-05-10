@@ -51,6 +51,38 @@ public class UtilsServiceTest {
         assertFalse(utilsService.isListElementInString(string, elements));
     }
     
+    @Test public void testTimeNullCheckNull() {
+        assertTrue(utilsService.timeNullCheck("") == null);
+    }
+    
+    @Test public void testTimeNullCheckNotNull() {
+        assertTrue(utilsService.timeNullCheck(" 12.34 ").equals("12:34"));
+    }
+    
+    @Test public void testStringNullCheckNull() {
+        assertTrue(utilsService.stringNullCheck("") == null);
+    }
+    
+    @Test public void testStringNullCheckNotNull() {
+        assertTrue(utilsService.stringNullCheck(" Jon Snow ").equals("Jon Snow"));
+    }
+    
+    @Test public void testDoubleNullCheckNull() {
+        assertTrue(utilsService.doubleNullCheck("") == null);
+    }
+    
+    @Test public void testDoubleNullCheckNotNull() {
+        assertTrue(utilsService.doubleNullCheck(" 6 ").equals(new Double(6)));
+    }
+    
+    @Test public void testIntegerNullCheckNull() {
+        assertTrue(utilsService.integerNullCheck("") == null);
+    }
+    
+    @Test public void testIntegerNullCheckNotNull() {
+        assertTrue(utilsService.integerNullCheck(" 6 ").equals(new Integer(6)));
+    }
+    
     @Test public void testFormatLocationEmptyString() {
         String expected = "";
         String actual = utilsService.formatLocation("");

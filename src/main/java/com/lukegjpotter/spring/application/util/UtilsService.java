@@ -26,7 +26,7 @@ public class UtilsService {
         try {
             return new SimpleDateFormat(format).parse(date.trim());
         } catch (ParseException e) {
-            return null;
+            return new Date(0L);
         }
     }
     
@@ -46,7 +46,7 @@ public class UtilsService {
     
     public String stringNullCheck(String string) {
         if (string.trim().isEmpty())
-            return null;
+            return "";
         
         return string.trim();
     }
@@ -55,7 +55,7 @@ public class UtilsService {
         try {
             return Double.parseDouble(string.trim());
         } catch (NumberFormatException e) {
-            return null;
+            return new Double(0);
         }
     }
     
@@ -63,7 +63,7 @@ public class UtilsService {
         try {
             return Integer.parseInt(string.trim());
         } catch (NumberFormatException e) {
-            return null;
+            return new Integer(0);
         }
     }
     

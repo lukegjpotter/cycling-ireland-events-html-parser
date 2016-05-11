@@ -23,22 +23,19 @@ public class UtilsServiceTest {
     
     List<String> elements = Arrays.asList("one", "two", "three");
 
-    @Test(expected = NullPointerException.class)
-    public void testConvertMMMMDDYYYYToDate_NPECheck() {
+    @Test public void testConvertMMMMDDYYYYToDateEmptyStringCheck() {
         Date npeDate =  utilsService.convertMMMMDDYYYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date()));
+        assertTrue(npeDate.equals(new Date(0L)));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void testConvertDDMMMYYToDate_NPECheck() {
+    @Test public void testConvertDDMMMYYToDateEmptyStringCheck() {
         Date npeDate =  utilsService.convertDDMMMYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date()));
+        assertTrue(npeDate.equals(new Date(0L)));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void testConvertDDMMYYYYToDate_NPECheck() {
+    @Test public void testConvertDDMMYYYYToDateEmptyStringCheck() {
         Date npeDate =  utilsService.convertDDMMYYYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date()));
+        assertTrue(npeDate.equals(new Date(0L)));
     }
     
     @Test public void testIsListElementInStringElementsMatch() {
@@ -52,7 +49,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testTimeNullCheckNull() {
-        assertTrue(utilsService.timeNullCheck("") == null);
+        assertTrue(utilsService.timeNullCheck("").equals(""));
     }
     
     @Test public void testTimeNullCheckNotNull() {
@@ -60,7 +57,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testStringNullCheckNull() {
-        assertTrue(utilsService.stringNullCheck("") == null);
+        assertTrue(utilsService.stringNullCheck("").equals(""));
     }
     
     @Test public void testStringNullCheckNotNull() {
@@ -68,7 +65,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testDoubleNullCheckNull() {
-        assertTrue(utilsService.doubleNullCheck("") == null);
+        assertTrue(utilsService.doubleNullCheck("").equals(new Double(0)));
     }
     
     @Test public void testDoubleNullCheckNotNull() {
@@ -76,7 +73,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testIntegerNullCheckNull() {
-        assertTrue(utilsService.integerNullCheck("") == null);
+        assertTrue(utilsService.integerNullCheck("").equals(new Integer(0)));
     }
     
     @Test public void testIntegerNullCheckNotNull() {
@@ -84,7 +81,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testFormatLocationEmptyString() {
-        String expected = null;
+        String expected = "";
         String actual = utilsService.formatLocation("");
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected == actual);
     }
@@ -108,7 +105,7 @@ public class UtilsServiceTest {
     }
     
     @Test public void testFormatPhoneNumberEmptyString() {
-        String expected = null;
+        String expected = "";
         String actual = utilsService.formatPhoneNumber("");
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected == actual);
     }

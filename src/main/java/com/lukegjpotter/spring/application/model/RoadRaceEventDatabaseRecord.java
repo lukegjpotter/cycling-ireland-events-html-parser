@@ -4,19 +4,38 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// TODO Finish this class implementation off.
 public class RoadRaceEventDatabaseRecord {
 
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
     private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
             location, province;
     private List<StageDetail> stageDetails;
-    private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth;
+    private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth, isParacycling;
 
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEventDatabaseRecord() {
-        stageDetails = new ArrayList<>();
+        setStartDate(new Date(0L));
+        setBookingsOpenDate(new Date(0L));
+        setBookingsCloseDate(new Date(0L));
+        setEventName("");
+        setPromotingClub("");
+        setOrganiser("");
+        setRegistrationLink("");
+        setOrganiserPhoneNumber("");
+        setOrganiserEmail("");
+        setLocation("");
         setProvince("");
+        setAPlus(false);
+        setA1(false);
+        setA2(false);
+        setA3(false);
+        setA4(false);
+        setVets(false);
+        setWoman(false);
+        setJunior(false);
+        setYouth(false);
+        setParacycling(false);
+        stageDetails = new ArrayList<>();
     }
     
     public void addDescription(Description description) {
@@ -42,6 +61,7 @@ public class RoadRaceEventDatabaseRecord {
         setWoman(raceTypes.isWoman());
         setJunior(raceTypes.isJunior());
         setYouth(raceTypes.isYouth());
+        setParacycling(raceTypes.isParacycling());
     }
 
     public Date getStartDate() {
@@ -211,6 +231,14 @@ public class RoadRaceEventDatabaseRecord {
     public void setYouth(boolean isYouth) {
         this.isYouth = isYouth;
     }
+    
+    public boolean isParacycling() {
+        return isParacycling;
+    }
+
+    public void setParacycling(boolean isParacycling) {
+        this.isParacycling = isParacycling;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -237,7 +265,8 @@ public class RoadRaceEventDatabaseRecord {
                     && this.isWoman() == other.isWoman()
                     && this.isVets() == other.isVets()
                     && this.isJunior() == other.isJunior()
-                    && this.isYouth() == other.isYouth();
+                    && this.isYouth() == other.isYouth()
+                    && this.isParacycling() == other.isParacycling();
         }
 
         return false;

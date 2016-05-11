@@ -8,6 +8,11 @@ public class Description {
     private String organiserPhoneNumber, organiserEmail, location, province;
     
     public Description() {
+        setBookingsOpenDate(new Date(0L));
+        setBookingsCloseDate(new Date(0L));
+        setOrganiserPhoneNumber("");
+        setOrganiserEmail("");
+        setLocation("");
         setProvince("");
     }
 
@@ -64,9 +69,6 @@ public class Description {
         if (obj instanceof Description) {
             Description other = (Description) obj;
             
-            if (performNullEqualsChecks(this, other))
-                return true;
-            
             return this.getBookingsOpenDate().equals(other.getBookingsOpenDate())
                     && this.getBookingsCloseDate().equals(other.getBookingsCloseDate())
                     && this.getOrganiserPhoneNumber().equals(other.getOrganiserPhoneNumber())
@@ -78,13 +80,4 @@ public class Description {
         return false;
     }
     
-    private boolean performNullEqualsChecks(Description desc, Description other) {
-
-        return desc.getBookingsOpenDate() == other.getBookingsOpenDate()
-                && desc.getBookingsCloseDate() == other.getBookingsCloseDate()
-                && desc.getOrganiserPhoneNumber() == other.getOrganiserPhoneNumber()
-                && desc.getOrganiserEmail() == other.getOrganiserEmail()
-                && desc.getLocation() == other.getLocation()
-                && desc.getProvince() == other.getProvince();
-    }
 }

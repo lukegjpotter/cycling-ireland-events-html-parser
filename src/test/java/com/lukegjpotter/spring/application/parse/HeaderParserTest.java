@@ -32,12 +32,19 @@ public class HeaderParserTest {
         RoadRaceEvent expected = tr.getStageRaceHeader();
         performTestChecks(actual, expected);
     }
+    
+    @Test public void testParseEmptyHeaderElements() {
+        RoadRaceEvent actual = headerParser.parse(utils.emptyHeaderRawHtml());
+        RoadRaceEvent expected = new RoadRaceEvent();
+        assertTrue(expected.equals(actual));
+    }
 
     public void performTestChecks(RoadRaceEvent actual, RoadRaceEvent expected) {
         assertTrue("StartDate: Expected: " + expected.getStartDate() + ". Actual: " + actual.getStartDate(), expected.getStartDate().equals(actual.getStartDate()));
         assertTrue("EventName: Expected: " + expected.getEventName() + ". Actual: " + actual.getEventName(), expected.getEventName().equals(actual.getEventName()));
         assertTrue("PromotingClub: Expected: " + expected.getPromotingClub() + ". Actual: " + actual.getPromotingClub(), expected.getPromotingClub().equals(actual.getPromotingClub()));
         assertTrue("Organiser: Expected: " + expected.getOrganiser() + ". Actual: " + actual.getOrganiser(), expected.getOrganiser().equals(actual.getOrganiser()));
+        assertTrue(expected.equals(actual));
     }
 
 }

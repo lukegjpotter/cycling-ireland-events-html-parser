@@ -21,12 +21,12 @@ public class HeaderParser implements Parsable<RoadRaceEvent> {
         Element roadRaceHeader = Jsoup.parseBodyFragment(htmlToParse).body();
         
         Elements tableData = roadRaceHeader.select("span");
-        race.setStartDate(utils.convertDDMMMYYToDate(tableData.first().text().trim()));
+        race.setStartDate(utils.convertDDMMMYYToDate(tableData.first().text()));
         
         tableData = roadRaceHeader.getElementsByTag("div");
-        race.setEventName(tableData.get(0).text().trim());
-        race.setPromotingClub(tableData.get(1).text().trim());
-        race.setOrganiser(tableData.get(2).text().trim());
+        race.setEventName(utils.stringNullCheck(tableData.get(0).text()));
+        race.setPromotingClub(utils.stringNullCheck(tableData.get(1).text()));
+        race.setOrganiser(utils.stringNullCheck(tableData.get(2).text()));
         
         race.setRegistrationLink(""); // TODO Parse this from CI Website.
         

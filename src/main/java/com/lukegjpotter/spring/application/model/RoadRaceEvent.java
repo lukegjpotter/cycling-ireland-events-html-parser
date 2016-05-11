@@ -13,8 +13,18 @@ public class RoadRaceEvent {
 
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEvent() {
-        stageDetails = new ArrayList<>();
+        setStartDate(new Date(0L));
+        setBookingsOpenDate(new Date(0L));
+        setBookingsCloseDate(new Date(0L));
+        setEventName("");
+        setPromotingClub("");
+        setOrganiser("");
+        setRegistrationLink("");
+        setOrganiserPhoneNumber("");
+        setOrganiserEmail("");
+        setLocation("");
         setProvince("");
+        stageDetails = new ArrayList<>();
     }
     
     public void addDescription(Description description) {

@@ -26,7 +26,19 @@ public class StageDetail {
         setRouteLinkUrl(routeLinkUrl);
     }
 
-    public StageDetail() {}
+    public StageDetail() {
+        setDate(new Date(0L));
+        setLocation("");
+        setRaceNumber(0);
+        setStageNumber(0);
+        setRaceType("");
+        setKilometers(0.0);
+        setMiles(0.0);
+        setCategory("");
+        setSignOnTime("");
+        setStartTime("");
+        setRouteLinkUrl("");
+    }
 
     public Date getDate() {
         return date;
@@ -121,9 +133,6 @@ public class StageDetail {
         if (obj instanceof StageDetail) {
             StageDetail other = (StageDetail) obj;
 
-            if (performNullEqualsChecks(this, other))
-                return true;
-
             return this.getDate().equals(other.getDate()) && this.getLocation().equals(other.getLocation())
                     && this.getRaceNumber().equals(other.getRaceNumber())
                     && this.getStageNumber().equals(other.getStageNumber())
@@ -135,21 +144,6 @@ public class StageDetail {
         }
 
         return false;
-    }
-
-    private boolean performNullEqualsChecks(StageDetail stageDetail, StageDetail other) {
-
-        return stageDetail.getDate() == other.getDate()
-                && stageDetail.getLocation() == other.getLocation()
-                && stageDetail.getRaceNumber() == other.getRaceNumber()
-                && stageDetail.getStageNumber() == other.getStageNumber()
-                && stageDetail.getRaceType() == other.getRaceType()
-                && stageDetail.getCategory() == other.getCategory()
-                && stageDetail.getSignOnTime() == other.getSignOnTime()
-                && stageDetail.getStartTime() == other.getStartTime()
-                && stageDetail.getRouteLinkUrl() == other.getRouteLinkUrl()
-                && stageDetail.getKilometers() == other.getKilometers()
-                && stageDetail.getMiles() == other.getMiles();
     }
 
     @Override public String toString() {

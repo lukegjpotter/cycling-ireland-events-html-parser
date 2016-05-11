@@ -126,7 +126,7 @@ public class TestResources {
         description.setOrganiserPhoneNumber("+353858500404");
         description.setOrganiserEmail("john.coleman@mts.ie");
         description.setLocation("Soccer Club, Dungarvan");
-        description.setProvince("Munster");
+        //description.setProvince("Munster");
         
         return description;
     }
@@ -198,7 +198,7 @@ public class TestResources {
         description.setOrganiserPhoneNumber("+353879369628");
         description.setOrganiserEmail("declanbyrne2006@gmail.com");
         description.setLocation("HEARNS HOTEL, CLONMEL");
-        description.setProvince("Munster");
+        //description.setProvince("Munster");
         
         return description;
     }
@@ -268,7 +268,7 @@ public class TestResources {
         raceRecord.setOrganiserPhoneNumber("+353879764249");
         raceRecord.setOrganiserEmail("stdigby@hotmail.com");
         raceRecord.setLocation("Buccaneers RFC, Athlone");
-        raceRecord.setProvince("Munster");
+        //raceRecord.setProvince("Munster");
         
         List<StageDetail> stageDetails = new ArrayList<>();
         //stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com"));

@@ -14,6 +14,7 @@ public class RoadRaceEvent {
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEvent() {
         stageDetails = new ArrayList<>();
+        setProvince("");
     }
     
     public void addDescription(Description description) {

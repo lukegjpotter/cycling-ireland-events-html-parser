@@ -84,9 +84,9 @@ public class UtilsServiceTest {
     }
     
     @Test public void testFormatLocationEmptyString() {
-        String expected = "";
+        String expected = null;
         String actual = utilsService.formatLocation("");
-        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected == actual);
     }
     
     @Test public void testFormatLocationCommaSpace() {
@@ -108,9 +108,9 @@ public class UtilsServiceTest {
     }
     
     @Test public void testFormatPhoneNumberEmptyString() {
-        String expected = "";
+        String expected = null;
         String actual = utilsService.formatPhoneNumber("");
-        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected == actual);
     }
     
     @Test public void testFormatPhoneNumberWithSpace() {

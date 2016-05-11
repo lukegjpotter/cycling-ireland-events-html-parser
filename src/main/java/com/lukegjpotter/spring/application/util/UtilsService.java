@@ -70,6 +70,7 @@ public class UtilsService {
     public String formatLocation(String location) {
         
         location = location.trim();
+        if (stringNullCheck(location) == null) return null;
         int i = 0;
         
         if (!location.isEmpty() && ((Character)location.charAt(i)).equals(',')) {
@@ -87,6 +88,7 @@ public class UtilsService {
     public String formatPhoneNumber(String phoneNumber) {
         
         phoneNumber = phoneNumber.trim().replace(" ", "").replace("-", "");
+        if (stringNullCheck(phoneNumber) == null) return null;
         
         if (phoneNumber.isEmpty()) {
             return phoneNumber;

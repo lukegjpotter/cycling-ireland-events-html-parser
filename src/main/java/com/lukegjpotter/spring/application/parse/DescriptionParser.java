@@ -24,10 +24,10 @@ public class DescriptionParser implements Parsable<Description> {
         description.setBookingsOpenDate(utils.convertDDMMYYYYToDate(tableData.get(0).text()));
         description.setBookingsCloseDate(utils.convertDDMMYYYYToDate(tableData.get(1).text()));
         description.setOrganiserPhoneNumber(utils.formatPhoneNumber(tableData.get(2).text()));
-        description.setOrganiserEmail(tableData.get(3).text().trim());
+        description.setOrganiserEmail(utils.stringNullCheck(tableData.get(3).text()));
         description.setLocation(utils.formatLocation(tableData.get(4).text()));
-        description.setProvince("Munster"); // TODO Source Province from somewhere, maybe CSV file.
-        
+        //description.setProvince("Munster"); // TODO Source Province from somewhere, maybe CSV file.
+                
         return description;
     }
 

@@ -16,6 +16,7 @@ public class RoadRaceEventDatabaseRecord {
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEventDatabaseRecord() {
         stageDetails = new ArrayList<>();
+        setProvince("");
     }
     
     public void addDescription(Description description) {

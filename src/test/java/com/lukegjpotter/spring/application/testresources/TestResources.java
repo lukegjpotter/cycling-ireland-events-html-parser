@@ -1,6 +1,8 @@
 package com.lukegjpotter.spring.application.testresources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 /**
@@ -329,6 +332,85 @@ public class TestResources {
         raceTypesHolder.setYouth(true);
         
         return raceTypesHolder;
+    }
+
+    public String getOneDayRaceStagesCsvFileName() {
+        return "./src/test/resources/DungarvanOpenRaceStages.csv";
+    }
+
+    public StageRouteMappingHolder getOneDayRaceStageRouteMappingHolder() {
+        String eventName = "Dungarvan Open Race";
+        Date date = utils.convertDDMMYYYYToDate("03/04/2016");
+        List<String> routes = Arrays.asList("http://www.strava.com/routes/123456");
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+        holder.putRouteUrlMapping(eventName, date, routes);
+        
+        return holder;
+    }
+
+    public String getOneDayRaceStagesCsvFileNameNoStages() {
+        return "./src/test/resources/DungarvanOpenRaceStagesNoStages.csv";
+    }
+
+    public StageRouteMappingHolder getOneDayRaceStageRouteMappingHolderNoStages() {
+        String eventName = "Dungarvan Open Race";
+        Date date = utils.convertDDMMYYYYToDate("03/04/2016");
+        List<String> routes = Arrays.asList("");
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+        holder.putRouteUrlMapping(eventName, date, routes);
+        
+        return holder;
+    }
+
+    public String getStageRaceStagesCsvFileName() {
+        return "./src/test/resources/SuirValley3DayStages.csv";
+    }
+
+    public StageRouteMappingHolder getStageRaceStageRouteMappingHolder() {
+        String eventName = "Suir Valley 3 Day";
+        Date date = utils.convertDDMMYYYYToDate("30/07/2016");
+        List<String> routes = Arrays.asList("http://www.strava.com/routes/111", "http://www.strava.com/routes/222", "http://www.strava.com/routes/333", "http://www.strava.com/routes/444");
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+        holder.putRouteUrlMapping(eventName, date, routes);
+        
+        return holder;
+    }
+
+    public String getStageRaceStagesCsvFileNameNoStages() {
+        return "./src/test/resources/SuirValley3DayStagesNoStages.csv";
+    }
+
+    public StageRouteMappingHolder getStageRaceStageRouteMappingHolderNoStages() {
+        String eventName = "Suir Valley 3 Day";
+        Date date = utils.convertDDMMYYYYToDate("30/07/2016");
+        List<String> routes = Arrays.asList("");
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+        holder.putRouteUrlMapping(eventName, date, routes);
+        
+        return holder;
+    }
+
+    public String getStageRaceStagesCsvFileNameMissingStages() {
+        return "./src/test/resources/SuirValley3DayStagesMissingAStage.csv";
+    }
+
+    public StageRouteMappingHolder getStageRaceStageRouteMappingHolderMissingStages() {
+        String eventName = "Suir Valley 3 Day";
+        Date date = utils.convertDDMMYYYYToDate("30/07/2016");
+        List<String> routes = Arrays.asList("http://www.strava.com/routes/111", "http://www.strava.com/routes/222", "", "http://www.strava.com/routes/444");
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+        holder.putRouteUrlMapping(eventName, date, routes);
+        
+        return holder;
+    }
+
+    public String getStageRaceStagesCsvFileNameMixedUpStages() {
+        return "./src/test/resources/SuirValley3DayStages3And4MixedUp.csv";
     }
 
 }

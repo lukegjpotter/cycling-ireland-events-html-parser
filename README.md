@@ -26,6 +26,7 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 * [x] Expose a REST API to enable the screen scraping to happen when this is called.
 * [ ] Parse a resource file to get the all information from an individual Cycling
 Event.
+* [ ] Possible to add Route URL Links from separate CSV File to the Cycling Event. 
 
 ### Version 1.0 Features
 

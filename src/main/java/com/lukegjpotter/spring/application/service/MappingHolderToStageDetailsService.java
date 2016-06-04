@@ -39,7 +39,7 @@ public class MappingHolderToStageDetailsService {
                         .append(",").append("\n");
                 }
             }
-            LOG.info("Adding Routes for: " + eventName);
+            LOG.fine("Adding Routes for: " + eventName);
         }
         
         LOG.warning(sb.toString());

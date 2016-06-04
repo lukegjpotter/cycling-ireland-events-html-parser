@@ -53,7 +53,7 @@ public class ParsingLoop {
             }
 
             if (isRaceHeaderSet && isRacePopulated) {
-                LOG.info("Storing: " + roadRace.toString());
+                LOG.fine("Storing: " + roadRace.toString());
                 roadRaces.add(roadRace);
                 roadRace = new RoadRaceEvent();
                 isRaceHeaderSet = false;

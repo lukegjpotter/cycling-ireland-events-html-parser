@@ -20,7 +20,11 @@ public class StageRouteMappingHolder {
 
     public String getRouteUrlMapping(String eventName, Date startDate, Integer stageNumber) {
         String key = eventName + startDate.getTime();
-        return nameDateRouteMap.get(key).get(stageNumber.intValue() - 1);
+        try {
+            return nameDateRouteMap.get(key).get(stageNumber.intValue() - 1);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "";
+        }
     }
     
     @Override public boolean equals(Object o) {

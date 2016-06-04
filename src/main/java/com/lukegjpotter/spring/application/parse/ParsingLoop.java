@@ -18,7 +18,7 @@ import com.lukegjpotter.spring.application.util.Constants;
 @Component
 public class ParsingLoop {
     
-    final Logger LOG = Logger.getLogger(RoadRaceEvent.class.getName());
+    final Logger LOG = Logger.getLogger(ParsingLoop.class.getName());
 
     @Autowired private HeaderParser headerParser;
     @Autowired private DescriptionParser descriptionParser;

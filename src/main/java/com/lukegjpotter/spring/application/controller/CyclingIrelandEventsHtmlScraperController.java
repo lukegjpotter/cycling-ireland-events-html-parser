@@ -22,13 +22,13 @@ public class CyclingIrelandEventsHtmlScraperController {
     @Autowired private StageDetailsCsvReaderService csvReaderService;
     @Autowired private MappingHolderToStageDetailsService stageDetailsMappingService;
     @Autowired private RoadRaceEventToDatabaseRecordTransformService transformService;
-    private RoadRaceEventDatabaseRecordRepository repository;
+    @Autowired private RoadRaceEventDatabaseRecordRepository repository;
     
     private List<RoadRaceEvent> roadRaces;
     private List<RoadRaceEventDatabaseRecord> databaseRecords;
     private StageRouteMappingHolder mappingHolder;
     
-    @RequestMapping("/start") public List<RoadRaceEventDatabaseRecord> start() {
+    @RequestMapping("/start") public String start() {
         extract();
         transform();
         return load();
@@ -44,9 +44,9 @@ public class CyclingIrelandEventsHtmlScraperController {
         databaseRecords = transformService.transform(roadRaces);
     }
     
-    private List<RoadRaceEventDatabaseRecord> load() {
+    private String load() {
         repository.save(databaseRecords);
-        return databaseRecords;
+        return "Success";
     }
     
 }

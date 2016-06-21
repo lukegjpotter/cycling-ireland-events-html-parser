@@ -9,6 +9,17 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 [![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
 [![Issue Count](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/issue_count.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper)
 
+## Initial Database Setup
+
+1. Ensure that Postgres Server is running.  
+   I'm using the Postgres Mac App, from [postgresapp.com](http://postgresapp.com).
+1. Open a Terminal where the Postgre utils are added to the Path and execute:  
+   `createdb -h localhost -p 5432 -U postgres cyclingirelandevents`  
+   to create the database.
+1. To verify the database: `psql cyclingirelandevents postgres`  
+   Use `\dt` to view the Database Tables (after the intial run).  
+   Use `select * from road_race_event_database_record;` to see the data.
+
 ## Build, Run and Test
 
 1. To Build and Run the Application, open a Terminal and use:  
@@ -22,7 +33,7 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 ### Alpha Features - In Progress
 
 * [x] Be able to loop through the file to get all the information from all the
-      Cycling Events into POJOs
+      Cycling Events into POJOs.
 * [x] Expose a REST API to enable the screen scraping to happen when this is called.
 * [x] Parse a resource file to get the all information from an individual Cycling
 Event.
@@ -30,8 +41,9 @@ Event.
 
 ### Version 1.0 Features
 
-Write the POJOs, from the parsed Resource File, into the Database Using Spring
-Data and Heroku's PosgreSQL.
+* [x] Write the POJOs, from the parsed Resource File, into a local Postgres
+Database Using Spring Data.
+* [ ] Then make a production Spring Profile to write them into Heroku's PosgreSQL.
 
 ### Version 2.0 Features
 

@@ -2,8 +2,16 @@ package com.lukegjpotter.spring.application.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class StageDetail {
 
+    @Id @GeneratedValue(strategy=GenerationType.TABLE)
+    private long id;
     private Date date;
     private Integer raceNumber, stageNumber;
     private String location, raceType, category, signOnTime, startTime, routeLinkUrl;
@@ -38,6 +46,14 @@ public class StageDetail {
         setSignOnTime("");
         setStartTime("");
         setRouteLinkUrl("");
+    }
+    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Date getDate() {

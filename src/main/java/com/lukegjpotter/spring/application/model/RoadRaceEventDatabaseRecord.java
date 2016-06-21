@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class RoadRaceEventDatabaseRecord {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.TABLE)
     private long id;
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
     private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
             location, province;
+    @OneToMany(cascade=CascadeType.ALL) @JoinColumn(name="eventId")
     private List<StageDetail> stageDetails;
     private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth, isParacycling;
 

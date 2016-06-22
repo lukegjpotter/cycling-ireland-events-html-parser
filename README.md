@@ -1,9 +1,10 @@
 # Cycling Ireland Events HTML Scraper
 
-This project will Scrape and Parse the HTML from the Cycling Ireland Events
-into POJOs.
+This project will Scrape and Parse the HTML from Cycling Ireland Events
+into POJOs. Persist them in the database.
 
-The POJOs will be useful for the Cycling Ireland Events REST Service.
+The POJOs will be useful for the
+[Cycling Ireland Events REST Service](https://github.com/lukegjpotter/cycling-ireland-events-rest-service).
 
 [![Build Status](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper.svg?branch=master)](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper)
 [![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
@@ -30,7 +31,7 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 1. To Stop the Application, in the first Terminal, use:  
    `ctrl+C`
 
-### Alpha Features - In Progress
+### Alpha 0.1 Features - Released
 
 * [x] Be able to loop through the file to get all the information from all the
       Cycling Events into POJOs.
@@ -39,7 +40,7 @@ The POJOs will be useful for the Cycling Ireland Events REST Service.
 Event.
 * [x] Possible to add Route URL Links from separate CSV File to the Cycling Event. 
 
-### Version 1.0 Features
+### Version 1.0 Features - In Development
 
 * [x] Write the POJOs, from the parsed Resource File, into a local Postgres
 Database Using Spring Data.
@@ -47,12 +48,12 @@ Database Using Spring Data.
 
 ### Version 2.0 Features
 
-* Be able to Screen Scrape directly from the Web Page.
-* Patch the POJOs in the Database with new information gleamed from the screen
-  scraping.
+* [ ] Be able to Screen Scrape directly from the Web Page.
+* [ ] Patch the POJOs in the Database with new information gleamed from the
+      screen scraping.
 
 ### Version 3.0 Features
 
-Set a Timer service that will gather the Event's Registration Link from the
-Events Page, to make the link available in the database for end user to use to
-sign up to the races.
+* [ ] Set a Timer service that will gather the Event's Registration Link from
+      the Events Page, to make the link available in the database for end user
+      to use to sign up to the races.

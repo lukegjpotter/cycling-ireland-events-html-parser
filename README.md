@@ -37,22 +37,25 @@ The POJOs will be useful for the
       Cycling Events into POJOs.
 * [x] Expose a REST API to enable the screen scraping to happen when this is called.
 * [x] Parse a resource file to get the all information from an individual Cycling
-Event.
+      Event.
 * [x] Possible to add Route URL Links from separate CSV File to the Cycling Event. 
 
-### Version 1.0 Features - In Development
+### Version 1.0 Features - Released
 
 * [x] Write the POJOs, from the parsed Resource File, into a local Postgres
-Database Using Spring Data.
-* [ ] Then make a production Spring Profile to write them into Heroku's PosgreSQL.
+      Database Using Spring Data.
 
 ### Version 2.0 Features
+
+* [ ] Then make a production Spring Profile to write them into Heroku's PosgreSQL.
+
+### Version 3.0 Features
 
 * [ ] Be able to Screen Scrape directly from the Web Page.
 * [ ] Patch the POJOs in the Database with new information gleamed from the
       screen scraping.
 
-### Version 3.0 Features
+### Version 4.0 Features
 
 * [ ] Set a Timer service that will gather the Event's Registration Link from
       the Events Page, to make the link available in the database for end user

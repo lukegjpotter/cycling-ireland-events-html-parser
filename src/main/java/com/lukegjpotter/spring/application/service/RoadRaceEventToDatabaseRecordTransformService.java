@@ -1,6 +1,8 @@
 package com.lukegjpotter.spring.application.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
+import com.lukegjpotter.spring.application.util.UtilsService;
 
 /**
  * {@code RoadRaceEventToDatabaseRecordTransformService} transforms the
@@ -21,6 +24,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 @Service public class RoadRaceEventToDatabaseRecordTransformService {
 
     @Autowired StageDetailsRaceTypesService raceTypeService;
+    @Autowired UtilsService utils;
     
     public List<RoadRaceEventDatabaseRecord> transform(List<RoadRaceEvent> roadRaces) {
         
@@ -41,6 +45,7 @@ import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
             databaseRecord.setRegistrationLink(roadRace.getRegistrationLink());
             databaseRecord.setStageDetails(roadRace.getStageDetails());
             databaseRecord.setStartDate(roadRace.getStartDate());
+            databaseRecord.setMonthNumber(utils.extractMonthNumberFromDate(roadRace.getStartDate()));
             
             RaceTypesHolder raceTypes = raceTypeService.determineRaceTypes(roadRace.getStageDetails());
             databaseRecord.addRaceTypes(raceTypes);

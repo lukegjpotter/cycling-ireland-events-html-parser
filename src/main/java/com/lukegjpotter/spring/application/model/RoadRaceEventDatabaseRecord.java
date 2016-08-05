@@ -20,6 +20,7 @@ public class RoadRaceEventDatabaseRecord {
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
     private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
             location, province;
+    private int monthNumber;
     @OneToMany(cascade=CascadeType.ALL) @JoinColumn(name="eventId")
     private List<StageDetail> stageDetails;
     private boolean isAPlus, isA1, isA2, isA3, isA4, isVets, isWoman, isJunior, isYouth, isParacycling;
@@ -37,6 +38,7 @@ public class RoadRaceEventDatabaseRecord {
         setOrganiserEmail("");
         setLocation("");
         setProvince("");
+        setMonthNumber(-1);
         setAPlus(false);
         setA1(false);
         setA2(false);
@@ -170,6 +172,14 @@ public class RoadRaceEventDatabaseRecord {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public int getMonthNumber() {
+        return monthNumber;
+    }
+
+    public void setMonthNumber(int monthNumber) {
+        this.monthNumber = monthNumber;
     }
 
     public List<StageDetail> getStageDetails() {

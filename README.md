@@ -24,7 +24,9 @@ The POJOs will be useful for the
 ## Build, Run and Test
 
 1. To Build and Run the Application, open a Terminal and use:  
-   `./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
+   `./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`  
+   To skip the tests, if they're failing, use:  
+   `./gradlew build -x test && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
 1. To Test that the running Application is functional, open a new Terminal tab
    and use:  
    `curl localhost:8080/start`

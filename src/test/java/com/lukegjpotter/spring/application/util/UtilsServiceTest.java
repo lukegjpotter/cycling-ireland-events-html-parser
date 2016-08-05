@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 
+import antlr.Utils;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, UtilsService.class })
 public class UtilsServiceTest {
@@ -200,4 +202,18 @@ public class UtilsServiceTest {
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
 
+    @Test public void testExtractMonthNumberFromDateWithRealDate() {
+        int expected = 8;
+        Date date = new Date(1470383246000L); // 2016-08-06
+        int actual = utilsService.extractMonthNumberFromDate(date);
+        
+        assertTrue(expected == actual);
+    }
+    
+    @Test public void testExtractMonthNumberFromDateWithNullDate() {
+        int expected = -1;
+        int actual = utilsService.extractMonthNumberFromDate(null);
+        
+        assertTrue(expected == actual);
+    }
 }

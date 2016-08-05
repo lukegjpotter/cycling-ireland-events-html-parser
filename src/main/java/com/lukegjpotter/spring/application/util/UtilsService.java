@@ -2,6 +2,7 @@ package com.lukegjpotter.spring.application.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -136,5 +137,15 @@ public class UtilsService {
         @Override public String toString() {
             return code;
         }
+    }
+    
+    public int extractMonthNumberFromDate(Date date) {
+        
+        if (date == null) return -1;
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        
+        return calendar.get(Calendar.MONTH) + 1;
     }
 }

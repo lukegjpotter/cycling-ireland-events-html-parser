@@ -139,6 +139,12 @@ public class UtilsService {
         }
     }
     
+    /**
+     * Uses a {@code Date} object to extract it's month number, January is 1, December 12.
+     * 
+     * @param date The date to extract the {@code monthNumber} from.
+     * @return The {@code monthNumber} for the {@code Date}.
+     */
     public int extractMonthNumberFromDate(Date date) {
         
         if (date == null) return -1;

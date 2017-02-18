@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>
+        Cycling Ireland Sports Portal
+    </title>
+</head>
+
+<body style="width: auto;">
+
+    <form method="post" action="../Upload/UploadHandler.ashx" id="form1" enctype="multipart/form-data">
+        <div class="aspNetHidden">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJOTgyNDY2MTIyD2QWAmYPZBYCAgEPZBYEAgUPFgIeBFRleHQFBicyMDE3J2QCCA9kFgZmDxYCHwAFCCcyOTgyMDAnZAIBDxYCHwAFMSdodHRwczovL2N5Y2xpbmdpcmVsYW5kbGVnYWN5LmF6b2x2ZS5jb20vcG9ydGFsLydkAgIPFgIfAAUJJ0xlaXN1cmUnZGRlO+Y42YGQlW6gM0OP48LApj+NaZFKUYwJ2jLi3tKlWg==" />
+        </div>
+
+        <div class="aspNetHidden">
+
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C3DE0B17" />
+        </div>
+        <div id="formcontent" style="width: auto;">
+            <div id="LeftBar" style="display: none;">
+                <a class="LeftBarAdvertisement" title="Cycling Ireland" target="blank" href="http://www.cyclingireland.ie/">
+
+                    <img src="BrandingResources/images/LeftLogoCyclingIreland.png" height="600" width="160" alt="" />
+                </a>
+            </div>
+            <div id="RightBar" style="display: none;">
+                <a class="RightBarAdvertisement" title="Azolve" target="blank" href="http://www.azolve.com"></a>
+
+            </div>
+            <div id="maincontent" style="width:auto;">
+                <div id="headerarea" style="display: none;">
+                    <div id="mainbanner">
+                        <a target="blank" title="Cycling Ireland" href="http://www.cyclingireland.ie/">
+                            <h1>Cycling Ireland</h1></a>
+
+                        <div class="social">
+                            <p>
+                                follow us
+                                <a target="_blank" href="http://www.facebook.com/cyclingireland" title="Follow us on Facebook"><img width="32" hspace="5" height="32" alt="facebook" src="BrandingResources/images/icons/facebook_32.png" style="display: inline;border: none;"></a>
+                                <a target="_blank" href="https://twitter.com/irecyclingfed" title="Follow us on Twitter"><img alt="twitter" src="BrandingResources/images/icons/twitter_32.png" style="display: inline;border: none;"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="menubar" style="display: none;">
+                    <div class="iconbox"><img src="../CommonResources/Images/start-logo.png" border="0" /></div>
+                    <div class="iconbox" style="margin-right:-20px;">
+                        <a href="home.aspx"><img src="../CommonResources/images/home.png" border="0" /></a>
+                    </div>
+                    <div class="iconbox">
+                        <a href="LogOut.aspx"><img src="../CommonResources/images/logout.png" border="0" /></a>
+                    </div>
+                    <div id="logout"><span id="userlogout"></span></div>
+                </div>
+                <div id="contentarea">
+
+                    <div id="pagename">
+                        Events</div>
+                    <div id="pageContent">
+                        <div id="mainpage" style="width: auto;">
+
+                            <hr style="display:none;margin: 5px 15px;width:auto;" />
+                            <p style="display:none;margin: 5px 15px;">
+                                Here is a list of upcoming Event. Click on Details to see more and on Apply to pre-register for the event.
+                            </p>
+                            <hr id="hrline" style="display:none;height: 2px;margin: 0 15px; width: auto; color: #99BBE8" />
+
+                            <div style="display:none;margin: 2px 10px 2px 560px;">
+
+                                Province :
+                                <select id='Province' style='width:100px;' onchange='RenderCourseList(AllCoursesList,false,false);'>
+                                    <option>All</option>
+                                    <option>Connacht</option>
+                                    <option>Leinster</option>
+                                    <option>Munster</option>
+                                    <option>Ulster</option>
+                                </select>
+
+                            </div>
+                            <div id="MainContent" style="margin:7px 10px 7px 10px;">
+                                <div id="courseDetails" style="margin-bottom:0px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="copyright" class="copyright" style="margin-top: 10px;margin-left:175px;width:auto;">
+                        <label id="copyrightLabel"></label>
+                        <br/>
+                        <a target="_blank" href="AboutUs.aspx" style="color: blue"><span>About Us</span></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+</body>
+
+</html>

@@ -1,8 +1,6 @@
 package com.lukegjpotter.spring.application.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

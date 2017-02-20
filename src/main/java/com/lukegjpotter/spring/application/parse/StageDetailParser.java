@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
 public class StageDetailParser implements Parsable<List<StageDetail>> {
     
     @Autowired private UtilsService utils;
+    @Autowired private NullCheckUtilsService nullCheckUtils;
 
     @Override public List<StageDetail> parse(String htmlToParse) {
         
@@ -34,15 +36,15 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
             
             stageDetail = new StageDetail();
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
-            stageDetail.setLocation(utils.stringNullCheck(rowData.get(1).text()));
-            stageDetail.setRaceNumber(utils.integerNullCheck(rowData.get(2).text()));
-            stageDetail.setStageNumber(utils.integerNullCheck(rowData.get(3).text()));
-            stageDetail.setRaceType(utils.stringNullCheck(rowData.get(4).text()));
-            stageDetail.setKilometers(utils.doubleNullCheck(rowData.get(5).text()));
-            stageDetail.setMiles(utils.doubleNullCheck(rowData.get(6).text()));
-            stageDetail.setCategory(utils.stringNullCheck(rowData.get(7).text()));
-            stageDetail.setSignOnTime(utils.timeNullCheck(rowData.get(8).text()));
-            stageDetail.setStartTime(utils.timeNullCheck(rowData.get(9).text()));
+            stageDetail.setLocation(nullCheckUtils.stringNullCheck(rowData.get(1).text()));
+            stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(2).text()));
+            stageDetail.setStageNumber(nullCheckUtils.integerNullCheck(rowData.get(3).text()));
+            stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(4).text()));
+            stageDetail.setKilometers(nullCheckUtils.doubleNullCheck(rowData.get(5).text()));
+            stageDetail.setMiles(nullCheckUtils.doubleNullCheck(rowData.get(6).text()));
+            stageDetail.setCategory(nullCheckUtils.stringNullCheck(rowData.get(7).text()));
+            stageDetail.setSignOnTime(nullCheckUtils.timeNullCheck(rowData.get(8).text()));
+            stageDetail.setStartTime(nullCheckUtils.timeNullCheck(rowData.get(9).text()));
             stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(10)));
             
             stageDetails.add(stageDetail);
@@ -64,7 +66,7 @@ public class StageDetailParser implements Parsable<List<StageDetail>> {
     }
     
     private String parseRouteLinkUrl(Element link) {
-        return utils.stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
+        return nullCheckUtils.stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
     }
 
 }

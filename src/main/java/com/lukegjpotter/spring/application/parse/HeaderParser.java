@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
 public class HeaderParser implements Parsable<RoadRaceEvent> {
     
     @Autowired UtilsService utils;
+    @Autowired NullCheckUtilsService nullCheckUtils;
 
     @Override public RoadRaceEvent parse(String htmlToParse) {
         
@@ -24,9 +26,9 @@ public class HeaderParser implements Parsable<RoadRaceEvent> {
         race.setStartDate(utils.convertDDMMMYYToDate(tableData.first().text()));
         
         tableData = roadRaceHeader.getElementsByTag("div");
-        race.setEventName(utils.stringNullCheck(tableData.get(0).text()));
-        race.setPromotingClub(utils.stringNullCheck(tableData.get(1).text()));
-        race.setOrganiser(utils.stringNullCheck(tableData.get(2).text()));
+        race.setEventName(nullCheckUtils.stringNullCheck(tableData.get(0).text()));
+        race.setPromotingClub(nullCheckUtils.stringNullCheck(tableData.get(1).text()));
+        race.setOrganiser(nullCheckUtils.stringNullCheck(tableData.get(2).text()));
         
         race.setRegistrationLink(""); // TODO Parse this from CI Website.
         

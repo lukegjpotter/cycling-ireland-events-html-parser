@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.parse.ParsingLoop;
+import com.lukegjpotter.spring.application.parse.y2016.ParsingLoop2016;
 
 @Service
 public class HtmlParsingService {
 
     @Value("${allcieventsfile.location}") private String htmlFileLocation;
-    @Autowired private ParsingLoop parsingLoop2016;
+    @Autowired private ParsingLoop2016 parsingLoop;
 
     public List<RoadRaceEvent> parse() {
-        return parsingLoop2016.startParseLoop(htmlFileLocation);
+        return parsingLoop.startParseLoop(htmlFileLocation);
     }
 
     public void setHtmlFileLocation(String htmlFileLocation) {

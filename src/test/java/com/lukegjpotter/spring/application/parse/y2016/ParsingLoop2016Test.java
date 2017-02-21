@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse;
+package com.lukegjpotter.spring.application.parse.y2016;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
@@ -21,13 +21,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.parse.DescriptionParser;
+import com.lukegjpotter.spring.application.parse.HeaderParser;
+import com.lukegjpotter.spring.application.parse.StageDetailParser;
 import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, ParsingLoop.class })
-public class ParsingLoopTest {
+@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, ParsingLoop2016.class })
+public class ParsingLoop2016Test {
 
-    @InjectMocks ParsingLoop parsingLoop;
+    @InjectMocks ParsingLoop2016 parsingLoop;
     @Mock HeaderParser headerParser;
     @Mock DescriptionParser descriptionParser;
     @Mock StageDetailParser stageDetailParser;

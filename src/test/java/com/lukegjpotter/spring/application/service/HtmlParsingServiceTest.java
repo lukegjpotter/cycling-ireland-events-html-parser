@@ -26,7 +26,7 @@ import com.lukegjpotter.spring.application.testresources.TestResources;
 public class HtmlParsingServiceTest {
 
     @InjectMocks HtmlParsingService htmlParsingService;
-    @Mock ParsingLoop parsingLoop;
+    @Mock ParsingLoop parsingLoop2016;
     @Autowired TestResources tr;
     
     @Before public void setUp() {
@@ -36,7 +36,7 @@ public class HtmlParsingServiceTest {
     @Test public void testParseOneDayRace() {
         htmlParsingService.setHtmlFileLocation(tr.getOneDayRaceFileName());
         List<RoadRaceEvent> expected = tr.getOneDayRaceList();
-        when(parsingLoop.startParseLoop(any(String.class))).thenReturn(expected);
+        when(parsingLoop2016.startParseLoop(any(String.class))).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }
@@ -44,7 +44,7 @@ public class HtmlParsingServiceTest {
     @Test public void testParseStageRace() {
         htmlParsingService.setHtmlFileLocation(tr.getStageRaceFileName());
         List<RoadRaceEvent> expected = tr.getStageRaceList();
-        when(parsingLoop.startParseLoop(any(String.class))).thenReturn(expected);
+        when(parsingLoop2016.startParseLoop(any(String.class))).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }

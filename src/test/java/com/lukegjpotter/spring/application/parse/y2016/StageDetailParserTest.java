@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse;
+package com.lukegjpotter.spring.application.parse.y2016;
 
 import static org.junit.Assert.assertTrue;
 
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.parse.y2016.StageDetailParser;
 import com.lukegjpotter.spring.application.testresources.TestResources;
 import com.lukegjpotter.spring.application.testresources.TestUtils;
 

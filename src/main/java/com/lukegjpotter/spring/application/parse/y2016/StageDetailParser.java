@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse;
+package com.lukegjpotter.spring.application.parse.y2016;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.parse.Parsable;
 import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class StageDetailParser implements Parsable<String, List<StageDetail>> {
+class StageDetailParser implements Parsable<String, List<StageDetail>> {
     
     @Autowired private UtilsService utils;
     @Autowired private NullCheckUtilsService nullCheckUtils;

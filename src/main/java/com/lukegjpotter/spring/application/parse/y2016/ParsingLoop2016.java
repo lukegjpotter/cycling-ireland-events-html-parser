@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.parse.DescriptionParser;
-import com.lukegjpotter.spring.application.parse.HeaderParser;
 import com.lukegjpotter.spring.application.parse.ParsingLoop;
-import com.lukegjpotter.spring.application.parse.StageDetailParser;
 import com.lukegjpotter.spring.application.util.Constants;
 
 @Component

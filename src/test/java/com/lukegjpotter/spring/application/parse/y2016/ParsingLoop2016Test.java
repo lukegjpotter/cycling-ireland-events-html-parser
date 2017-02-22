@@ -21,9 +21,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.parse.DescriptionParser;
-import com.lukegjpotter.spring.application.parse.HeaderParser;
-import com.lukegjpotter.spring.application.parse.StageDetailParser;
 import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)

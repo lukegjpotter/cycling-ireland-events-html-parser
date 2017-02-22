@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse;
+package com.lukegjpotter.spring.application.parse.y2016;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.parse.Parsable;
 import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class HeaderParser implements Parsable<String, RoadRaceEvent> {
+class HeaderParser implements Parsable<String, RoadRaceEvent> {
     
     @Autowired UtilsService utils;
     @Autowired NullCheckUtilsService nullCheckUtils;

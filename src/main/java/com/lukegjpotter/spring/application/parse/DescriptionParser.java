@@ -12,7 +12,7 @@ import com.lukegjpotter.spring.application.util.PhoneNumberUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class DescriptionParser implements Parsable<Description> {
+public class DescriptionParser implements Parsable<String, Description> {
 
     @Autowired UtilsService utils;
     @Autowired NullCheckUtilsService nullCheckUtils;

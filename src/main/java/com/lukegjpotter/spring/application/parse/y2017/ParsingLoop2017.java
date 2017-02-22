@@ -20,6 +20,8 @@ public class ParsingLoop2017 implements ParsingLoop {
 
     private File htmlFile;
     
+    @Autowired BasicDetailsParser basicDetailsParser;
+    
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
@@ -36,13 +38,11 @@ public class ParsingLoop2017 implements ParsingLoop {
         RoadRaceEvent roadRace = new RoadRaceEvent();
         
         Elements allAnchors = document.getElementsByClass("cat163473");
-        //Element firstAnchor = allAnchors.first();
-        //allAnchors = firstAnchor.getElementsByTag("a");
 
         for (Element event : allAnchors) {
             
             // Get Basic Details, ID and Name.
-            System.out.println(event.toString());
+            roadRace = basicDetailsParser.parse(event);
             // Get Popup Details.
             // Get Mode Information Link Details AKA StageDetails.
         }

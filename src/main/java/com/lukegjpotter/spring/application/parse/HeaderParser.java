@@ -11,7 +11,7 @@ import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class HeaderParser implements Parsable<RoadRaceEvent> {
+public class HeaderParser implements Parsable<String, RoadRaceEvent> {
     
     @Autowired UtilsService utils;
     @Autowired NullCheckUtilsService nullCheckUtils;

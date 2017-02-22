@@ -14,7 +14,7 @@ import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @Component
-public class StageDetailParser implements Parsable<List<StageDetail>> {
+public class StageDetailParser implements Parsable<String, List<StageDetail>> {
     
     @Autowired private UtilsService utils;
     @Autowired private NullCheckUtilsService nullCheckUtils;

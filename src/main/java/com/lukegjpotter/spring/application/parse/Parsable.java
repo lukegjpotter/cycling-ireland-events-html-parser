@@ -1,6 +1,6 @@
 package com.lukegjpotter.spring.application.parse;
 
-public interface Parsable<T> {
+public interface Parsable<Input, Output> {
     
-    public T parse(String htmlToParse);
+    public Output parse(Input htmlToParse);
 }

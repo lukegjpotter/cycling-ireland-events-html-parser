@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RoadRaceEvent {
 
+    private long id;
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
     private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
             location, province;
@@ -13,6 +14,7 @@ public class RoadRaceEvent {
 
     /** Empty Constructor for easy Event Building. */
     public RoadRaceEvent() {
+        setId(-1);
         setStartDate(new Date(0L));
         setBookingsOpenDate(new Date(0L));
         setBookingsCloseDate(new Date(0L));
@@ -38,6 +40,14 @@ public class RoadRaceEvent {
     
     public void addStageDetail(StageDetail stageDetail) {
         this.getStageDetails().add(stageDetail);
+    }
+    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Date getStartDate() {

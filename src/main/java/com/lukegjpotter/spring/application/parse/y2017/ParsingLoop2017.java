@@ -21,11 +21,13 @@ public class ParsingLoop2017 implements ParsingLoop {
     private File htmlFile;
     
     @Autowired BasicDetailsParser basicDetailsParser;
+    @Autowired PopupDetailsParser popupDetailsParser;
     
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
 
+        // TODO Change this file location to a URL for production.
         fileLocation = "src/main/resources/201702RoadEvents.html";
         htmlFile = new File(fileLocation);
 
@@ -34,22 +36,39 @@ public class ParsingLoop2017 implements ParsingLoop {
         try {
             document = Jsoup.parse(htmlFile, Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
-
-        RoadRaceEvent roadRace = new RoadRaceEvent();
         
         Elements allAnchors = document.getElementsByClass("cat163473");
+        RoadRaceEvent roadRace = new RoadRaceEvent();
 
         for (Element event : allAnchors) {
             
-            // Get Basic Details, ID and Name.
+            // Get Basic Details; ID and Name.
             roadRace = basicDetailsParser.parse(event);
-            // Get Popup Details.
-            // Get Mode Information Link Details AKA StageDetails.
+            
+            // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
+            Element popup = getJsoupElementFromPopup(roadRace.getId());
+            roadRace = popupDetailsParser.parse(popup);
+            
+            // Get More Information Link Details AKA StageDetails.
         }
 
         roadRaceEvents.add(roadRace);
         
         return roadRaceEvents;
+    }
+
+    private Element getJsoupElementFromPopup(long eventId) {
+        
+        String popupFileLocation = "src/main/resources/20170225-Popup-DWCCOpenRace.html";
+        File popupHtmlFile = new File(popupFileLocation);
+
+        Element document = null;
+
+        try {
+            document = Jsoup.parse(popupHtmlFile, Constants.FILE_FORMAT);
+        } catch (IOException e) { e.printStackTrace(); }
+        
+        return document;
     }
 
 }

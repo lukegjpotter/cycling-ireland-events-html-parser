@@ -46,8 +46,8 @@ public class ParsingLoop2017 implements ParsingLoop {
             roadRace = basicDetailsParser.parse(event);
             
             // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
-            Element popup = getJsoupElementFromPopup(roadRace.getId());
-            roadRace = popupDetailsParser.parse(popup);
+            Element popupElement = getJsoupElementFromPopup(roadRace.getId());
+            roadRace.addPopupDetails(popupDetailsParser.parse(popupElement));
             
             // Get More Information Link Details AKA StageDetails.
         }

@@ -3,6 +3,7 @@ package com.lukegjpotter.spring.application.parse.y2017;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
+import com.lukegjpotter.spring.application.model.PopupDetails;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.parse.Parsable;
 
@@ -13,11 +14,15 @@ import com.lukegjpotter.spring.application.parse.Parsable;
  * @author lukegjpotter - Luke GJ Potter
  */
 @Component
-class PopupDetailsParser implements Parsable<Element, RoadRaceEvent> {
+class PopupDetailsParser implements Parsable<Element, PopupDetails> {
 
-    @Override public RoadRaceEvent parse(Element htmlToParse) {
-        // TODO Auto-generated method stub
-        return null;
+    @Override public PopupDetails parse(Element htmlElementToParse) {
+        
+        PopupDetails popupDetails = new PopupDetails();
+        
+        popupDetails.setProvince(htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim());
+        
+        return popupDetails;
     }
 
 }

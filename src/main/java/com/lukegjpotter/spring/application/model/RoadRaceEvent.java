@@ -9,7 +9,7 @@ public class RoadRaceEvent {
     private long id;
     private Date startDate, bookingsOpenDate, bookingsCloseDate;
     private String eventName, promotingClub, organiser, registrationLink, organiserPhoneNumber, organiserEmail,
-            location, province;
+            location, province, category;
     private List<StageDetail> stageDetails;
 
     /** Empty Constructor for easy Event Building. */
@@ -36,6 +36,16 @@ public class RoadRaceEvent {
         setOrganiserEmail(description.getOrganiserEmail());
         setLocation(description.getLocation());
         setProvince(description.getProvince());
+    }
+    
+    public void addPopupDetails(PopupDetails popupDetails) {
+        setStartDate(popupDetails.getStartDate());
+        setProvince(popupDetails.getProvince());
+        setCategory(popupDetails.getCategory());
+        setPromotingClub(popupDetails.getPromotingClub());
+        setOrganiser(popupDetails.getOrganiserName());
+        setOrganiserPhoneNumber(popupDetails.getOrganiserPhoneNumber());
+        setOrganiserEmail(popupDetails.getOrganiserEmail());
     }
     
     public void addStageDetail(StageDetail stageDetail) {
@@ -138,6 +148,14 @@ public class RoadRaceEvent {
         this.province = province;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public List<StageDetail> getStageDetails() {
         return stageDetails;
     }
@@ -174,5 +192,4 @@ public class RoadRaceEvent {
         this.getStageDetails().forEach(stagedetail -> sb.append(stagedetail.toString()));
         return sb.toString();
     }
-    
 }

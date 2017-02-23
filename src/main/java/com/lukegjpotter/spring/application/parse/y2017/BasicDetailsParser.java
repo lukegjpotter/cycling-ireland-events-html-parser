@@ -6,6 +6,11 @@ import org.springframework.stereotype.Component;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.parse.Parsable;
 
+/**
+ * Gets the Name and ID of the RoadRaceEvent from the Calendar Web Page.
+ * 
+ * @author lukegjpotter - Luke GJ Potter
+ */
 @Component
 class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
 

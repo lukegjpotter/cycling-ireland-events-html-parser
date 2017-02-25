@@ -30,6 +30,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
         popupDetails.setProvince(extractProvince(htmlElementToParse));
         popupDetails.setPromotingClub(extractPromotingClub(htmlElementToParse));
+        popupDetails.setOrganiserEmail(extractOrganiserEmail(htmlElementToParse));
         popupDetails.setMoreInfoUrl(extractMoreInfoURL(htmlElementToParse));
         
         return popupDetails;
@@ -53,15 +54,17 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         return htmlElementToParse.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
     }
     
+    private String extractOrganiserEmail(Element htmlElementToParse) {
+        return htmlElementToParse.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+    }
+    
     private URL extractMoreInfoURL(Element htmlElementToParse) {
         
         String url = htmlElementToParse.getElementsByAttributeValue("onclick", "openmoreinfo(); return false;").first().text().trim();
         
         try {
             return new URL(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        } catch (MalformedURLException e) { e.printStackTrace(); }
         
         return null;
     }

@@ -37,6 +37,7 @@ public class PopupDetailsParserTest {
         
         assertTrue(expectedDate.equals(popup.getStartDate()));
         assertTrue(popup.getProvince().equals("Leinster"));
+        assertTrue(popup.getPromotingClub().equals("Dublin Wheelers"));
     }
     
     private Element getJsoupElementFromPopup() {

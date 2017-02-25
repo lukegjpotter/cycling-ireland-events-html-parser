@@ -27,6 +27,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         
         popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
         popupDetails.setProvince(extractProvince(htmlElementToParse));
+        popupDetails.setPromotingClub(extractPromotingClub(htmlElementToParse));
         
         return popupDetails;
     }
@@ -43,5 +44,9 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         String dateString = rawDateString.substring(indexOfComma, indexOfSeperator).trim();
         
         return utils.convertMMMMDDYYYYToDate(dateString);
+    }
+    
+    private String extractPromotingClub(Element htmlElementToParse) {
+        return htmlElementToParse.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
     }
 }

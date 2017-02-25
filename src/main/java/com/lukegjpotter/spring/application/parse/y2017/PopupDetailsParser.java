@@ -1,5 +1,7 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 
 import org.jsoup.nodes.Element;
@@ -28,6 +30,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
         popupDetails.setProvince(extractProvince(htmlElementToParse));
         popupDetails.setPromotingClub(extractPromotingClub(htmlElementToParse));
+        popupDetails.setMoreInfoUrl(extractMoreInfoURL(htmlElementToParse));
         
         return popupDetails;
     }
@@ -48,5 +51,18 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private String extractPromotingClub(Element htmlElementToParse) {
         return htmlElementToParse.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
+    }
+    
+    private URL extractMoreInfoURL(Element htmlElementToParse) {
+        
+        String url = htmlElementToParse.getElementsByAttributeValue("onclick", "openmoreinfo(); return false;").first().text().trim();
+        
+        try {
+            return new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 }

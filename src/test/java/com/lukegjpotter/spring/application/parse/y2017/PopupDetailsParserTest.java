@@ -38,6 +38,8 @@ public class PopupDetailsParserTest {
         assertTrue(expectedDate.equals(popup.getStartDate()));
         assertTrue(popup.getProvince().equals("Leinster"));
         assertTrue(popup.getPromotingClub().equals("Dublin Wheelers"));
+        assertTrue(popup.getMoreInfoUrl().getAuthority().equals("cyclingirelandlegacy.azolve.com"));
+        assertTrue(popup.getMoreInfoUrl().getFile().equals("/portal/Moreeventdetails.aspx?EventId=298200"));
     }
     
     private Element getJsoupElementFromPopup() {

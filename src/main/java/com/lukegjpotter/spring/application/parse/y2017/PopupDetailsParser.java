@@ -26,9 +26,13 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         PopupDetails popupDetails = new PopupDetails();
         
         popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
-        popupDetails.setProvince(htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim());
+        popupDetails.setProvince(extractProvince(htmlElementToParse));
         
         return popupDetails;
+    }
+
+    public String extractProvince(Element htmlElementToParse) {
+        return htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim();
     }
     
     private Date extractPopupDate(Element element) {

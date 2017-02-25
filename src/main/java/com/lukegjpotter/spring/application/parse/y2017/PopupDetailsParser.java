@@ -29,17 +29,16 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         
         popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
         popupDetails.setProvince(extractProvince(htmlElementToParse));
+        popupDetails.setCategory(extractCategory(htmlElementToParse));
         popupDetails.setPromotingClub(extractPromotingClub(htmlElementToParse));
+        popupDetails.setOrganiserName(extractOrganiserName(htmlElementToParse));
         popupDetails.setOrganiserEmail(extractOrganiserEmail(htmlElementToParse));
+        popupDetails.setOrganiserPhoneNumber(extractOrganiserPhoneNumber(htmlElementToParse));
         popupDetails.setMoreInfoUrl(extractMoreInfoURL(htmlElementToParse));
         
         return popupDetails;
     }
 
-    public String extractProvince(Element htmlElementToParse) {
-        return htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim();
-    }
-    
     private Date extractPopupDate(Element element) {
         
         String rawDateString = element.getElementById("event_date").text();
@@ -50,12 +49,31 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         return utils.convertMMMMDDYYYYToDate(dateString);
     }
     
+    public String extractProvince(Element htmlElementToParse) {
+        return htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim();
+    }
+    
+    private String extractCategory(Element htmlElementToParse) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
     private String extractPromotingClub(Element htmlElementToParse) {
         return htmlElementToParse.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
     }
     
+    private String extractOrganiserName(Element htmlElementToParse) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
     private String extractOrganiserEmail(Element htmlElementToParse) {
         return htmlElementToParse.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+    }
+    
+    private String extractOrganiserPhoneNumber(Element htmlElementToParse) {
+        // TODO Auto-generated method stub
+        return null;
     }
     
     private URL extractMoreInfoURL(Element htmlElementToParse) {

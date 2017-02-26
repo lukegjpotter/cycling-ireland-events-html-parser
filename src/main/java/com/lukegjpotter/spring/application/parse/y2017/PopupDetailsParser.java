@@ -58,10 +58,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private String extractCategory(Element htmlElementToParse) {
 
-        String categoryRaw = htmlElementToParse.getElementById("cw_category_span").text().trim();
-        String category = categoryRaw.replace("Category:  ", "");
-
-        return category.isEmpty() ? "" : category;
+        return htmlElementToParse.getElementById("cw_category_span").text().trim().replace("Category:  ", "");
     }
     
     private String extractPromotingClub(Element htmlElementToParse) {
@@ -69,7 +66,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserName(Element htmlElementToParse) {
-        // TODO Auto-generated method stub
+     // TODO Auto-generated method stub
         return null;
     }
     

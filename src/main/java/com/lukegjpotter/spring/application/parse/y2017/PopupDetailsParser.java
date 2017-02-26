@@ -1,8 +1,11 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +57,11 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractCategory(Element htmlElementToParse) {
-        // TODO Auto-generated method stub
-        return null;
+
+        String categoryRaw = htmlElementToParse.getElementById("cw_category_span").text().trim();
+        String category = categoryRaw.replace("Category:  ", "");
+
+        return category.isEmpty() ? "" : category;
     }
     
     private String extractPromotingClub(Element htmlElementToParse) {

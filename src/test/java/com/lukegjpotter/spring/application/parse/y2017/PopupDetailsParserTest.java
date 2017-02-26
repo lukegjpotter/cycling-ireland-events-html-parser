@@ -39,7 +39,7 @@ public class PopupDetailsParserTest {
         assertTrue(popup.getProvince().equals("Leinster"));
         assertTrue(popup.getCategory().equals("Road"));
         assertTrue(popup.getPromotingClub().equals("Dublin Wheelers"));
-        //assertTrue(popup.getOrganiserName().equals("Brian Carolan"));
+        assertTrue(popup.getOrganiserName().equals("Brian Carolan"));
         assertTrue(popup.getOrganiserEmail().equals("dwcc.gp@gmail.com"));
         //assertTrue(popup.getOrganiserPhoneNumber().equals("+353866044136"));
         assertTrue(popup.getMoreInfoUrl().getAuthority().equals("cyclingirelandlegacy.azolve.com"));

@@ -1,11 +1,8 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +63,14 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserName(Element htmlElementToParse) {
-     // TODO Auto-generated method stub
-        return null;
+        
+        String contact = "Contact:", email = "Email:";
+        
+        String orgNameRaw = htmlElementToParse.getElementsContainingText(contact).first().text();
+        int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
+        int emailIndex = orgNameRaw.indexOf(email);
+        
+        return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
     }
     
     private String extractOrganiserEmail(Element htmlElementToParse) {

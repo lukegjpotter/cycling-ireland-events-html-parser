@@ -25,77 +25,76 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     @Autowired UtilsService utils;
     @Autowired PhoneNumberUtilsService phoneNumberUtils;
 
-    @Override public PopupDetails parse(Element htmlElementToParse) {
+    @Override public PopupDetails parse(Element popupElement) {
         
         PopupDetails popupDetails = new PopupDetails();
         
-        popupDetails.setStartDate(extractPopupDate(htmlElementToParse));
-        popupDetails.setProvince(extractProvince(htmlElementToParse));
-        popupDetails.setCategory(extractCategory(htmlElementToParse));
-        popupDetails.setPromotingClub(extractPromotingClub(htmlElementToParse));
-        popupDetails.setOrganiserName(extractOrganiserName(htmlElementToParse));
-        popupDetails.setOrganiserEmail(extractOrganiserEmail(htmlElementToParse));
-        popupDetails.setOrganiserPhoneNumber(extractOrganiserPhoneNumber(htmlElementToParse));
-        popupDetails.setMoreInfoUrl(extractMoreInfoURL(htmlElementToParse));
+        popupDetails.setStartDate(extractPopupDate(popupElement));
+        popupDetails.setProvince(extractProvince(popupElement));
+        popupDetails.setCategory(extractCategory(popupElement));
+        popupDetails.setPromotingClub(extractPromotingClub(popupElement));
+        popupDetails.setOrganiserName(extractOrganiserName(popupElement));
+        popupDetails.setOrganiserEmail(extractOrganiserEmail(popupElement));
+        popupDetails.setOrganiserPhoneNumber(extractOrganiserPhoneNumber(popupElement));
+        popupDetails.setMoreInfoUrl(extractMoreInfoURL(popupElement));
         
         return popupDetails;
     }
 
-    private Date extractPopupDate(Element element) {
+    private Date extractPopupDate(Element popupElement) {
         
-        String rawDateString = element.getElementById("event_date").text();
-        int indexOfSeperator = rawDateString.indexOf("|");
-        int indexOfComma = rawDateString.indexOf(",") + 1;
-        String dateString = rawDateString.substring(indexOfComma, indexOfSeperator).trim();
+        String dateStringRaw = popupElement.getElementById("event_date").text();
+        int indexOfComma = dateStringRaw.indexOf(",") + 1;
+        int indexOfSeperator = dateStringRaw.indexOf("|");
+        
+        String dateString = dateStringRaw.substring(indexOfComma, indexOfSeperator).trim();
         
         return utils.convertMMMMDDYYYYToDate(dateString);
     }
     
-    public String extractProvince(Element htmlElementToParse) {
-        return htmlElementToParse.getElementsByAttributeValue("href", "#location0").first().text().trim();
+    public String extractProvince(Element popupElement) {
+        return popupElement.getElementsByAttributeValue("href", "#location0").first().text().trim();
     }
     
-    private String extractCategory(Element htmlElementToParse) {
-
-        return htmlElementToParse.getElementById("cw_category_span").text().trim().replace("Category:  ", "");
+    private String extractCategory(Element popupElement) {
+        return popupElement.getElementById("cw_category_span").text().trim().replace("Category:  ", "");
     }
     
-    private String extractPromotingClub(Element htmlElementToParse) {
-        return htmlElementToParse.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
+    private String extractPromotingClub(Element popupElement) {
+        return popupElement.getElementsByAttributeValue("style", "word-wrap: break-word").first().text().trim();
     }
     
-    private String extractOrganiserName(Element htmlElementToParse) {
+    private String extractOrganiserName(Element popupElement) {
         
         String contact = "Contact:", email = "Email:";
         
-        String orgNameRaw = htmlElementToParse.getElementsContainingText(contact).first().text();
+        String orgNameRaw = popupElement.getElementsContainingText(contact).first().text();
         int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
         int emailIndex = orgNameRaw.indexOf(email);
         
         return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
     }
     
-    private String extractOrganiserEmail(Element htmlElementToParse) {
-        return htmlElementToParse.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+    private String extractOrganiserEmail(Element popupElement) {
+        return popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
     }
     
-    private String extractOrganiserPhoneNumber(Element htmlElementToParse) {
+    private String extractOrganiserPhoneNumber(Element popupElement) {
 
         String phone = "Phone:", moreInfo = "More Info:";
         
-        String orgPhoneNumberRaw = htmlElementToParse.getElementsContainingText(phone).first().text();
+        String orgPhoneNumberRaw = popupElement.getElementsContainingText(phone).first().text();
         int phoneEndIndex = orgPhoneNumberRaw.indexOf(phone) + phone.length();
         int moreInfoIndex = orgPhoneNumberRaw.indexOf(moreInfo);
         
         orgPhoneNumberRaw = orgPhoneNumberRaw.substring(phoneEndIndex, moreInfoIndex).trim();
-        String phoneNumber = phoneNumberUtils.formatPhoneNumber(orgPhoneNumberRaw);
         
-        return phoneNumber;
+        return phoneNumberUtils.formatPhoneNumber(orgPhoneNumberRaw);
     }
     
-    private URL extractMoreInfoURL(Element htmlElementToParse) {
+    private URL extractMoreInfoURL(Element popupElement) {
         
-        String url = htmlElementToParse.getElementsByAttributeValue("onclick", "openmoreinfo(); return false;").first().text().trim();
+        String url = popupElement.getElementsByAttributeValue("onclick", "openmoreinfo(); return false;").first().text().trim();
         
         try {
             return new URL(url);

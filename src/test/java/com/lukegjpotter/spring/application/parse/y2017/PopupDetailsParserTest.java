@@ -47,16 +47,11 @@ public class PopupDetailsParserTest {
     }
     
     private Element getJsoupElementFromPopup() {
-        
-        String popupFileLocation = "src/main/resources/20170225-Popup-DWCCOpenRace.html";
-        File popupHtmlFile = new File(popupFileLocation);
-
-        Element document = null;
 
         try {
-            document = Jsoup.parse(popupHtmlFile, Constants.FILE_FORMAT);
+            return Jsoup.parse(new File("src/main/resources/20170225-Popup-DWCCOpenRace.html"), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
-        
-        return document;
+
+        return null;
     }
 }

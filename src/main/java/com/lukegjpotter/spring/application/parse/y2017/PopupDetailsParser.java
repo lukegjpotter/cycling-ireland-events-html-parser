@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
 import com.lukegjpotter.spring.application.parse.Parsable;
+import com.lukegjpotter.spring.application.util.PhoneNumberUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 /**
@@ -22,6 +23,7 @@ import com.lukegjpotter.spring.application.util.UtilsService;
 class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     @Autowired UtilsService utils;
+    @Autowired PhoneNumberUtilsService phoneNumberUtils;
 
     @Override public PopupDetails parse(Element htmlElementToParse) {
         
@@ -78,8 +80,17 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserPhoneNumber(Element htmlElementToParse) {
-        // TODO Auto-generated method stub
-        return null;
+
+        String phone = "Phone:", moreInfo = "More Info:";
+        
+        String orgPhoneNumberRaw = htmlElementToParse.getElementsContainingText(phone).first().text();
+        int phoneEndIndex = orgPhoneNumberRaw.indexOf(phone) + phone.length();
+        int moreInfoIndex = orgPhoneNumberRaw.indexOf(moreInfo);
+        
+        orgPhoneNumberRaw = orgPhoneNumberRaw.substring(phoneEndIndex, moreInfoIndex).trim();
+        String phoneNumber = phoneNumberUtils.formatPhoneNumber(orgPhoneNumberRaw);
+        
+        return phoneNumber;
     }
     
     private URL extractMoreInfoURL(Element htmlElementToParse) {

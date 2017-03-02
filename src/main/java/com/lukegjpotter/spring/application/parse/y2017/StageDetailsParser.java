@@ -21,6 +21,9 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
 
     @Override public List<StageDetail> parse(Element htmlToParse) {
         
+        // TODO Populate Location In a New Way.
+        String location = htmlToParse.getElementsByAttributeValueContaining("onclick", "showEventMapByAddress").first().text().trim();
+        
         Elements tableRows = htmlToParse.getElementsByClass("trCourseItem");
         
         List<StageDetail> stageDetails = new ArrayList<>();
@@ -32,9 +35,8 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
             Elements rowData = tableRows.get(i).getElementsByTag("td");
             
             stageDetail = new StageDetail();
+            stageDetail.setLocation(location);
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
-            // TODO Extract Location from Header.
-            //stageDetail.setLocation(nullCheckUtils.stringNullCheck(rowData.get(1).text()));
             stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
             stageDetail.setStageNumber(nullCheckUtils.integerNullCheck(rowData.get(2).text()));
             stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(3).text()));

@@ -1,5 +1,7 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -33,8 +35,10 @@ public class StageDetailsParserTest {
         List<StageDetail> stageDetails = stageDetailsParser.parse(getJsoupElementFromPopup());
         
         Date expectedDate = utils.convertMMMMDDYYYYToDate("February 25, 2017");
-        // TODO Make Assertions
         
+        // TODO Make Assertions
+        StageDetail stageDetail = stageDetails.get(0);
+        assertTrue(stageDetail.getLocation().equals("Summerhill Community Centre, Summerhill"));
     }
     
     private Element getJsoupElementFromPopup() {

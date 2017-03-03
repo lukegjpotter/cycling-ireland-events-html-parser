@@ -36,9 +36,18 @@ public class StageDetailsParserTest {
         
         Date expectedDate = utils.convertMMMMDDYYYYToDate("February 25, 2017");
         
-        // TODO Make Assertions
         StageDetail stageDetail = stageDetails.get(0);
-        assertTrue(stageDetail.getLocation().equals("Summerhill Community Centre, Summerhill"));
+        assertTrue("Location", stageDetail.getLocation().equals("Summerhill Community Centre, Summerhill"));
+        assertTrue("Date", stageDetail.getDate().equals(expectedDate));
+        assertTrue("Race Number", stageDetail.getRaceNumber() == 1);
+        assertTrue("Stage Number", stageDetail.getStageNumber() == 3);
+        assertTrue("Race Type", stageDetail.getRaceType().equals("APlus,A1,A2"));
+        assertTrue("Kilometers", stageDetail.getKilometers().equals(new Double(87.8)));
+        assertTrue("Miles", stageDetail.getMiles().equals(new Double(54.6)));
+        assertTrue("Category", stageDetail.getCategory().equals("Road"));
+        assertTrue("Sign on Time", stageDetail.getSignOnTime().equals("09:00"));
+        assertTrue("Start Time", stageDetail.getStartTime().equals("10:30"));
+        assertTrue("Route URL", stageDetail.getRouteLinkUrl().equals(""));
     }
     
     private Element getJsoupElementFromPopup() {

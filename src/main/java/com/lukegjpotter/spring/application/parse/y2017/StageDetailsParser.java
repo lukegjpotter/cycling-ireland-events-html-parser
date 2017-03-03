@@ -29,8 +29,8 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
         List<StageDetail> stageDetails = new ArrayList<>();
         StageDetail stageDetail = null;
         
-         // The first row of the table is Headers, starts from 1.
-        for (int i = 1; i < tableRows.size(); i++) {
+         // The first two rows of the table are not stages, starts from 2.
+        for (int i = 2; i < tableRows.size(); i++) {
             
             Elements rowData = tableRows.get(i).getElementsByTag("td");
             

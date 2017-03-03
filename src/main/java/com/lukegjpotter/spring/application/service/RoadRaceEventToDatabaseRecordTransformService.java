@@ -31,6 +31,7 @@ import com.lukegjpotter.spring.application.util.UtilsService;
         roadRaces.forEach(roadRace -> {
             RoadRaceEventDatabaseRecord databaseRecord = new RoadRaceEventDatabaseRecord();
             
+            databaseRecord.setId(roadRace.getId());
             databaseRecord.setBookingsCloseDate(roadRace.getBookingsCloseDate());
             databaseRecord.setBookingsOpenDate(roadRace.getBookingsOpenDate());
             databaseRecord.setEventName(roadRace.getEventName());

@@ -34,5 +34,14 @@ public class ParsingLoop2017Test {
         
         assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
     }
+    
+    @Test public void testStartParseLoopRemote() {
+        
+        // TODO Add some proper mocking and testing to this Test.
+        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("");
+        
+        // Problem with the HTML being returned in the remote, it doesn't have the "cat163472" in the HTML.
+        assertTrue(roadRaces.get(roadRaces.size() - 1).getEventName().equals("Carrickmacross Cycles New Year's Eve TT"));
+    }
 
 }

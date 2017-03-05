@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
-import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
 import com.lukegjpotter.spring.application.repository.RoadRaceEventDatabaseRecordRepository;
 import com.lukegjpotter.spring.application.service.HtmlParsingService;
-import com.lukegjpotter.spring.application.service.MappingHolderToStageDetailsService;
 import com.lukegjpotter.spring.application.service.RoadRaceEventToDatabaseRecordTransformService;
-import com.lukegjpotter.spring.application.service.StageDetailsCsvReaderService;
 
 @RestController
 public class CyclingIrelandEventsHtmlScraperController {

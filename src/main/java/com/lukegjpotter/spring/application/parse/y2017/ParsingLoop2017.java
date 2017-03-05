@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
@@ -26,6 +27,8 @@ public class ParsingLoop2017 implements ParsingLoop {
     @Autowired BasicDetailsParser basicDetailsParser;
     @Autowired PopupDetailsParser popupDetailsParser;
     @Autowired StageDetailsParser stageDetailsParser;
+    
+    @Value("${url.popup}") private String urlPopupWithPlaceholder;
     
     private boolean isRemote;
     
@@ -72,12 +75,12 @@ public class ParsingLoop2017 implements ParsingLoop {
     }
 
     private Element makePopupDetailsElementFromRoadRaceId(long eventId) {
-        
-        File popupHtmlFile = new File("src/test/resources/20170225-Popup-DWCCOpenRace.html");
 
         try {
-            // TODO Use the URL instead of the File for Production.
-            return Jsoup.parse(popupHtmlFile, Constants.FILE_FORMAT);
+            if (isRemote) {
+                return Jsoup.connect(String.format(urlPopupWithPlaceholder, eventId)).get();
+            }
+            return Jsoup.parse(new File("src/test/resources/20170225-Popup-DWCCOpenRace.html"), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;
@@ -85,11 +88,11 @@ public class ParsingLoop2017 implements ParsingLoop {
     
     private Element makeStageDetailsElementFromMoreInfoUrl(URL moreInfoUrl) {
         
-        File stageDetailsHtmlFile = new File("src/test/resources/20170225-Stages-DWCCOpenRace.html");
-
         try {
-            // TODO Use the URL instead of the File for Production.
-            return Jsoup.parse(stageDetailsHtmlFile, Constants.FILE_FORMAT);
+            if (isRemote) {
+                return Jsoup.connect(moreInfoUrl.toString()).get();
+            }
+            return Jsoup.parse(new File("src/test/resources/20170225-Stages-DWCCOpenRace.html"), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;

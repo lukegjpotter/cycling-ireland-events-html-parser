@@ -35,19 +35,11 @@ public class ParsingLoop2017 implements ParsingLoop {
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
-        Element document = null;
-        List<String> urls = urlMonthSerivce.compileUrlsForRemainYearMonths();
         isRemote = fileLocation.isEmpty();
         
-        for (String url : urls) {
-            
-            try {
-                if (isRemote) {
-                    document = Jsoup.connect(url).get();
-                } else {
-                    document = Jsoup.parse(new File("src/test/resources/201702RoadEvents.html"), Constants.FILE_FORMAT);
-                }
-            } catch (IOException e) { e.printStackTrace(); }
+        List<Element> documents = populateListOfElements();
+        
+        for (Element document : documents) {
             
             Elements allAnchors = document.getElementsByClass("cat163473");
             
@@ -96,5 +88,35 @@ public class ParsingLoop2017 implements ParsingLoop {
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;
+    }
+    
+    private List<Element> populateListOfElements() {
+        
+        List<Element> documents = new ArrayList<>();
+        
+        if (isRemote) {
+            // Populate the list of Documents with Remote URLs.
+            List<String> urls = urlMonthSerivce.compileUrlsForRemainYearMonths();
+            
+            for (String url : urls) {
+                
+                Element remoteDocument = null;
+                
+                try {
+                    remoteDocument = Jsoup.connect(url).get();
+                    documents.add(remoteDocument);
+                } catch (IOException e) { e.printStackTrace(); }
+            }
+        } else {
+            // Populate the list of Documents with the file path.
+            Element localDocument = null;
+            
+            try {
+                localDocument = Jsoup.parse(new File("src/test/resources/201702RoadEvents.html"), Constants.FILE_FORMAT);
+                documents.add(localDocument);
+            } catch (IOException e) { e.printStackTrace(); }
+        }
+
+        return documents;
     }
 }

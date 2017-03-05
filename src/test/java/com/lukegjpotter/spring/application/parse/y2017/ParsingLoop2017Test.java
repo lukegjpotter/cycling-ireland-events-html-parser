@@ -2,34 +2,37 @@ package com.lukegjpotter.spring.application.parse.y2017;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
+import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, ParsingLoop2017.class })
 public class ParsingLoop2017Test {
     
-    @InjectMocks ParsingLoop2017 parsingLoop;
-    @Mock BasicDetailsParser basicDetailParser;
+    @Autowired ParsingLoop2017 parsingLoop;
+    //@Mock BasicDetailsParser basicDetailParser;
+    //@Mock PopupDetailsParser popupDetailsParser;
+    //@Mock StageDetailsParser stageDetailsParser;
 
     @Before public void setup() {
-        MockitoAnnotations.initMocks(this);
+        //MockitoAnnotations.initMocks(this);
     }
     
-    @Test public void testStartParseLoop() {
+    @Test public void testStartParseLoopLocal() {
+        
         // TODO Add some proper mocking and testing to this Test.
+        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("Local");
         
-        parsingLoop.startParseLoop("");
-        
-        assertTrue(true);
+        assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
     }
 
 }

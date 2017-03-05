@@ -27,19 +27,22 @@ public class ParsingLoop2017 implements ParsingLoop {
     @Autowired PopupDetailsParser popupDetailsParser;
     @Autowired StageDetailsParser stageDetailsParser;
     
+    private boolean isRemote;
+    
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
         Element document = null;
         List<String> urls = urlMonthSerivce.compileUrlsForRemainYearMonths();
+        isRemote = fileLocation.isEmpty();
         
         for (String url : urls) {
             
             try {
-                if (fileLocation.isEmpty()) {
+                if (isRemote) {
                     document = Jsoup.connect(url).get();
                 } else {
-                    document = Jsoup.parse(new File("src/main/resources/201702RoadEvents.html"), Constants.FILE_FORMAT);
+                    document = Jsoup.parse(new File("src/test/resources/201702RoadEvents.html"), Constants.FILE_FORMAT);
                 }
             } catch (IOException e) { e.printStackTrace(); }
             
@@ -70,7 +73,7 @@ public class ParsingLoop2017 implements ParsingLoop {
 
     private Element makePopupDetailsElementFromRoadRaceId(long eventId) {
         
-        File popupHtmlFile = new File("src/main/resources/20170225-Popup-DWCCOpenRace.html");
+        File popupHtmlFile = new File("src/test/resources/20170225-Popup-DWCCOpenRace.html");
 
         try {
             // TODO Use the URL instead of the File for Production.
@@ -82,7 +85,7 @@ public class ParsingLoop2017 implements ParsingLoop {
     
     private Element makeStageDetailsElementFromMoreInfoUrl(URL moreInfoUrl) {
         
-        File stageDetailsHtmlFile = new File("src/main/resources/20170225-Stages-DWCCOpenRace.html");
+        File stageDetailsHtmlFile = new File("src/test/resources/20170225-Stages-DWCCOpenRace.html");
 
         try {
             // TODO Use the URL instead of the File for Production.

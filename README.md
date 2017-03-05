@@ -47,6 +47,10 @@ The POJOs will be useful for the
 * [x] Write the POJOs, from the parsed Resource File, into a local Postgres
       Database Using Spring Data.
 
+### Version 1.1 Features - In Progress
+
+* [ ] Parse the 2017 events into the Database.
+
 ### Version 2.0 Features
 
 * [ ] Then make a production Spring Profile to write them into Heroku's PosgreSQL.

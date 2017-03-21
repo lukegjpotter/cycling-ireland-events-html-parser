@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,6 +34,7 @@ public class HtmlParsingServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    @Ignore
     @Test public void testParseOneDayRace() {
         htmlParsingService.setHtmlFileLocation(tr.getOneDayRaceFileName());
         List<RoadRaceEvent> expected = tr.getOneDayRaceList();
@@ -41,6 +43,7 @@ public class HtmlParsingServiceTest {
         assertTrue(expected.equals(actual));
     }
     
+    @Ignore
     @Test public void testParseStageRace() {
         htmlParsingService.setHtmlFileLocation(tr.getStageRaceFileName());
         List<RoadRaceEvent> expected = tr.getStageRaceList();

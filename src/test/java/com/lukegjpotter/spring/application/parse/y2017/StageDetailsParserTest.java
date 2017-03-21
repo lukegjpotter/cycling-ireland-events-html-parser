@@ -53,7 +53,7 @@ public class StageDetailsParserTest {
     private Element getJsoupElementFromPopup() {
 
         try {
-            return Jsoup.parse(new File("src/main/resources/20170225-Stages-DWCCOpenRace.html"), Constants.FILE_FORMAT);
+            return Jsoup.parse(new File("src/test/resources/20170225-Stages-DWCCOpenRace.html"), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;

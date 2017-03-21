@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -37,6 +38,7 @@ public class ParsingLoop2016Test {
         MockitoAnnotations.initMocks(this);
     }
 
+    @Ignore
     @Test public void testStartParseLoopOneDayRace() {
         when(headerParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceHeader());
         when(descriptionParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceDescription());
@@ -46,6 +48,7 @@ public class ParsingLoop2016Test {
         assertTrue(expected.equals(actual));
     }
     
+    @Ignore
     @Test public void testStartParseLoopStageRace() {
         when(headerParser.parse(any(String.class))).thenReturn(tr.getStageRaceHeader());
         when(descriptionParser.parse(any(String.class))).thenReturn(tr.getStageRaceDescription());
@@ -55,6 +58,7 @@ public class ParsingLoop2016Test {
         assertTrue(expected.equals(actual));
     }
     
+    @Ignore
     @Test public void testStartParseLoopTwoRaces() {
         when(headerParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceHeader(), tr.getStageRaceHeader());
         when(descriptionParser.parse(any(String.class))).thenReturn(tr.getOneDayRaceDescription(), tr.getStageRaceDescription());
@@ -67,6 +71,7 @@ public class ParsingLoop2016Test {
         assertTrue(expected.equals(actual));
     }
     
+    @Ignore
     @Test(expected=NullPointerException.class) public void testStartParseLoopNoSuchFile() {
         List<RoadRaceEvent> actual = parsingLoop.startParseLoop("Danny");
         assertTrue(actual.equals(new ArrayList<RoadRaceEvent>()));

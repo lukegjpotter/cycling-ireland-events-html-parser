@@ -15,6 +15,7 @@ import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplic
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, Description.class })
 public class DescriptionTest {
     
+    // TODO Add more tests here.
     @Test public void testEqualsOtherObject() {
         assertFalse(new Description().equals(new Date()));
     }

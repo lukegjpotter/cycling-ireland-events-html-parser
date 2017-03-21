@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class StageDetailParserTest {
     @Autowired TestResources tr;
     @Autowired TestUtils utils;
 
+    @Ignore
     @Test public void testParseOneDayRace() {
         List<StageDetail> actual = stageDetailParser.parse(utils.oneDayRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getOneDayRaceStageDetails();
@@ -32,6 +34,7 @@ public class StageDetailParserTest {
         assertTrue(expected.get(0).equals(actual.get(0)));
     }
 
+    @Ignore
     @Test public void testParseStageRace() {
         List<StageDetail> actual = stageDetailParser.parse(utils.stageRaceStageDetailRawHtml());
         List<StageDetail> expected = tr.getStageRaceStageDetails();
@@ -39,6 +42,7 @@ public class StageDetailParserTest {
         assertTrue(expected.get(0).equals(actual.get(0)));
     }
     
+    @Ignore
     @Test public void testParseEmptyStageDetailsElements() {
         StageDetail actual = stageDetailParser.parse(utils.emptyStageDetailRawHtml()).get(0);
         StageDetail expected = Arrays.asList(new StageDetail()).get(0);

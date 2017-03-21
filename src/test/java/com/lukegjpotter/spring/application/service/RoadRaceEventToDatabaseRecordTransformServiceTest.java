@@ -22,6 +22,7 @@ import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.util.UtilsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, RoadRaceEventToDatabaseRecordTransformService.class })
@@ -29,6 +30,7 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTest {
 
     @InjectMocks RoadRaceEventToDatabaseRecordTransformService transformService;
     @Mock StageDetailsRaceTypesService raceTypeService;
+    @Mock UtilsService utils;
     
     @Autowired TestResources tr;
     

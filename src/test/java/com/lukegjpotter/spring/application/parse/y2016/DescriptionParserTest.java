@@ -2,6 +2,7 @@ package com.lukegjpotter.spring.application.parse.y2016;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +23,28 @@ public class DescriptionParserTest {
     @Autowired TestResources tr;
     @Autowired TestUtils utils;
     
+    @Ignore
     @Test public void testParseOneDayRace() {
         Description actual = descriptionParser.parse(utils.oneDayRaceDescriptionRawHtml());
         Description expected = tr.getOneDayRaceDescription();
         performTestChecks(actual, expected);
     }
     
+    @Ignore
     @Test public void testParseStageRace() {
         Description actual = descriptionParser.parse(utils.stageRaceDescriptionRawHtml());
         Description expected = tr.getStageRaceDescription();
         performTestChecks(actual, expected);
     }
     
+    @Ignore
     @Test public void testParseEmptyDescriptionElements() {
         Description actual = descriptionParser.parse(utils.emptyDescriptionRawHtml());
         Description expected = new Description();
         assertTrue(expected.equals(actual));
     }
 
-    public void performTestChecks(Description actual, Description expected) {
+    private void performTestChecks(Description actual, Description expected) {
         assertTrue("BookingsOpenDate: Expected: " + expected.getBookingsOpenDate() + ". Actual: " + actual.getBookingsOpenDate(), expected.getBookingsOpenDate().equals(actual.getBookingsOpenDate()));
         assertTrue("BookingsCloseDate: Expected: " + expected.getBookingsCloseDate() + ". Actual: " + actual.getBookingsCloseDate(), expected.getBookingsCloseDate().equals(actual.getBookingsCloseDate()));
         assertTrue("OrganiserPhoneNumber: Expected: " + expected.getOrganiserPhoneNumber() + ". Actual: " + actual.getOrganiserPhoneNumber(), expected.getOrganiserPhoneNumber().equals(actual.getOrganiserPhoneNumber()));

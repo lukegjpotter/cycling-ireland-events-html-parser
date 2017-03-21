@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class ParsingLoop2017Test {
         assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
     }
     
+    @Ignore
     @Test public void testStartParseLoopRemote() {
         
         // TODO Add some proper mocking and testing to this Test.

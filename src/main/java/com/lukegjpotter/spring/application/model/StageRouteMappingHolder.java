@@ -7,21 +7,19 @@ import java.util.Map;
 
 public class StageRouteMappingHolder {
     
-    private Map<String, List<String>> nameDateRouteMap;
+    private Map<Long, List<String>> nameDateRouteMap;
     
     public StageRouteMappingHolder() {
         nameDateRouteMap = new HashMap<>();
     }
 
-    public void putRouteUrlMapping(String eventName, Date startDate, List<String> routeLinks) {
-        String key = eventName + startDate.getTime();
-        nameDateRouteMap.put(key, routeLinks);
-    }
+    public void putRouteUrlMapping(Long keyEventId, List<String> valueRoutes) {
+        nameDateRouteMap.put(keyEventId, valueRoutes);
+   }
 
-    public String getRouteUrlMapping(String eventName, Date startDate, Integer stageNumber) {
-        String key = eventName + startDate.getTime();
+    public String getRouteUrlMapping(Long keyEventId, Integer stageNumberQuery) {
         try {
-            return nameDateRouteMap.get(key).get(stageNumber.intValue() - 1);
+            return nameDateRouteMap.get(keyEventId).get(stageNumberQuery.intValue() - 1);
         } catch (ArrayIndexOutOfBoundsException e) {
             return "";
         }
@@ -31,6 +29,17 @@ public class StageRouteMappingHolder {
         
         return o instanceof StageRouteMappingHolder
                 && this.nameDateRouteMap.equals(((StageRouteMappingHolder) o).nameDateRouteMap);
+    }
+
+    public void putRouteUrlMapping(String eventName, Date date, List<String> routes) {
+        // TODO Delete this method after more tests are implemented for the 2017
+        //      format, it's only here to stop the compiler complaining.
+    }
+    
+    public String getRouteUrlMapping(String eventName, Date startDate, Integer stageNumber) {
+        // TODO Delete this method after more tests are implemented for the 2017
+        //      format, it's only here to stop the compiler complaining.
+        return "";
     }
 
 }

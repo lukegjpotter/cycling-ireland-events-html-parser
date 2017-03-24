@@ -333,6 +333,30 @@ public class TestResources {
         
         return raceTypesHolder;
     }
+    
+    public String getStagesCsvFileName2017() {
+        return "./src/test/resources/StagesCsv2017.csv";
+    }
+    
+    public StageRouteMappingHolder get2017StageRouteMappingHolder() {
+        
+        StageRouteMappingHolder holder = new StageRouteMappingHolder();
+
+        // One Stage.
+        Long eventId = 107619921L;
+        List<String> routes = Arrays.asList("http://www.strava.com/routes/123456");
+        holder.putRouteUrlMapping(eventId, routes);
+        
+        // Multi Stage.
+        eventId = 107619922L;
+        routes = Arrays.asList("http://www.strava.com/routes/111", "http://www.strava.com/routes/222", "http://www.strava.com/routes/333", "http://www.strava.com/routes/444");
+        holder.putRouteUrlMapping(eventId, routes);
+        
+        // No Stages.
+        holder.putRouteUrlMapping(107619923L, Arrays.asList(""));
+        
+        return holder;
+    }
 
     public String getOneDayRaceStagesCsvFileName() {
         return "./src/test/resources/DungarvanOpenRaceStages.csv";

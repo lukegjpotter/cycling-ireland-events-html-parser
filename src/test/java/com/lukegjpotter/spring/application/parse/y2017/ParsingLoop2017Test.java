@@ -9,6 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,6 +24,8 @@ public class ParsingLoop2017Test {
     //@Mock BasicDetailsParser basicDetailParser;
     //@Mock PopupDetailsParser popupDetailsParser;
     //@Mock StageDetailsParser stageDetailsParser;
+    
+    @Value("${allcievents2017file.location}") String localFileLocation;
 
     @Before public void setup() {
         //MockitoAnnotations.initMocks(this);
@@ -31,7 +34,7 @@ public class ParsingLoop2017Test {
     @Test public void testStartParseLoopLocal() {
         
         // TODO Add some proper mocking and testing to this Test.
-        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("Local");
+        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop(localFileLocation);
         
         assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
     }

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class StageDetailsCsvReaderService {
 
     @Autowired UtilsService utils;
     
-    @Value("${allroutelinkscsvfile.location}") private String csvFileLocation;
+    @Value("${allroutelinks2017csvfile.location}") private String csvFileLocation;
     private final String csvDelimiter = ",";
 
     public StageRouteMappingHolder readStageRouteFromCsvFile() {
@@ -35,17 +34,16 @@ public class StageDetailsCsvReaderService {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] strings = line.split(csvDelimiter);
                 
-                String eventName = strings[0].trim();
-                Date startDate = utils.convertDDMMYYYYToDate(strings[1]);
+                Long eventId = Long.valueOf(strings[0].trim());
                 List<String> routeLinks = null;
 
-                if (strings.length == 2) {
+                if (strings.length == 1) {
                     routeLinks = Arrays.asList("");
                 } else {
-                    routeLinks = getRouteUrlLinksList(strings[2]);
+                    routeLinks = getRouteUrlLinksList(strings[1]);
                 }
                 
-                mappingHolder.putRouteUrlMapping(eventName, startDate, routeLinks);
+                mappingHolder.putRouteUrlMapping(eventId, routeLinks);
             }
 
         } catch (IOException e) {

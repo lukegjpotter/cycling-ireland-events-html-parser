@@ -8,22 +8,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
+import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
 import com.lukegjpotter.spring.application.repository.RoadRaceEventDatabaseRecordRepository;
 import com.lukegjpotter.spring.application.service.HtmlParsingService;
+import com.lukegjpotter.spring.application.service.MappingHolderToStageDetailsService;
 import com.lukegjpotter.spring.application.service.RoadRaceEventToDatabaseRecordTransformService;
+import com.lukegjpotter.spring.application.service.StageDetailsCsvReaderService;
 
 @RestController
 public class CyclingIrelandEventsHtmlScraperController {
 
     @Autowired private HtmlParsingService htmlParsingService;
-    // @Autowired private StageDetailsCsvReaderService csvReaderService;
-    // @Autowired private MappingHolderToStageDetailsService stageDetailsMappingService;
+    @Autowired private StageDetailsCsvReaderService csvReaderService;
+    //@Autowired private MappingHolderToStageDetailsService stageDetailsMappingService;
     @Autowired private RoadRaceEventToDatabaseRecordTransformService transformService;
     @Autowired private RoadRaceEventDatabaseRecordRepository repository;
     
     private List<RoadRaceEvent> roadRaces;
     private List<RoadRaceEventDatabaseRecord> databaseRecords;
-    // private StageRouteMappingHolder mappingHolder;
+    private StageRouteMappingHolder mappingHolder;
     
     @RequestMapping("/start") public String start() {
         extract();
@@ -33,11 +36,11 @@ public class CyclingIrelandEventsHtmlScraperController {
 
     private void extract() {
         roadRaces = htmlParsingService.parse();
-        // mappingHolder = csvReaderService.readStageRouteFromCsvFile();
+        mappingHolder = csvReaderService.readStageRouteFromCsvFile();
     }
     
     private void transform() {
-        // roadRaces = stageDetailsMappingService.mapStageDetails(mappingHolder, roadRaces);
+        //roadRaces = stageDetailsMappingService.mapStageDetails(mappingHolder, roadRaces);
         databaseRecords = transformService.transform(roadRaces);
     }
     

@@ -29,12 +29,14 @@ public class ParsingLoop2017 implements ParsingLoop {
     @Autowired StageDetailsParser stageDetailsParser;
     
     @Value("${url.popup}") private String urlPopupWithPlaceholder;
+    private String fileLocation;
     
     private boolean isRemote;
     
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
 
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
+        this.fileLocation = fileLocation;
         isRemote = fileLocation.isEmpty();
         
         List<Element> documents = populateListOfElements();
@@ -44,10 +46,9 @@ public class ParsingLoop2017 implements ParsingLoop {
             Elements allAnchors = document.getElementsByClass("cat163473");
             
             for (Element event : allAnchors) {
-                RoadRaceEvent roadRace = new RoadRaceEvent();
                 
                 // Get Basic Details; ID and Name.
-                roadRace = basicDetailsParser.parse(event);
+                RoadRaceEvent roadRace = basicDetailsParser.parse(event);
                 
                 // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
                 Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
@@ -56,8 +57,8 @@ public class ParsingLoop2017 implements ParsingLoop {
                 
                 // Get More Information Link Details AKA StageDetails.
                 Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
-                List<StageDetail> stageDetails = stageDetailsParser.parse(stageDetailsElement);
-                roadRace.setStageDetails(stageDetails);
+                roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
+                roadRace.setLocation(roadRace.getStageDetails().get(0).getLocation());
                 
                 roadRaceEvents.add(roadRace);
             }
@@ -112,7 +113,7 @@ public class ParsingLoop2017 implements ParsingLoop {
             Element localDocument = null;
             
             try {
-                localDocument = Jsoup.parse(new File("src/test/resources/201702RoadEvents.html"), Constants.FILE_FORMAT);
+                localDocument = Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT);
                 documents.add(localDocument);
             } catch (IOException e) { e.printStackTrace(); }
         }

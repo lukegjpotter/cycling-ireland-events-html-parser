@@ -2,7 +2,6 @@ package com.lukegjpotter.spring.application.controller.integration;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class CyclingIrelandEventsHtmlScraperControllerIntegrationTest {
     @Autowired CyclingIrelandEventsHtmlScraperController controller;
     @Autowired TestResources tr;
     
-    @Ignore // TODO remove ignore when ParsingLoop2017 is functional.
     @Test public void testStart() {
         String actual = controller.start();
         String expected = "Success";

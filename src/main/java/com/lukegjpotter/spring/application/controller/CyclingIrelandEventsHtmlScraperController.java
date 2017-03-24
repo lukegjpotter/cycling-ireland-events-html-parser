@@ -20,7 +20,7 @@ public class CyclingIrelandEventsHtmlScraperController {
 
     @Autowired private HtmlParsingService htmlParsingService;
     @Autowired private StageDetailsCsvReaderService csvReaderService;
-    //@Autowired private MappingHolderToStageDetailsService stageDetailsMappingService;
+    @Autowired private MappingHolderToStageDetailsService stageDetailsMappingService;
     @Autowired private RoadRaceEventToDatabaseRecordTransformService transformService;
     @Autowired private RoadRaceEventDatabaseRecordRepository repository;
     
@@ -40,7 +40,7 @@ public class CyclingIrelandEventsHtmlScraperController {
     }
     
     private void transform() {
-        //roadRaces = stageDetailsMappingService.mapStageDetails(mappingHolder, roadRaces);
+        roadRaces = stageDetailsMappingService.mapStageDetails(mappingHolder, roadRaces);
         databaseRecords = transformService.transform(roadRaces);
     }
     

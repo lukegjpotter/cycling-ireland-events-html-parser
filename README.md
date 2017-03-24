@@ -50,14 +50,14 @@ The POJOs will be useful for the
 ### Version 1.1 Features - In Progress
 
 * [ ] Parse the 2017 events into the Database.
+* [ ] Be able to Screen Scrape directly from the Web Page.
 
 ### Version 2.0 Features
 
-* [ ] Then make a production Spring Profile to write them into Heroku's PosgreSQL.
+* [ ] Make a production Spring Profile to write Events into Heroku's PosgreSQL.
 
 ### Version 3.0 Features
 
-* [ ] Be able to Screen Scrape directly from the Web Page.
 * [ ] Patch the POJOs in the Database with new information gleamed from the
       screen scraping.
 

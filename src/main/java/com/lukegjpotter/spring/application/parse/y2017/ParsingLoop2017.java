@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.parse.ParsingLoop;
 import com.lukegjpotter.spring.application.service.UrlMonthService;
 import com.lukegjpotter.spring.application.util.Constants;

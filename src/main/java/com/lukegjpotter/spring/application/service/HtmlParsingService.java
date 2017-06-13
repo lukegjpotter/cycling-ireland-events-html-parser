@@ -18,8 +18,4 @@ public class HtmlParsingService {
     public List<RoadRaceEvent> parse() {
         return parsingLoop.startParseLoop(htmlFileLocation);
     }
-
-    public void setHtmlFileLocation(String htmlFileLocation) {
-        this.htmlFileLocation = htmlFileLocation;
-    }
 }

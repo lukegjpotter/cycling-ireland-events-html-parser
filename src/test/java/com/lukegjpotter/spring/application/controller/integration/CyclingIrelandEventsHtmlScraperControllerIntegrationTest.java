@@ -10,14 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.controller.CyclingIrelandEventsHtmlScraperController;
-import com.lukegjpotter.spring.application.testresources.TestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, CyclingIrelandEventsHtmlScraperController.class })
 public class CyclingIrelandEventsHtmlScraperControllerIntegrationTest {
 
     @Autowired CyclingIrelandEventsHtmlScraperController controller;
-    @Autowired TestResources tr;
     
     @Test public void testStart() {
         String actual = controller.start();

@@ -21,7 +21,7 @@ import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplic
 import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
-import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.testresources.RoadRaceEventToDatabaseRecordTransformServiceTestResources;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,17 +32,20 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTest {
     @Mock StageDetailsRaceTypesService raceTypeService;
     @Mock UtilsService utils;
     
-    @Autowired TestResources tr;
+    @Autowired RoadRaceEventToDatabaseRecordTransformServiceTestResources tr;
     
     @Before public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
+    
+    @SuppressWarnings("unchecked")
     @Test public void testTransformEmptyList() {
         when(raceTypeService.determineRaceTypes(any(List.class))).thenReturn(new RaceTypesHolder());
         List<RoadRaceEventDatabaseRecord> actual = transformService.transform(new ArrayList<RoadRaceEvent>());
         assertTrue(new ArrayList<RoadRaceEventDatabaseRecord>().equals(actual));
     }
     
+    @SuppressWarnings("unchecked")
     @Test public void testTransformOneItemList() {
         when(raceTypeService.determineRaceTypes(any(List.class))).thenReturn(tr.getOneDayRaceTypesHolder());
         List<RoadRaceEvent> roadRaces = tr.getOneDayRaceList();
@@ -51,6 +54,7 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTest {
         assertTrue(expected.equals(actual));
     }
     
+    @SuppressWarnings("unchecked")
     @Test public void testTransformMultiItemList() {
         when(raceTypeService.determineRaceTypes(any(List.class))).thenReturn(tr.getOneDayRaceTypesHolder(), tr.getStageRaceTypesHolder());
         List<RoadRaceEvent> roadRaces = tr.getTwoRaceList();

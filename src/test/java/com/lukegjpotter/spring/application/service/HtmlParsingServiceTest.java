@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.parse.y2017.ParsingLoop2017;
-import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.testresources.RoadRaceEventToDatabaseRecordTransformServiceTestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, HtmlParsingService.class })
@@ -27,7 +27,7 @@ public class HtmlParsingServiceTest {
 
     @InjectMocks HtmlParsingService htmlParsingService;
     @Mock ParsingLoop2017 parsingLoop2017;
-    @Autowired TestResources tr;
+    @Autowired RoadRaceEventToDatabaseRecordTransformServiceTestResources tr;
     
     @Before public void setUp() {
         MockitoAnnotations.initMocks(this);

@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
-import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.testresources.StageDetailsCsvReaderServiceTestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class,
@@ -19,7 +19,7 @@ import com.lukegjpotter.spring.application.testresources.TestResources;
 public class StageDetailsCsvReaderServiceTest {
 
     @Autowired StageDetailsCsvReaderService csvReader;
-    @Autowired TestResources tr;
+    @Autowired StageDetailsCsvReaderServiceTestResources tr;
 
     @Test(expected = NullPointerException.class) public void testReadStageRouteFromCsvFile_NoFile() {
         csvReader.setCsvFileLocation("fail");

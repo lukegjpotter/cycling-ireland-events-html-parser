@@ -15,14 +15,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.testresources.StageDetailsRaceTypesServiceTestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailsRaceTypesService.class })
 public class StageDetailsRaceTypesServiceTest {
     
     @Autowired StageDetailsRaceTypesService raceTypeService;
-    @Autowired TestResources tr;
+    @Autowired StageDetailsRaceTypesServiceTestResources tr;
     
     List<StageDetail> stageDetails = new ArrayList<>();
     

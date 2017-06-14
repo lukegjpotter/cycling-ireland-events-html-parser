@@ -14,18 +14,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
-import com.lukegjpotter.spring.application.testresources.TestResources;
+import com.lukegjpotter.spring.application.testresources.MappingHolderToStageDetailsServiceTestResources;
+import com.lukegjpotter.spring.application.testresources.RoadRaceEventToDatabaseRecordTransformServiceTestResources;
+import com.lukegjpotter.spring.application.testresources.StageDetailsCsvReaderServiceTestResources;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, MappingHolderToStageDetailsService.class })
 public class MappingHolderToStageDetailsServiceTest {
 
     @Autowired MappingHolderToStageDetailsService mappingService;
-    @Autowired TestResources tr;
+    @Autowired MappingHolderToStageDetailsServiceTestResources tr;
+    @Autowired RoadRaceEventToDatabaseRecordTransformServiceTestResources rrtr;
+    @Autowired StageDetailsCsvReaderServiceTestResources srmhtr;
     
     @Test public void testMapStageDetails_2017Format() {
-        StageRouteMappingHolder mappingHolder = tr.get2017StageRouteMappingHolder();
-        List<RoadRaceEvent> roadRaces = tr.getOneDayRaceList();
+        StageRouteMappingHolder mappingHolder = srmhtr.get2017StageRouteMappingHolder();
+        List<RoadRaceEvent> roadRaces = rrtr.getOneDayRaceList();
         roadRaces.get(0).setId(107619921L);
         List<RoadRaceEvent> expected = tr.getOneDayRaceWithMappedStages();
         expected.get(0).setId(107619921L);
@@ -35,8 +39,8 @@ public class MappingHolderToStageDetailsServiceTest {
     }
     
     @Ignore @Test public void testMapStageDetails_OneDayRace() {
-        StageRouteMappingHolder mappingHolder = tr.getOneDayRaceStageRouteMappingHolder();
-        List<RoadRaceEvent> roadRaces = tr.getOneDayRaceList();
+        StageRouteMappingHolder mappingHolder = srmhtr.getOneDayRaceStageRouteMappingHolder();
+        List<RoadRaceEvent> roadRaces = rrtr.getOneDayRaceList();
         List<RoadRaceEvent> expected = tr.getOneDayRaceWithMappedStages();
         List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, roadRaces);
         
@@ -44,8 +48,8 @@ public class MappingHolderToStageDetailsServiceTest {
     }
     
     @Ignore @Test public void testMapStageDetails_StageRace() {
-        StageRouteMappingHolder mappingHolder = tr.getStageRaceStageRouteMappingHolder();
-        List<RoadRaceEvent> roadRaces = tr.getStageRaceList();
+        StageRouteMappingHolder mappingHolder = srmhtr.getStageRaceStageRouteMappingHolder();
+        List<RoadRaceEvent> roadRaces = rrtr.getStageRaceList();
         List<RoadRaceEvent> expected = tr.getStageRaceWithMappedStages();
         List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, roadRaces);
         
@@ -53,8 +57,8 @@ public class MappingHolderToStageDetailsServiceTest {
     }
     
     @Ignore @Test public void testMapStageDetails_OneDayRaceNoStages() {
-        StageRouteMappingHolder mappingHolder = tr.getOneDayRaceStageRouteMappingHolderNoStages();
-        List<RoadRaceEvent> expected = tr.getOneDayRaceList();
+        StageRouteMappingHolder mappingHolder = srmhtr.getOneDayRaceStageRouteMappingHolderNoStages();
+        List<RoadRaceEvent> expected = rrtr.getOneDayRaceList();
         List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, expected);
         
         assertTrue(expected.equals(actual));

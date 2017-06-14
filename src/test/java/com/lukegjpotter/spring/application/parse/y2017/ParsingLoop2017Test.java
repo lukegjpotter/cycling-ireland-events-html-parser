@@ -39,7 +39,7 @@ public class ParsingLoop2017Test {
         assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
     }
     
-    @Ignore
+    @Ignore // Ignoring until app is able to parse from remote.
     @Test public void testStartParseLoopRemote() {
         
         // TODO Add some proper mocking and testing to this Test.

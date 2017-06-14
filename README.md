@@ -50,9 +50,9 @@ The POJOs will be useful for the
 ### Version 1.1 Features - In Progress
 
 * [x] Remove all the 2016 Parsing Code.
+* [x] Remove all the 2016 Test Code and Resource Files.
 * [ ] Be able to Screen Scrape directly from the Web Page.
 * [ ] Parse the 2017 events into the Local Database.
-* [ ] Remove all the 2016 Test Code and Resource Files.
 
 ### Version 2.0 Features
 

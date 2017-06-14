@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,31 +36,4 @@ public class MappingHolderToStageDetailsServiceTest {
         
         assertTrue(expected.equals(actual));
     }
-    
-    @Ignore @Test public void testMapStageDetails_OneDayRace() {
-        StageRouteMappingHolder mappingHolder = srmhtr.getOneDayRaceStageRouteMappingHolder();
-        List<RoadRaceEvent> roadRaces = rrtr.getOneDayRaceList();
-        List<RoadRaceEvent> expected = tr.getOneDayRaceWithMappedStages();
-        List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, roadRaces);
-        
-        assertTrue(expected.equals(actual));
-    }
-    
-    @Ignore @Test public void testMapStageDetails_StageRace() {
-        StageRouteMappingHolder mappingHolder = srmhtr.getStageRaceStageRouteMappingHolder();
-        List<RoadRaceEvent> roadRaces = rrtr.getStageRaceList();
-        List<RoadRaceEvent> expected = tr.getStageRaceWithMappedStages();
-        List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, roadRaces);
-        
-        assertTrue(expected.equals(actual));
-    }
-    
-    @Ignore @Test public void testMapStageDetails_OneDayRaceNoStages() {
-        StageRouteMappingHolder mappingHolder = srmhtr.getOneDayRaceStageRouteMappingHolderNoStages();
-        List<RoadRaceEvent> expected = rrtr.getOneDayRaceList();
-        List<RoadRaceEvent> actual = mappingService.mapStageDetails(mappingHolder, expected);
-        
-        assertTrue(expected.equals(actual));
-    }
-
 }

@@ -25,10 +25,8 @@ public class StageDetailsCsvReaderService {
     public StageRouteMappingHolder readStageRouteFromCsvFile() {
         
         StageRouteMappingHolder mappingHolder = new StageRouteMappingHolder();
-        BufferedReader bufferedReader = null;
 
-        try { // TODO Use Try-with-Resources here.
-            bufferedReader = new BufferedReader(new FileReader(csvFileLocation));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFileLocation))) {
             String line = "";
 
             while ((line = bufferedReader.readLine()) != null) {
@@ -45,13 +43,10 @@ public class StageDetailsCsvReaderService {
                 
                 mappingHolder.putRouteUrlMapping(eventId, routeLinks);
             }
-
         } catch (IOException e) {
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {}
+            e.printStackTrace();
         }
+
         
         return mappingHolder;
     }

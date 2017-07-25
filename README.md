@@ -21,6 +21,27 @@ The POJOs will be useful for the
    Use `\dt` to view the Database Tables (after the intial run).  
    Use `select * from road_race_event_database_record;` to see the data.
 
+## PhantomJsDriver Setup
+
+This app uses PhantonJS Driver as part of the screenscraping. The pages are
+loaded, they contain JavaScrip which loads the HTML. PhantomJS will render the
+pages in HTML.
+
+To install it locally, use the following:  
+I'm on a Mac, and it won't let me install `phantomjs` to `/usr/bin`, so I have
+a Tools folder that I use for these development tools. I used the
+`~/.bash_profile` to add it to the `$PATH`.
+
+1. Download [PhantomJS](http://phantomjs.org/download.html) and unzip it into
+   a directory.
+1. Add the location of `phantomjs` to the `$PATH` via the `~/.bash_profile`.  
+   `vim ~/.bash_profile` and add `export PATH=$PATH:~/Tools/phantomjs-2.1.1-macosx/bin`.  
+   `source ~/.bash_profile` to add it to the path.
+1. Test if it is added to your CLI by executing `phantomjs`, to exit `Ctrl+C`.
+
+For remote running on Heroku, use the following:  
+TODO: Add Heroku Build Path Instructions
+
 ## Build, Run and Test
 
 1. To Build and Run the Application, open a Terminal and use:  

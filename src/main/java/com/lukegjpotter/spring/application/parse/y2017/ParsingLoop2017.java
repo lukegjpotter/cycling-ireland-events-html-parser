@@ -3,12 +3,19 @@ package com.lukegjpotter.spring.application.parse.y2017;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +28,8 @@ import com.lukegjpotter.spring.application.util.Constants;
 
 @Service
 public class ParsingLoop2017 implements ParsingLoop {
+    
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     
     @Autowired UrlMonthService urlMonthSerivce;
     @Autowired BasicDetailsParser basicDetailsParser;
@@ -98,15 +107,31 @@ public class ParsingLoop2017 implements ParsingLoop {
             // Populate the list of Documents with Remote URLs.
             List<String> urls = urlMonthSerivce.compileUrlsForRemainYearMonths();
             
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setJavascriptEnabled(true);
+            WebDriver driver = new PhantomJSDriver(caps);
+            
             for (String url : urls) {
                 
                 Element remoteDocument = null;
                 
                 try {
-                    remoteDocument = Jsoup.connect(url).get();
+                    log.info("Url: {}", url);
+                    
+                    // Load the URL with PhantomJs, as the initial page loads JavaScipt, PhantomJS will load the HTML.
+                    driver.get(url);
+                    String sourceHtml = driver.getPageSource();
+                    
+                    log.info("Writing Source HTML from PhantomJS to File");
+                    Files.write(Paths.get("/Users/lukegjpotter/Desktop/latest-run.html"), sourceHtml.getBytes());
+                    
+                    // Use Jsoup to parse the HTML.
+                    remoteDocument = Jsoup.connect(sourceHtml).get();
                     documents.add(remoteDocument);
                 } catch (IOException e) { e.printStackTrace(); }
             }
+            
+            driver.close();
         } else {
             // Populate the list of Documents with the file path.
             Element localDocument = null;

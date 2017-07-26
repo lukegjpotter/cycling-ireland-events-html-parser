@@ -113,22 +113,15 @@ public class ParsingLoop2017 implements ParsingLoop {
             
             for (String url : urls) {
                 
-                Element remoteDocument = null;
+                log.info("Url: {}", url);
                 
-                try {
-                    log.info("Url: {}", url);
-                    
-                    // Load the URL with PhantomJs, as the initial page loads JavaScipt, PhantomJS will load the HTML.
-                    driver.get(url);
-                    String sourceHtml = driver.getPageSource();
-                    
-                    log.info("Writing Source HTML from PhantomJS to File");
-                    Files.write(Paths.get("/Users/lukegjpotter/Desktop/latest-run.html"), sourceHtml.getBytes());
-                    
-                    // Use Jsoup to parse the HTML.
-                    remoteDocument = Jsoup.connect(sourceHtml).get();
-                    documents.add(remoteDocument);
-                } catch (IOException e) { e.printStackTrace(); }
+                // Load the URL with PhantomJs, as the initial page loads JavaScipt, PhantomJS will load the HTML.
+                driver.get(url);
+                String sourceHtml = driver.getPageSource();
+                
+                // Use Jsoup to parse the HTML.
+                Element remoteDocument = Jsoup.parseBodyFragment(sourceHtml);
+                documents.add(remoteDocument);
             }
             
             driver.close();

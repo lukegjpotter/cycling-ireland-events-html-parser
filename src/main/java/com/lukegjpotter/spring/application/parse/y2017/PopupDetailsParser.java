@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.Date;
 
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,8 @@ import com.lukegjpotter.spring.application.util.UtilsService;
  */
 @Component
 class PopupDetailsParser implements Parsable<Element, PopupDetails> {
+    
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     
     @Autowired UtilsService utils;
     @Autowired PhoneNumberUtilsService phoneNumberUtils;
@@ -45,11 +49,18 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         
         String dateStringRaw = popupElement.getElementById("event_date").text();
         int indexOfComma = dateStringRaw.indexOf(",") + 1;
-        int indexOfSeperator = dateStringRaw.indexOf("|");
+        int indexOfSeperator = dateStringRaw.indexOf("2017") + 4;
+        String dateString = "";
         
-        String dateString = dateStringRaw.substring(indexOfComma, indexOfSeperator).trim();
-        
-        return utils.convertMMMMDDYYYYToDate(dateString);
+        try {
+            dateString = dateStringRaw.substring(indexOfComma, indexOfSeperator).trim();
+            return utils.convertMMMMDDYYYYToDate(dateString);
+        } catch (StringIndexOutOfBoundsException e) {
+            log.error("DateString: {}, RawDateString: {}", dateString, dateStringRaw);
+            //e.printStackTrace();
+            
+            return new Date();
+        }
     }
     
     public String extractProvince(Element popupElement) {
@@ -65,14 +76,21 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserName(Element popupElement) {
-        
+
         String contact = "Contact:", email = "Email:";
-        
+
         String orgNameRaw = popupElement.getElementsContainingText(contact).first().text();
         int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
         int emailIndex = orgNameRaw.indexOf(email);
         
-        return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
+        try {
+            return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
+        } catch (StringIndexOutOfBoundsException e) {
+            log.error("orgNameRaw: {}, contactEndIndex: {}, emailIndex: {}.", orgNameRaw, contactEndIndex, emailIndex);
+            // e.printStackTrace();
+
+            return "";
+        }
     }
     
     private String extractOrganiserEmail(Element popupElement) {

@@ -10,6 +10,7 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +51,14 @@ public class StageDetailsParserTest {
         assertTrue("Route URL", stageDetail.getRouteLinkUrl().equals(""));
     }
     
+    @Ignore @Test public void testParseWithErrorPage() {
+        // TODO: Use the file "StagesError.html" to ensure that the content loaded is of the correct format.
+    }
+    
     private Element getJsoupElementFromPopup() {
 
         try {
-            return Jsoup.parse(new File("src/test/resources/20170225-Stages-DWCCOpenRace.html"), Constants.FILE_FORMAT);
+            return Jsoup.parse(new File("src/test/resources/20170806-Stages-OldcastleGP.html"), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;

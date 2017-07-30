@@ -35,19 +35,19 @@ public class StageDetailsParserTest {
         
         List<StageDetail> stageDetails = stageDetailsParser.parse(getJsoupElementFromPopup());
         
-        Date expectedDate = utils.convertMMMMDDYYYYToDate("February 25, 2017");
+        Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
         
         StageDetail stageDetail = stageDetails.get(0);
-        assertTrue("Location", stageDetail.getLocation().equals("Summerhill Community Centre, Summerhill"));
+        assertTrue("Location", stageDetail.getLocation().equals("TBC, Oldcastle"));
         assertTrue("Date", stageDetail.getDate().equals(expectedDate));
         assertTrue("Race Number", stageDetail.getRaceNumber() == 1);
-        assertTrue("Stage Number", stageDetail.getStageNumber() == 3);
-        assertTrue("Race Type", stageDetail.getRaceType().equals("APlus,A1,A2"));
-        assertTrue("Kilometers", stageDetail.getKilometers().equals(new Double(87.8)));
-        assertTrue("Miles", stageDetail.getMiles().equals(new Double(54.6)));
+        assertTrue("Stage Number", stageDetail.getStageNumber() == 1);
+        assertTrue("Race Type", stageDetail.getRaceType().equals("APlus,A1,A2,A3,A4,Women"));
+        assertTrue("Kilometers", stageDetail.getKilometers().equals(new Double(100.0)));
+        assertTrue("Miles", stageDetail.getMiles().equals(new Double(62.1)));
         assertTrue("Category", stageDetail.getCategory().equals("Road"));
         assertTrue("Sign on Time", stageDetail.getSignOnTime().equals("09:00"));
-        assertTrue("Start Time", stageDetail.getStartTime().equals("10:30"));
+        assertTrue("Start Time", stageDetail.getStartTime().equals("12:00"));
         assertTrue("Route URL", stageDetail.getRouteLinkUrl().equals(""));
     }
     

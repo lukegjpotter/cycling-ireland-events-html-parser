@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
 import com.lukegjpotter.spring.application.parse.Parsable;
+import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
 import com.lukegjpotter.spring.application.util.PhoneNumberUtilsService;
 import com.lukegjpotter.spring.application.util.UtilsService;
 
@@ -75,22 +76,33 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private String extractOrganiserName(Element popupElement) {
 
-        String contact = "Contact:", email = "Email:";
+        String contact = "Contact:", email = "Email:", phone = "Phone:", endIndexToUse = "";
 
         String orgNameRaw = popupElement.getElementsContainingText(contact).first().text();
         int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
-        int emailIndex = orgNameRaw.indexOf(email);
+        
+        // Incase the Popup doesn't have an e-mail listed, the next breaker is the phone.
+        endIndexToUse = (orgNameRaw.contains(email)) ? email : phone;
+        
+        int endIndex = orgNameRaw.indexOf(endIndexToUse);
         
         try {
-            return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
+            return orgNameRaw.substring(contactEndIndex, endIndex).trim();
         } catch (StringIndexOutOfBoundsException e) {
-            log.error("orgNameRaw: {}, contactEndIndex: {}, emailIndex: {}.", orgNameRaw, contactEndIndex, emailIndex);
+            log.error("orgNameRaw: {}, contactEndIndex: {}, emailIndex: {}.", orgNameRaw, contactEndIndex, endIndex);
             return "";
         }
     }
     
     private String extractOrganiserEmail(Element popupElement) {
-        return popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+        String organiserEmail = "";
+        try {
+            organiserEmail = popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+        } catch (NullPointerException e) {
+            return "";
+        }
+
+        return organiserEmail;
     }
     
     private String extractOrganiserPhoneNumber(Element popupElement) {

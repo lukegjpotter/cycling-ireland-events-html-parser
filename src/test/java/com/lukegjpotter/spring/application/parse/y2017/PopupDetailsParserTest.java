@@ -31,7 +31,7 @@ public class PopupDetailsParserTest {
 
     @Test public void testParse() {
         
-        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup());
+        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20170806-Popup-OldcastleGP.html"));
         
         Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
         
@@ -46,10 +46,19 @@ public class PopupDetailsParserTest {
         assertTrue(popup.getMoreInfoUrl().getFile().equals("/portal/Moreeventdetails.aspx?EventId=298400"));
     }
     
-    private Element getJsoupElementFromPopup() {
+    @Test public void testParseNoOrganiserEmail() {
+        
+        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20170701-Popup-BolivarGP-NoOrgEmail.html"));
+                
+        assertTrue("Organiser Name", popup.getOrganiserName().equals("Alan Surname"));
+        assertTrue("Organiser Email", popup.getOrganiserEmail().equals(""));
+        assertTrue("Phone Number", popup.getOrganiserPhoneNumber().equals("+353872727811"));
+    }
+    
+    private Element getJsoupElementFromPopup(String fileName) {
 
         try {
-            return Jsoup.parse(new File("src/test/resources/20170806-Popup-OldcastleGP.html"), Constants.FILE_FORMAT);
+            return Jsoup.parse(new File(fileName), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
 
         return null;

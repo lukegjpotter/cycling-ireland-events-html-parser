@@ -33,17 +33,17 @@ public class PopupDetailsParserTest {
         
         PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup());
         
-        Date expectedDate = utils.convertMMMMDDYYYYToDate("February 25, 2017");
+        Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
         
         assertTrue(expectedDate.equals(popup.getStartDate()));
         assertTrue(popup.getProvince().equals("Leinster"));
         assertTrue(popup.getCategory().equals("Road"));
-        assertTrue(popup.getPromotingClub().equals("Dublin Wheelers"));
-        assertTrue(popup.getOrganiserName().equals("Brian Carolan"));
-        assertTrue(popup.getOrganiserEmail().equals("dwcc.gp@gmail.com"));
-        assertTrue(popup.getOrganiserPhoneNumber().equals("+353866044136"));
+        assertTrue(popup.getPromotingClub().equals("Oldcastle CC"));
+        assertTrue(popup.getOrganiserName().equals("Alan Surname"));
+        assertTrue(popup.getOrganiserEmail().equals("racing1team@gmail.com"));
+        assertTrue(popup.getOrganiserPhoneNumber().equals("+353879349161"));
         assertTrue(popup.getMoreInfoUrl().getAuthority().equals("cyclingirelandlegacy.azolve.com"));
-        assertTrue(popup.getMoreInfoUrl().getFile().equals("/portal/Moreeventdetails.aspx?EventId=298200"));
+        assertTrue(popup.getMoreInfoUrl().getFile().equals("/portal/Moreeventdetails.aspx?EventId=298400"));
     }
     
     private Element getJsoupElementFromPopup() {

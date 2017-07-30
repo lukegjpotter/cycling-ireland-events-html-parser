@@ -17,6 +17,10 @@ public class UtilsService {
     public Date convertMMMMDDYYYYToDate(String date) {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_MMMM_DD_YYYY);
     }
+    
+    public Date convertMMMDDYYYYToDate(String date) {
+        return convertDateUsingFormat(date, Constants.DATE_FORMAT_MMM_DD_YYYY);
+    }
 
     public Date convertDDMMMYYToDate(String date) {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MMM_YY);

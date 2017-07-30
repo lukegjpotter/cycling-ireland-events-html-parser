@@ -54,17 +54,15 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         
         try {
             dateString = dateStringRaw.substring(indexOfComma, indexOfSeperator).trim();
-            return utils.convertMMMMDDYYYYToDate(dateString);
+            return utils.convertMMMDDYYYYToDate(dateString);
         } catch (StringIndexOutOfBoundsException e) {
             log.error("DateString: {}, RawDateString: {}", dateString, dateStringRaw);
-            //e.printStackTrace();
-            
             return new Date();
         }
     }
     
     public String extractProvince(Element popupElement) {
-        return popupElement.getElementsByAttributeValue("href", "#location0").first().text().trim();
+        return popupElement.getElementsByClass("poplinks").first().text().trim(); //getElementsByAttributeValue("href", "#location0").first().text().trim();
     }
     
     private String extractCategory(Element popupElement) {
@@ -87,8 +85,6 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
             return orgNameRaw.substring(contactEndIndex, emailIndex).trim();
         } catch (StringIndexOutOfBoundsException e) {
             log.error("orgNameRaw: {}, contactEndIndex: {}, emailIndex: {}.", orgNameRaw, contactEndIndex, emailIndex);
-            // e.printStackTrace();
-
             return "";
         }
     }

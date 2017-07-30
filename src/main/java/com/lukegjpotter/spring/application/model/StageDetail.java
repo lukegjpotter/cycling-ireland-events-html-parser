@@ -14,12 +14,12 @@ public class StageDetail {
     private long id;
     private Date date;
     private Integer raceNumber, stageNumber;
-    private String location, raceType, category, signOnTime, startTime, routeLinkUrl;
+    private String location, raceType, category, signOnTime, startTime, routeLinkUrl, additionalInfo;
     private Double kilometers, miles;
 
     public StageDetail(Date date, String location, Integer raceNumber, Integer stageNumber, String raceType,
             Double kilometers, Double miles, String category, String signOnTime, String startTime,
-            String routeLinkUrl) {
+            String routeLinkUrl, String additionalInfo) {
 
         setDate(date);
         setLocation(location);
@@ -32,6 +32,7 @@ public class StageDetail {
         setSignOnTime(signOnTime);
         setStartTime(startTime);
         setRouteLinkUrl(routeLinkUrl);
+        setAdditionalInfo(additionalInfo);
     }
 
     public StageDetail() {
@@ -46,6 +47,7 @@ public class StageDetail {
         setSignOnTime("");
         setStartTime("");
         setRouteLinkUrl("");
+        setAdditionalInfo("");
     }
     
     public long getId() {
@@ -144,19 +146,31 @@ public class StageDetail {
         this.miles = miles;
     }
 
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
     @Override public boolean equals(Object obj) {
 
         if (obj instanceof StageDetail) {
             StageDetail other = (StageDetail) obj;
 
-            return this.getDate().equals(other.getDate()) && this.getLocation().equals(other.getLocation())
+            return this.getDate().equals(other.getDate())
+                    && this.getLocation().equals(other.getLocation())
                     && this.getRaceNumber().equals(other.getRaceNumber())
                     && this.getStageNumber().equals(other.getStageNumber())
-                    && this.getRaceType().equals(other.getRaceType()) && this.getCategory().equals(other.getCategory())
+                    && this.getRaceType().equals(other.getRaceType())
+                    && this.getCategory().equals(other.getCategory())
                     && this.getSignOnTime().equals(other.getSignOnTime())
                     && this.getStartTime().equals(other.getStartTime())
                     && this.getRouteLinkUrl().equals(other.getRouteLinkUrl())
-                    && this.getKilometers().equals(other.getKilometers()) && this.getMiles().equals(other.getMiles());
+                    && this.getKilometers().equals(other.getKilometers())
+                    && this.getMiles().equals(other.getMiles())
+                    && this.additionalInfo.equals(other.getAdditionalInfo());
         }
 
         return false;

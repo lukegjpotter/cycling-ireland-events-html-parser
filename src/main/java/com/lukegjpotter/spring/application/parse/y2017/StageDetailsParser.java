@@ -22,6 +22,7 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
     @Override public List<StageDetail> parse(Element htmlToParse) {
         
         String location = htmlToParse.getElementsByAttributeValueContaining("onclick", "showEventMapByAddress").first().text().trim();
+        String additionalInfo = htmlToParse.getElementsByTag("td").last().text().replace("Additional Info", "").trim();
         
         Elements tableRows = htmlToParse.getElementsByClass("trCourseItem");
         
@@ -34,6 +35,7 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
             
             StageDetail stageDetail = new StageDetail();
             stageDetail.setLocation(location);
+            stageDetail.setAdditionalInfo(additionalInfo);
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
             stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
             stageDetail.setStageNumber(nullCheckUtils.integerNullCheck(rowData.get(2).text()));

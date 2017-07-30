@@ -49,8 +49,9 @@ public class StageDetailsParserTest {
         assertTrue("Sign on Time", stageDetail.getSignOnTime().equals("09:00"));
         assertTrue("Start Time", stageDetail.getStartTime().equals("12:00"));
         assertTrue("Route URL", stageDetail.getRouteLinkUrl().equals(""));
+        assertTrue("Additional Info", stageDetail.getAdditionalInfo().equals(getOldcastleAdditionalInfo()));
     }
-    
+
     @Ignore @Test public void testParseWithErrorPage() {
         // TODO: Use the file "StagesError.html" to ensure that the content loaded is of the correct format.
     }
@@ -62,5 +63,9 @@ public class StageDetailsParserTest {
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;
+    }
+    
+    private String getOldcastleAdditionalInfo() {
+        return "Ideally this will be a 100-120km race for all cats. It would be great to have on this date as the Mountnugent GP is on the previous night in same area and riders will stay locally and race the next day.";
     }
 }

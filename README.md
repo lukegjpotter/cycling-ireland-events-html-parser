@@ -8,6 +8,7 @@ The POJOs will be useful for the
 
 [![Build Status](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper.svg?branch=master)](https://travis-ci.org/lukegjpotter/cycling-ireland-events-html-scraper)
 [![Coverage Status](https://coveralls.io/repos/github/lukegjpotter/cycling-ireland-events-html-scraper/badge.svg?branch=master)](https://coveralls.io/github/lukegjpotter/cycling-ireland-events-html-scraper?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/59f4497115f0d71f1c237de2/badge.svg)](https://www.versioneye.com/user/projects/59f4497115f0d71f1c237de2)
 [![Issue Count](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper/badges/issue_count.svg)](https://codeclimate.com/github/lukegjpotter/cycling-ireland-events-html-scraper)
 
 ## Initial Database Setup

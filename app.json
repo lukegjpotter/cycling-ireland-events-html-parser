@@ -1,0 +1,7 @@
+{
+  "name": "Cycling Ireland Events HTML Scraper"
+  "description": "A HTML Scraper for Cycling Ireland Events",
+  "repository": "https://github.com/lukegjpotter/cycling-ireland-events-html-scraper",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["java", "scraper", "jsoup", "phantomjsdriver"]
+}

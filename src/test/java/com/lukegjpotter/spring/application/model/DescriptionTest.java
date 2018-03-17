@@ -1,20 +1,18 @@
 package com.lukegjpotter.spring.application.model;
 
-import static org.junit.Assert.assertFalse;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.Assert.assertFalse;
 
-import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
-
+@SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, Description.class })
 public class DescriptionTest {
-    
+
     // TODO Add more tests here.
     @Test public void testEqualsOtherObject() {
         assertFalse(new Description().equals(new Date()));

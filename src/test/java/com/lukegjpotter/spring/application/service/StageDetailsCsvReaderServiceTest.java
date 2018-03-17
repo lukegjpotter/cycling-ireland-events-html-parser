@@ -1,24 +1,23 @@
 package com.lukegjpotter.spring.application.service;
 
-import static org.junit.Assert.assertTrue;
-
+import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
+import com.lukegjpotter.spring.application.testresources.StageDetailsCsvReaderServiceTestResources;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
-import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
-import com.lukegjpotter.spring.application.testresources.StageDetailsCsvReaderServiceTestResources;
+import static org.junit.Assert.assertTrue;
 
+@SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class,
-        StageDetailsCsvReaderService.class })
 public class StageDetailsCsvReaderServiceTest {
 
-    @Autowired StageDetailsCsvReaderService csvReader;
-    @Autowired StageDetailsCsvReaderServiceTestResources tr;
+    @Autowired
+    private StageDetailsCsvReaderService csvReader;
+    @Autowired
+    private StageDetailsCsvReaderServiceTestResources tr;
 
     @Test(expected = NullPointerException.class) public void testReadStageRouteFromCsvFile_NoFile() {
         csvReader.setCsvFileLocation("fail");

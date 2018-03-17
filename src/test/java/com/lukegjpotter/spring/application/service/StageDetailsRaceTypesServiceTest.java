@@ -1,31 +1,31 @@
 package com.lukegjpotter.spring.application.service;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.RaceTypesHolder;
+import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.testresources.StageDetailsRaceTypesServiceTestResources;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lukegjpotter.spring.application.CyclingIrelandEventsHtmlScraperApplication;
-import com.lukegjpotter.spring.application.model.RaceTypesHolder;
-import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.testresources.StageDetailsRaceTypesServiceTestResources;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
+@SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { CyclingIrelandEventsHtmlScraperApplication.class, StageDetailsRaceTypesService.class })
 public class StageDetailsRaceTypesServiceTest {
-    
-    @Autowired StageDetailsRaceTypesService raceTypeService;
-    @Autowired StageDetailsRaceTypesServiceTestResources tr;
-    
-    List<StageDetail> stageDetails = new ArrayList<>();
-    
+
+    @Autowired
+    private StageDetailsRaceTypesService raceTypeService;
+    @Autowired
+    private StageDetailsRaceTypesServiceTestResources tr;
+
+    private List<StageDetail> stageDetails = new ArrayList<>();
+
     @Before public void setUp() {
         StageDetail stageDetail = new StageDetail();
         stageDetails.add(stageDetail);
@@ -33,7 +33,7 @@ public class StageDetailsRaceTypesServiceTest {
 
     @Test public void testDetermineRaceTypesEmptyRaceTypes() {
         RaceTypesHolder expected = new RaceTypesHolder();
-        RaceTypesHolder actual = raceTypeService.determineRaceTypes(new ArrayList<StageDetail>());
+        RaceTypesHolder actual = raceTypeService.determineRaceTypes(new ArrayList<>());
         assertTrue(expected.equals(actual));
     }
 
@@ -50,7 +50,7 @@ public class StageDetailsRaceTypesServiceTest {
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(tr.getStageDetailsAllTypes());
         assertTrue(expected.equals(actual));
     }
-    
+
     @Test public void testDetermineRaceTypesStringYouthRaces() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setYouth(true);
@@ -58,7 +58,7 @@ public class StageDetailsRaceTypesServiceTest {
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
         assertTrue(expected.equals(actual));
     }
-    
+
     @Test public void testDetermineRaceTypesStringVetsRaces() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setVets(true);
@@ -66,7 +66,7 @@ public class StageDetailsRaceTypesServiceTest {
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
         assertTrue(expected.equals(actual));
     }
-    
+
     @Test public void testDetermineRaceTypesStringParacyclingRaces() {
         RaceTypesHolder expected = new RaceTypesHolder();
         expected.setParacycling(true);
@@ -74,7 +74,7 @@ public class StageDetailsRaceTypesServiceTest {
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(stageDetails);
         assertTrue(expected.equals(actual));
     }
-    
+
     @Test public void testDetermineRaceTypesWithStringOfTypes() {
         RaceTypesHolder expected = tr.getRaceTypesAllEnabled();
         expected.setYouth(false);

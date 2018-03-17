@@ -1,11 +1,5 @@
 package com.lukegjpotter.spring.application.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
 import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
@@ -14,6 +8,11 @@ import com.lukegjpotter.spring.application.service.HtmlParsingService;
 import com.lukegjpotter.spring.application.service.MappingHolderToStageDetailsService;
 import com.lukegjpotter.spring.application.service.RoadRaceEventToDatabaseRecordTransformService;
 import com.lukegjpotter.spring.application.service.StageDetailsCsvReaderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CyclingIrelandEventsHtmlScraperController {
@@ -45,7 +44,7 @@ public class CyclingIrelandEventsHtmlScraperController {
     }
     
     private String load() {
-        repository.save(databaseRecords);
+        repository.saveAll(databaseRecords);
         return "Success";
     }
     

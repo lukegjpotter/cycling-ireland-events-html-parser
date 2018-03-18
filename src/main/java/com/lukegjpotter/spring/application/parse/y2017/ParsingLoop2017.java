@@ -1,11 +1,10 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.PopupDetails;
+import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.parse.ParsingLoop;
+import com.lukegjpotter.spring.application.service.UrlMonthService;
+import com.lukegjpotter.spring.application.util.Constants;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -18,21 +17,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.lukegjpotter.spring.application.model.PopupDetails;
-import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.parse.ParsingLoop;
-import com.lukegjpotter.spring.application.service.UrlMonthService;
-import com.lukegjpotter.spring.application.util.Constants;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ParsingLoop2017 implements ParsingLoop {
     
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    
-    @Autowired UrlMonthService urlMonthSerivce;
-    @Autowired BasicDetailsParser basicDetailsParser;
-    @Autowired PopupDetailsParser popupDetailsParser;
-    @Autowired StageDetailsParser stageDetailsParser;
+
+    @Autowired
+    private UrlMonthService urlMonthSerivce;
+    @Autowired
+    private BasicDetailsParser basicDetailsParser;
+    @Autowired
+    private PopupDetailsParser popupDetailsParser;
+    @Autowired
+    private StageDetailsParser stageDetailsParser;
     
     @Value("${url.popup}") private String urlPopupWithPlaceholder;
     private String fileLocation;
@@ -55,6 +58,7 @@ public class ParsingLoop2017 implements ParsingLoop {
                 
                 // Get Basic Details; ID and Name.
                 RoadRaceEvent roadRace = basicDetailsParser.parse(event);
+                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(urlPopupWithPlaceholder, roadRace.getId()));
                 
                 // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
                 Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
@@ -64,6 +68,7 @@ public class ParsingLoop2017 implements ParsingLoop {
                 // Get More Information Link Details AKA StageDetails.
                 Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
                 roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
+                log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
                 roadRace.setLocation(roadRace.getStageDetails().get(0).getLocation());
                 
                 roadRaceEvents.add(roadRace);
@@ -125,7 +130,7 @@ public class ParsingLoop2017 implements ParsingLoop {
             driver.close();
         } else {
             // Populate the list of Documents with the file path.
-            Element localDocument = null;
+            Element localDocument;
             
             try {
                 localDocument = Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT);

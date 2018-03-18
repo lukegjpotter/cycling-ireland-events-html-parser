@@ -1,10 +1,11 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
-import org.jsoup.nodes.Element;
-import org.springframework.stereotype.Component;
-
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.parse.Parsable;
+import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * Gets the Name and ID of the RoadRaceEvent from the Calendar Web Page.
@@ -13,6 +14,8 @@ import com.lukegjpotter.spring.application.parse.Parsable;
  */
 @Component
 class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * This method will extract the ID and Name of the Race from the HMTL Element.
@@ -29,6 +32,8 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
         RoadRaceEvent roadRaceEvent = new RoadRaceEvent();
         roadRaceEvent.setId(eventId);
         roadRaceEvent.setEventName(eventName);
+
+        log.info("Parsing Road Race: {}, Popup ID: {}", eventName, eventId);
         
         return roadRaceEvent;
     }
@@ -36,8 +41,8 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
     /**
      * This method will extract the Event ID from the onClick Listener Text.
      * Example: Extract 107619903 from {@code "epopup('107619903'); return false;"}.
-     * 
-     * @param eventIdAndOnClick
+     *
+     * @param eventIdAndOnClick String with Event ID to parse
      * @return The Event ID in long.
      */
     private long stripOnClick(String eventIdAndOnClick) {
@@ -47,9 +52,9 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
     /**
      * Extracts the Event's Name from the Text of the HTML Element.
      * Example: Extracts "Phoenix GP" from {@code " Phoenix GP 9:30 am "}.
-     * 
-     * @param eventNameAndTime
-     * @return
+     *
+     * @param eventNameAndTime String to Parse
+     * @return Event Name
      */
     private String stripTime(String eventNameAndTime) {
         
@@ -59,9 +64,7 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
         if (Character.isDigit(eventNameAndTime.charAt(eventNameAndTime.length() - 8))) {
             startIndexOfTime = eventNameAndTime.length() - 9;
         }
-        
-        String eventName = eventNameAndTime.substring(0, startIndexOfTime).trim();
-        
-        return eventName;
+
+        return eventNameAndTime.substring(0, startIndexOfTime).trim();
     }
 }

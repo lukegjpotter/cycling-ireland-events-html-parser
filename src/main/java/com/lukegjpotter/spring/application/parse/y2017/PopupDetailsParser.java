@@ -1,20 +1,18 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-
+import com.lukegjpotter.spring.application.model.PopupDetails;
+import com.lukegjpotter.spring.application.parse.Parsable;
+import com.lukegjpotter.spring.application.util.PhoneNumberUtilsService;
+import com.lukegjpotter.spring.application.util.UtilsService;
 import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lukegjpotter.spring.application.model.PopupDetails;
-import com.lukegjpotter.spring.application.parse.Parsable;
-import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
-import com.lukegjpotter.spring.application.util.PhoneNumberUtilsService;
-import com.lukegjpotter.spring.application.util.UtilsService;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
 
 /**
  * Extracts the Date, Time, Province, Category, Promoting Club, Contact
@@ -26,9 +24,11 @@ import com.lukegjpotter.spring.application.util.UtilsService;
 class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    
-    @Autowired UtilsService utils;
-    @Autowired PhoneNumberUtilsService phoneNumberUtils;
+
+    @Autowired
+    private UtilsService utils;
+    @Autowired
+    private PhoneNumberUtilsService phoneNumberUtils;
 
     @Override public PopupDetails parse(Element popupElement) {
         
@@ -42,6 +42,8 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         popupDetails.setOrganiserEmail(extractOrganiserEmail(popupElement));
         popupDetails.setOrganiserPhoneNumber(extractOrganiserPhoneNumber(popupElement));
         popupDetails.setMoreInfoUrl(extractMoreInfoURL(popupElement));
+
+        log.info("Stages URL: {}", popupDetails.getMoreInfoUrl().toString());
         
         return popupDetails;
     }
@@ -61,8 +63,8 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
             return new Date();
         }
     }
-    
-    public String extractProvince(Element popupElement) {
+
+    private String extractProvince(Element popupElement) {
         return popupElement.getElementsByClass("poplinks").first().text().trim(); //getElementsByAttributeValue("href", "#location0").first().text().trim();
     }
     
@@ -76,7 +78,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private String extractOrganiserName(Element popupElement) {
 
-        String contact = "Contact:", email = "Email:", phone = "Phone:", endIndexToUse = "";
+        String contact = "Contact:", email = "Email:", phone = "Phone:", endIndexToUse;
 
         String orgNameRaw = popupElement.getElementsContainingText(contact).first().text();
         int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
@@ -95,7 +97,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserEmail(Element popupElement) {
-        String organiserEmail = "";
+        String organiserEmail;
         try {
             organiserEmail = popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
         } catch (NullPointerException e) {

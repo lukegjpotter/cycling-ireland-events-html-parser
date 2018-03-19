@@ -5,7 +5,6 @@
 *.ear
 
 .metadata
-
 .springBeans
 
 # Gradle #

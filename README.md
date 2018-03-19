@@ -20,7 +20,11 @@ of the *Cycling Ireland Events REST Service* wiki.
 
 ## Build, Run and Test
 
-1. To Build and Run the Application, open a Terminal and use:  
+To Build and Run the Application:
+
+1. Set the Database_URL in the IDE Run Configurations or local CLI Variable:  
+   `./setEnvironmentVariables.sh`
+1. To Build and Run, open a Terminal and use:  
    `./gradlew build bootRun`  
    To skip the tests, if they're failing, use:  
    `./gradlew build -x test`

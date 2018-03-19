@@ -33,3 +33,11 @@ of the *Cycling Ireland Events REST Service* wiki.
 ## Current Status
 
 For the current status, please check the [Project Tab](https://github.com/lukegjpotter/cycling-ireland-events-html-scraper/projects).
+
+## API Documentation
+
+Swagger Documentation is available via the Heroku app.  
+For the [CyclingIrelandEventsHtmlScraperController](https://cyclingirelandeventscraper.herokuapp.com/swagger-ui.html).
+
+The Postman Collection to make these calls is available: [BikeRaceIreland Scraper
+](https://documenter.getpostman.com/view/3947605/RVnZgxhn).

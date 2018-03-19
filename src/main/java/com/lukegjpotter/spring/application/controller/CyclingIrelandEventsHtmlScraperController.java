@@ -9,7 +9,7 @@ import com.lukegjpotter.spring.application.service.MappingHolderToStageDetailsSe
 import com.lukegjpotter.spring.application.service.RoadRaceEventToDatabaseRecordTransformService;
 import com.lukegjpotter.spring.application.service.StageDetailsCsvReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public class CyclingIrelandEventsHtmlScraperController {
     private List<RoadRaceEvent> roadRaces;
     private List<RoadRaceEventDatabaseRecord> databaseRecords;
     private StageRouteMappingHolder mappingHolder;
-    
-    @RequestMapping("/start") public String start() {
+
+    @GetMapping("/start") public String start() {
         extract();
         transform();
         return load();

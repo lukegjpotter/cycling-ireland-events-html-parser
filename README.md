@@ -30,38 +30,6 @@ of the *Cycling Ireland Events REST Service* wiki.
 1. To Stop the Application, in the first Terminal, use:  
    `ctrl+C`
 
-### Alpha 0.1 Features - Released
+## Current Status
 
-* [x] Be able to loop through the file to get all the information from all the
-      Cycling Events into POJOs.
-* [x] Expose a REST API to enable the screen scraping to happen when this is called.
-* [x] Parse a resource file to get the all information from an individual Cycling
-      Event.
-* [x] Possible to add Route URL Links from separate CSV File to the Cycling Event. 
-
-### Version 1.0 Features - Released
-
-* [x] Write the POJOs, from the parsed Resource File, into a local Postgres
-      Database Using Spring Data.
-
-### Version 1.1 Features - In Progress
-
-* [x] Remove all the 2016 Parsing Code.
-* [x] Remove all the 2016 Test Code and Resource Files.
-* [ ] Be able to Screen Scrape directly from the Web Page.
-* [ ] Parse the 2017 events into the Local Database.
-
-### Version 2.0 Features
-
-* [ ] Make a production Spring Profile to write Events into Heroku's PosgreSQL.
-
-### Version 3.0 Features
-
-* [ ] Patch the POJOs in the Database with new information gleamed from the
-      screen scraping.
-
-### Version 4.0 Features
-
-* [ ] Set a Timer service that will gather the Event's Registration Link from
-      the Events Page, to make the link available in the database for end user
-      to use to sign up to the races.
+For the current status, please check the [Project Tab](https://github.com/lukegjpotter/cycling-ireland-events-html-scraper/projects).

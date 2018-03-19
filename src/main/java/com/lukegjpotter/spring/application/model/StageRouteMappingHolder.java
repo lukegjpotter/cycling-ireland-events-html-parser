@@ -17,9 +17,9 @@ public class StageRouteMappingHolder {
         nameDateRouteMap.put(keyEventId, valueRoutes);
    }
 
-    public String getRouteUrlMapping(Long keyEventId, Integer stageNumberQuery) {
+    public String getRouteUrlMapping(Long keyEventId, String stageNumberQuery) {
         try {
-            return nameDateRouteMap.get(keyEventId).get(stageNumberQuery.intValue() - 1);
+            return nameDateRouteMap.get(keyEventId).get(Integer.getInteger(stageNumberQuery) - 1);
         } catch (ArrayIndexOutOfBoundsException e) {
             return "";
         }

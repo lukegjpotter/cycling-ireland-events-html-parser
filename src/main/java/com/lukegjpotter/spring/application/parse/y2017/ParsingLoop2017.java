@@ -29,7 +29,7 @@ public class ParsingLoop2017 implements ParsingLoop {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private UrlMonthService urlMonthSerivce;
+    private UrlMonthService urlMonthService;
     @Autowired
     private BasicDetailsParser basicDetailsParser;
     @Autowired
@@ -38,8 +38,8 @@ public class ParsingLoop2017 implements ParsingLoop {
     private StageDetailsParser stageDetailsParser;
     
     @Value("${url.popup}") private String urlPopupWithPlaceholder;
+
     private String fileLocation;
-    
     private boolean isRemote;
     
     @Override public List<RoadRaceEvent> startParseLoop(String fileLocation) {
@@ -47,8 +47,8 @@ public class ParsingLoop2017 implements ParsingLoop {
         List<RoadRaceEvent> roadRaceEvents = new ArrayList<>();
         this.fileLocation = fileLocation;
         isRemote = fileLocation.isEmpty();
-        
-        List<Element> documents = populateListOfElements();
+
+        List<Element> documents = populateListOfElementsWithHtmlForRemainingMonthsInYear();
         
         for (Element document : documents) {
             
@@ -58,17 +58,17 @@ public class ParsingLoop2017 implements ParsingLoop {
                 
                 // Get Basic Details; ID and Name.
                 RoadRaceEvent roadRace = basicDetailsParser.parse(event);
-                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(urlPopupWithPlaceholder, roadRace.getId()));
-                
+
                 // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
+                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(urlPopupWithPlaceholder, roadRace.getId()));
                 Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
                 PopupDetails popupDetails = popupDetailsParser.parse(popupElement);
                 roadRace.addPopupDetails(popupDetails);
                 
                 // Get More Information Link Details AKA StageDetails.
+                log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
                 Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
                 roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
-                log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
                 roadRace.setLocation(roadRace.getStageDetails().get(0).getLocation());
                 
                 roadRaceEvents.add(roadRace);
@@ -101,14 +101,14 @@ public class ParsingLoop2017 implements ParsingLoop {
         
         return null;
     }
-    
-    private List<Element> populateListOfElements() {
+
+    private List<Element> populateListOfElementsWithHtmlForRemainingMonthsInYear() {
         
         List<Element> documents = new ArrayList<>();
         
         if (isRemote) {
             // Populate the list of Documents with Remote URLs.
-            List<String> urls = urlMonthSerivce.compileUrlsForRemainYearMonths();
+            List<String> urls = urlMonthService.compileUrlsForRemainingYearMonths();
             
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setJavascriptEnabled(true);

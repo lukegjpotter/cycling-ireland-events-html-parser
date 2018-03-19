@@ -1,18 +1,17 @@
 package com.lukegjpotter.spring.application.service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
+import com.lukegjpotter.spring.application.util.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
-import com.lukegjpotter.spring.application.util.Constants;
-import com.lukegjpotter.spring.application.util.UtilsService;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class StageDetailsCsvReaderService {
@@ -20,23 +19,23 @@ public class StageDetailsCsvReaderService {
     @Autowired UtilsService utils;
     
     @Value("${allroutelinks2017csvfile.location}") private String csvFileLocation;
-    private final String csvDelimiter = ",";
 
     public StageRouteMappingHolder readStageRouteFromCsvFile() {
         
         StageRouteMappingHolder mappingHolder = new StageRouteMappingHolder();
 
+        // TODO: Try to replace with Files API.
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFileLocation))) {
-            String line = "";
+            String line, csvDelimiter = ",";
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] strings = line.split(csvDelimiter);
                 
                 Long eventId = Long.valueOf(strings[0].trim());
-                List<String> routeLinks = null;
+                List<String> routeLinks;
 
                 if (strings.length == 1) {
-                    routeLinks = Arrays.asList("");
+                    routeLinks = Collections.singletonList("");
                 } else {
                     routeLinks = getRouteUrlLinksList(strings[1]);
                 }
@@ -47,7 +46,6 @@ public class StageDetailsCsvReaderService {
             e.printStackTrace();
         }
 
-        
         return mappingHolder;
     }
 
@@ -61,64 +59,44 @@ public class StageDetailsCsvReaderService {
      *     and
      *     "2:http://www.strava.com/routes/456|1:http://www.strava.com/routes/123" into ["http://www.strava.com/routes/123", "http://www.strava.com/routes/456"]
      *     etc.
-     * 
-     * @param string
+     *
+     * @param pipeSeparatedStageNumberAndRouteUrlString
      * @return string[]
      */
-    private List<String> getRouteUrlLinksList(String string) {
-        String[] strings = string.trim().split("\\|");
+    private List<String> getRouteUrlLinksList(String pipeSeparatedStageNumberAndRouteUrlString) {
 
-        if (strings.length == 1)
-            return Arrays.asList(strings[0].trim());
+        String[] stageNumberAndRouteUrlStrings = pipeSeparatedStageNumberAndRouteUrlString.trim().split("\\|");
 
-        String[] routeUrls = new String[Constants.ARRAY_SIZE];
+        if (stageNumberAndRouteUrlStrings.length == 1)
+            return Collections.singletonList(stageNumberAndRouteUrlStrings[0].trim());
 
-        for (int i = 0; i < strings.length; i++) {
-            String[] numberedStages = determineNumberedStagesFromString(strings[i]);
+        List<String> routeUrls = new ArrayList<>();
+
+        for (String stageNumberAndRouteUrlString : stageNumberAndRouteUrlStrings) {
+            String[] numberedStages = determineNumberedStagesFromString(stageNumberAndRouteUrlString);
             int stageNumber = Integer.parseInt(numberedStages[0]);
-            routeUrls[stageNumber - 1] = numberedStages[1];
+            routeUrls.add(stageNumber - 1, numberedStages[1]);
         }
 
-        return padListWithEmptyStrings(Arrays.asList(routeUrls));
-    }
-    
-    /**
-     * Pads the {@code NULL} elements of the list with "", Empty Strings.
-     * 
-     * Example: ["link", null, "link"] will be ["link", "", "link"].
-     * 
-     * @param strings
-     * @return
-     */
-    private List<String> padListWithEmptyStrings(List<String> strings) {
-        int lastPositionOfStage = 0;
-        
-        for (int i = 0; i < strings.size(); i++) {
-            if (strings.get(i) == null) {
-                strings.set(i, "");
-            } else {
-                lastPositionOfStage = i;
-            }
-        }
-
-        return strings.subList(0, lastPositionOfStage+1);
+        return routeUrls;
     }
 
     /**
      * Converts "1:http://www.strava.com/routes/123" into ["1", "http://www.strava.com/routes/123"].
-     * 
-     * @param string in the format of "1:http://www.strava.com/routes/123"
+     *
+     * @param stageNumberAndRouteUrlString in the format of "1:http://www.strava.com/routes/123"
      * @return string[] in the format of ["1", "http://www.strava.com/routes/123"]
      */
-    private String[] determineNumberedStagesFromString(String string) {
-        char delimiter = ':';
+    private String[] determineNumberedStagesFromString(String stageNumberAndRouteUrlString) {
+        char colonDelimiter = ':';
         String[] numberedStages = new String[2];
-        
-        for (int i = 0; i < string.length() - 1; i++) {
-            
-            if (string.charAt(i) == delimiter) {
-                numberedStages[0] = string.substring(0, i).trim(); // Does't include the ":".
-                numberedStages[1] = string.substring(++i).trim(); // Starts after the ":".
+
+        for (int i = 0; i < stageNumberAndRouteUrlString.length() - 1; i++) {
+
+            if (stageNumberAndRouteUrlString.charAt(i) == colonDelimiter) {
+                numberedStages[0] = stageNumberAndRouteUrlString.substring(0, i).trim(); // Does't include the ":".
+                numberedStages[1] = stageNumberAndRouteUrlString.substring(++i).trim(); // Starts after the ":".
+
                 return numberedStages;
             }
         }

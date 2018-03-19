@@ -1,18 +1,18 @@
 package com.lukegjpotter.spring.application.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UrlMonthService {
     
     @Value("${url.basic}") private String urlBasicWithPlaceholders;
 
-    public List<String> compileUrlsForRemainYearMonths() {
+    public List<String> compileUrlsForRemainingYearMonths() {
         
         List<String> urls = new ArrayList<>();
         

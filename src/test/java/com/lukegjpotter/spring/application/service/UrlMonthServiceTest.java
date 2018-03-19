@@ -25,7 +25,7 @@ public class UrlMonthServiceTest {
     @Test public void testCompileUrlsForRemainYearMonths() {
 
         String expectedDecemberUrl = "http://www.calendarwiz.com/calendars/calendar.php?crd=CyclingirelandRoad&op=cal&month=12&year=2017";
-        List<String> actualUrls = urlMonthService.compileUrlsForRemainYearMonths();
+        List<String> actualUrls = urlMonthService.compileUrlsForRemainingYearMonths();
 
         assertTrue(actualUrls.contains(expectedDecemberUrl));
     }

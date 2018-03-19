@@ -78,14 +78,13 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     
     private String extractOrganiserName(Element popupElement) {
 
-        String contact = "Contact:", email = "Email:", phone = "Phone:", endIndexToUse;
+        String contact = "Contact:", email = "Email:", phone = "Phone:";
 
         String orgNameRaw = popupElement.getElementsContainingText(contact).first().text();
         int contactEndIndex = orgNameRaw.indexOf(contact) + contact.length();
-        
-        // Incase the Popup doesn't have an e-mail listed, the next breaker is the phone.
-        endIndexToUse = (orgNameRaw.contains(email)) ? email : phone;
-        
+
+        // In case the Popup doesn't have an e-mail listed, the next breaker is the phone.
+        String endIndexToUse = (orgNameRaw.contains(email)) ? email : phone;
         int endIndex = orgNameRaw.indexOf(endIndexToUse);
         
         try {
@@ -97,14 +96,11 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractOrganiserEmail(Element popupElement) {
-        String organiserEmail;
         try {
-            organiserEmail = popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
+            return popupElement.getElementsByAttributeValueContaining("href", "mailto:").first().text().trim();
         } catch (NullPointerException e) {
             return "";
         }
-
-        return organiserEmail;
     }
     
     private String extractOrganiserPhoneNumber(Element popupElement) {

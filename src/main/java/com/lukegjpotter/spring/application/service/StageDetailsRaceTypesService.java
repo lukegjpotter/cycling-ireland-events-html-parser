@@ -1,23 +1,23 @@
 package com.lukegjpotter.spring.application.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.lukegjpotter.spring.application.model.RaceTypesHolder;
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.util.Constants;
 import com.lukegjpotter.spring.application.util.UtilsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service public class StageDetailsRaceTypesService {
 
-    @Autowired UtilsService utils;
+    @Autowired
+    private UtilsService utils;
     
     public RaceTypesHolder determineRaceTypes(List<StageDetail> stageDetails) {
         RaceTypesHolder raceTypesHolder = new RaceTypesHolder();
-        
-        for (StageDetail stageDetail : stageDetails) {
+
+        stageDetails.forEach(stageDetail -> {
             String raceType = stageDetail.getRaceType().toLowerCase();
             
             if (raceType.contains("aplus")) raceTypesHolder.setAPlus(true);
@@ -31,7 +31,7 @@ import com.lukegjpotter.spring.application.util.UtilsService;
             if (hasYouthRaceTypes(raceType)) raceTypesHolder.setYouth(true);
             if (hasVetRaceTypes(raceType)) raceTypesHolder.setVets(true);
             if (hasParacyclingRaceTypes(raceType)) raceTypesHolder.setParacycling(true);
-        }
+        });
         
         return raceTypesHolder;
     }

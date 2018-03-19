@@ -39,6 +39,7 @@ public class CyclingIrelandEventsHtmlScraperController {
     }
     
     private void transform() {
+        // TODO: Do we need to return roadRaces here? It is changed in the method.
         roadRaces = stageDetailsMappingService.mapStageDetails(mappingHolder, roadRaces);
         databaseRecords = transformService.transform(roadRaces);
     }

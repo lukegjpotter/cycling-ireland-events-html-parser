@@ -1,11 +1,10 @@
 package com.lukegjpotter.spring.application.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class StageDetail {
@@ -13,13 +12,13 @@ public class StageDetail {
     @Id @GeneratedValue(strategy=GenerationType.TABLE)
     private long id;
     private Date date;
-    private Integer raceNumber, stageNumber;
-    private String location, raceType, category, signOnTime, startTime, routeLinkUrl, additionalInfo;
+    private Integer raceNumber;
+    private String stageNumber, location, raceType, category, signOnTime, startTime, routeLinkUrl, additionalInfo;
     private Double kilometers, miles;
 
-    public StageDetail(Date date, String location, Integer raceNumber, Integer stageNumber, String raceType,
-            Double kilometers, Double miles, String category, String signOnTime, String startTime,
-            String routeLinkUrl, String additionalInfo) {
+    public StageDetail(Date date, String location, Integer raceNumber, String stageNumber, String raceType,
+                       Double kilometers, Double miles, String category, String signOnTime, String startTime,
+                       String routeLinkUrl, String additionalInfo) {
 
         setDate(date);
         setLocation(location);
@@ -39,7 +38,7 @@ public class StageDetail {
         setDate(new Date(0L));
         setLocation("");
         setRaceNumber(0);
-        setStageNumber(0);
+        setStageNumber("0");
         setRaceType("");
         setKilometers(0.0);
         setMiles(0.0);
@@ -82,11 +81,11 @@ public class StageDetail {
         this.raceNumber = raceNumber;
     }
 
-    public Integer getStageNumber() {
+    public String getStageNumber() {
         return stageNumber;
     }
 
-    public void setStageNumber(Integer stageNumber) {
+    public void setStageNumber(String stageNumber) {
         this.stageNumber = stageNumber;
     }
 

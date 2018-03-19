@@ -1,17 +1,16 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.StageDetail;
+import com.lukegjpotter.spring.application.parse.Parsable;
+import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
+import com.lukegjpotter.spring.application.util.UtilsService;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.parse.Parsable;
-import com.lukegjpotter.spring.application.util.NullCheckUtilsService;
-import com.lukegjpotter.spring.application.util.UtilsService;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
@@ -23,9 +22,7 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
         
         String location = htmlToParse.getElementsByAttributeValueContaining("onclick", "showEventMapByAddress").first().text().trim();
         String additionalInfo = htmlToParse.getElementsByTag("td").last().text().replace("Additional Info", "").trim();
-        
         Elements tableRows = htmlToParse.getElementsByClass("trCourseItem");
-        
         List<StageDetail> stageDetails = new ArrayList<>();
         
          // The first two rows of the table are not stages, starts from 2.
@@ -38,7 +35,7 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
             stageDetail.setAdditionalInfo(additionalInfo);
             stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
             stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
-            stageDetail.setStageNumber(nullCheckUtils.integerNullCheck(rowData.get(2).text()));
+            stageDetail.setStageNumber(nullCheckUtils.stringNullCheck(rowData.get(2).text()));
             stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(3).text()));
             stageDetail.setKilometers(nullCheckUtils.doubleNullCheck(rowData.get(4).text()));
             stageDetail.setMiles(nullCheckUtils.doubleNullCheck(rowData.get(5).text()));
@@ -54,7 +51,13 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
     }
     
     private String parseRouteLinkUrl(Element link) {
-        return nullCheckUtils.stringNullCheck(link.getElementsByTag("a").attr("onclick").replace("window.top.location = \"", "").replace("\"", "").trim());
+
+        return nullCheckUtils.stringNullCheck(link
+                .getElementsByTag("a")
+                .attr("onclick")
+                .replace("window.top.location = \"", "")
+                .replace("\"", "")
+                .trim());
     }
 
 }

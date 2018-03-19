@@ -13,44 +13,17 @@ The POJOs will be useful for the
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
-## Initial Database Setup
+## Database and PhantomJsDriver Setup
 
-1. Ensure that Postgres Server is running.  
-   I'm using the Postgres Mac App, from [postgresapp.com](http://postgresapp.com).
-1. Open a Terminal where the Postgre utils are added to the Path and execute:  
-   `createdb -h localhost -p 5432 -U postgres cyclingirelandevents`  
-   to create the database.
-1. To verify the database: `psql cyclingirelandevents postgres`  
-   Use `\dt` to view the Database Tables (after the intial run).  
-   Use `select * from road_race_event_database_record;` to see the data.
-
-## PhantomJsDriver Setup
-
-This app uses PhantonJS Driver as part of the screenscraping. The pages are
-loaded, they contain JavaScrip which loads the HTML. PhantomJS will render the
-pages in HTML.
-
-To install it locally, use the following:  
-I'm on a Mac, and it won't let me install `phantomjs` to `/usr/bin`, so I have
-a Tools folder that I use for these development tools. I used the
-`~/.bash_profile` to add it to the `$PATH`.
-
-1. Download [PhantomJS](http://phantomjs.org/download.html) and unzip it into
-   a directory.
-1. Add the location of `phantomjs` to the `$PATH` via the `~/.bash_profile`.  
-   `vim ~/.bash_profile` and add `export PATH=$PATH:~/Tools/phantomjs-2.1.1-macosx/bin`.  
-   `source ~/.bash_profile` to add it to the path.
-1. Test if it is added to your CLI by executing `phantomjs`, to exit `Ctrl+C`.
-
-For remote running on Heroku, use the following:  
-TODO: Add Heroku Build Path Instructions
+Please follow the instruction on the [Setup page](https://github.com/lukegjpotter/cycling-ireland-events-rest-service/wiki/Setup)
+of the *Cycling Ireland Events REST Service* wiki.
 
 ## Build, Run and Test
 
 1. To Build and Run the Application, open a Terminal and use:  
-   `./gradlew build && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`  
+   `./gradlew build bootRun`  
    To skip the tests, if they're failing, use:  
-   `./gradlew build -x test && java -jar build/libs/cycling-ireland-events-html-scraper-*.jar`
+   `./gradlew build -x test`
 1. To Test that the running Application is functional, open a new Terminal tab
    and use:  
    `curl localhost:8080/start`

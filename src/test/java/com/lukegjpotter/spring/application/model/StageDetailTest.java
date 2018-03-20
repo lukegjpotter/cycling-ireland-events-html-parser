@@ -21,7 +21,7 @@ public class StageDetailTest {
     public void setUp() {
         stage = new StageDetail();
         stage.setRaceNumber(1);
-        stage.setStageNumber(1);
+        stage.setStageNumber("1");
         stage.setCategory("A4");
         stage.setKilometers(50.0);
     }

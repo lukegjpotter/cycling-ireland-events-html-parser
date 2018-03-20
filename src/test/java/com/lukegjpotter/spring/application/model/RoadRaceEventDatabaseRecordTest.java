@@ -27,7 +27,7 @@ public class RoadRaceEventDatabaseRecordTest {
 
         stageDetail = new StageDetail();
         stageDetail.setRaceNumber(1);
-        stageDetail.setStageNumber(1);
+        stageDetail.setStageNumber("1");
         stageDetail.setCategory("A1");
         stageDetail.setKilometers(120.0);
     }

@@ -22,9 +22,7 @@ public class StageRouteMappingHolderTest {
         StageRouteMappingHolder holder = new StageRouteMappingHolder();
         holder.putRouteUrlMapping(eventId, routes);
 
-        assertTrue(holder.getRouteUrlMapping(eventId, 1).equals(stage1));
-        assertTrue(holder.getRouteUrlMapping(eventId, 2).equals(stage2));
-
+        assertTrue(holder.getRouteUrlMapping(eventId, "1").equals(stage1));
+        assertTrue(holder.getRouteUrlMapping(eventId, "2").equals(stage2));
     }
-
 }

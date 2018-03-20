@@ -43,7 +43,7 @@ public class StageDetailsParserTest {
         assertTrue("Location", stageDetail.getLocation().equals("TBC, Oldcastle"));
         assertTrue("Date", stageDetail.getDate().equals(expectedDate));
         assertTrue("Race Number", stageDetail.getRaceNumber() == 1);
-        assertTrue("Stage Number", stageDetail.getStageNumber() == 1);
+        assertTrue("Stage Number", stageDetail.getStageNumber().equals("1"));
         assertTrue("Race Type", stageDetail.getRaceType().equals("APlus,A1,A2,A3,A4,Women"));
         assertTrue("Kilometers", stageDetail.getKilometers().equals(100.0));
         assertTrue("Miles", stageDetail.getMiles().equals(62.1));

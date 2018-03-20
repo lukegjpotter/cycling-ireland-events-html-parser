@@ -1,17 +1,12 @@
 package com.lukegjpotter.spring.application.testresources;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.*;
+import com.lukegjpotter.spring.application.util.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lukegjpotter.spring.application.model.Description;
-import com.lukegjpotter.spring.application.model.RaceTypesHolder;
-import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.model.RoadRaceEventDatabaseRecord;
-import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.util.UtilsService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is to reduce the boilerplate needed to create Database Records
@@ -22,7 +17,8 @@ import com.lukegjpotter.spring.application.util.UtilsService;
 @Component
 public class RoadRaceEventToDatabaseRecordTransformServiceTestResources {
 
-    @Autowired UtilsService utils;
+    @Autowired
+    private UtilsService utils;
     
     public List<RoadRaceEvent> getTwoRaceList() {
         List<RoadRaceEvent> twoRaces = getOneDayRaceList();
@@ -93,14 +89,14 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTestResources {
      */
     public List<StageDetail> getOneDayRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 1, 1, "A1", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 2, 1, "A2", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 3, 1, "A3", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 4, 1, "A4", 70.0, 43.5, "Road", "10:00", "12:15", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 5, 1, "U16", 35.7, 22.2, "Road", "10:00", "13:15", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 6, 1, "U14", 18.0, 11.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 7, 1, "U12", 10.7, 6.6, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 8, 1, "Women", 70.0, 43.5, "Road", "09:00", "11:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 1, "1", "A1", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 2, "1", "A2", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 3, "1", "A3", 105.0, 65.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 4, "1", "A4", 70.0, 43.5, "Road", "10:00", "12:15", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 5, "1", "U16", 35.7, 22.2, "Road", "10:00", "13:15", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 6, "1", "U14", 18.0, 11.2, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 7, "1", "U12", 10.7, 6.6, "Road", "10:00", "12:00", "http://www.dungarvancc.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("03/04/2016"), "Soccer Club", 8, "1", "Women", 70.0, 43.5, "Road", "09:00", "11:00", "http://www.dungarvancc.com", ""));
         
         return stageDetails;
     }
@@ -169,10 +165,10 @@ public class RoadRaceEventToDatabaseRecordTransformServiceTestResources {
      */
     public List<StageDetail> getStageRaceStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, 1, "APlus,A1,A2,A3", 120.0, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 2, "APlus,A1,A2,A3", 92.0, 57.2, "Road", "9:30", "11:00", "http://www.suirvalley3day.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, 3, "APlus,A1,A2,A3", 35.0, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, 4, "APlus,A1,A2,A3", 122.0, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, "1", "APlus,A1,A2,A3", 120.0, 74.6, "Road", "9:30", "13:00", "http://www.suirvalley3day.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, "2", "APlus,A1,A2,A3", 92.0, 57.2, "Road", "9:30", "11:00", "http://www.suirvalley3day.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, "3", "APlus,A1,A2,A3", 35.0, 21.7, "Criterium", "18:00", "19:00", "http://www.suirvalley3day.com", ""));
+        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, "4", "APlus,A1,A2,A3", 122.0, 75.8, "Road", "9:30", "11:00", "http://www.suirvalley3day.com", ""));
         
         return stageDetails;
     }

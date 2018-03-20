@@ -1,6 +1,7 @@
 package com.lukegjpotter.spring.application.controller.integration;
 
 import com.lukegjpotter.spring.application.controller.CyclingIrelandEventsHtmlScraperController;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
+@Ignore
 public class CyclingIrelandEventsHtmlScraperControllerIntegrationTest {
 
     @Autowired

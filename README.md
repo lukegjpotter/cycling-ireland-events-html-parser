@@ -43,5 +43,4 @@ For the current status, please check the [Project Tab](https://github.com/lukegj
 Swagger Documentation is available via the Heroku app.  
 For the [CyclingIrelandEventsHtmlScraperController](https://cyclingirelandeventscraper.herokuapp.com/swagger-ui.html).
 
-The Postman Collection to make these calls is available: [BikeRaceIreland Scraper
-](https://documenter.getpostman.com/view/3947605/RVnZgxhn).
+The Postman Collection to make these calls is available: [BikeRaceIreland Scraper](https://documenter.getpostman.com/view/3947605/RVnZgxhn).

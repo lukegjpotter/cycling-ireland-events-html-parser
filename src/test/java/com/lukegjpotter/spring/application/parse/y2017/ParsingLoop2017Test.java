@@ -1,43 +1,52 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.testresources.ParsingLoop2017TestResources;
+import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ParsingLoop2017Test {
 
-    @Autowired
+    @InjectMocks
     private ParsingLoop2017 parsingLoop;
     //@Mock BasicDetailsParser basicDetailParser;
-    //@Mock PopupDetailsParser popupDetailsParser;
-    //@Mock StageDetailsParser stageDetailsParser;
-
-    @Value("${allcievents2017file.location}")
-    private String localFileLocation;
+    @Mock
+    private PopupDetailsParser popupDetailsParser;
+    @Mock
+    private StageDetailsParser stageDetailsParser;
+    @Autowired
+    private ParsingLoop2017TestResources tr;
 
     @Before public void setup() {
-        //MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.initMocks(this);
+        when(popupDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockPopupDetails());
+        when(stageDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockStageDetails());
     }
 
-    @Ignore // Ignoring until I can find the file 20170225-Popup-DWCCOpenRace.html
+    //@Ignore // Ignoring until I can find the file 20170225-Popup-DWCCOpenRace.html
     @Test public void testStartParseLoopLocal() {
 
         // TODO Add some proper mocking and testing to this Test.
-        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop(localFileLocation);
+        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("src/test/resources/201808-RoadEvents.html");
 
-        assertTrue(roadRaces.get(2).getEventName().equals("Dublin Wheelers Open Races"));
+        assertTrue(roadRaces.get(1).getEventName().equals("Connacht A4 2 Day"));
     }
 
     @Ignore // Ignoring until app is able to parse from remote.
@@ -47,7 +56,7 @@ public class ParsingLoop2017Test {
         List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("");
 
         // Problem with the HTML being returned in the remote, it doesn't have the "cat163472" in the HTML.
-        assertTrue(roadRaces.get(roadRaces.size() - 1).getEventName().equals("Carrickmacross Cycles New Year's Eve TT"));
+        assertTrue(roadRaces.get(roadRaces.size() - 1).getEventName().equals("Festive Time Trial"));
     }
 
 }

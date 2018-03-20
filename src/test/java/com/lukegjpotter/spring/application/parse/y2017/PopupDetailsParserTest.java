@@ -33,7 +33,7 @@ public class PopupDetailsParserTest {
 
     @Test public void testParse() {
 
-        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20170806-Popup-OldcastleGP.html"));
+        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20180805-Popup-OldcastleGP.html"));
 
         Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
 

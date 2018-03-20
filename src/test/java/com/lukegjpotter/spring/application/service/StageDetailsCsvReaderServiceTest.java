@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.FileNotFoundException;
-
 import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
@@ -21,9 +19,12 @@ public class StageDetailsCsvReaderServiceTest {
     @Autowired
     private StageDetailsCsvReaderServiceTestResources tr;
 
-    @Test(expected = FileNotFoundException.class) public void testReadStageRouteFromCsvFile_NoFile() {
+    @Test public void testReadStageRouteFromCsvFile_NoFile() {
         csvReader.setCsvFileLocation("fail");
-        csvReader.readStageRouteFromCsvFile();
+        StageRouteMappingHolder actual = csvReader.readStageRouteFromCsvFile();
+        StageRouteMappingHolder expected = new StageRouteMappingHolder();
+
+        assertTrue(expected.equals(actual));
     }
 
     @Test public void testReadStageRouteFromCsvFile_2017FormatSingleStage() {

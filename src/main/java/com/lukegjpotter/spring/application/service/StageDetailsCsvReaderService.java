@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
+// TODO: This should be a Builder Pattern, load the file location in the builder and then return the built service ready to act.
 public class StageDetailsCsvReaderService {
 
     @Autowired UtilsService utils;
@@ -60,7 +61,7 @@ public class StageDetailsCsvReaderService {
      *     "2:http://www.strava.com/routes/456|1:http://www.strava.com/routes/123" into ["http://www.strava.com/routes/123", "http://www.strava.com/routes/456"]
      *     etc.
      *
-     * @param pipeSeparatedStageNumberAndRouteUrlString
+     * @param pipeSeparatedStageNumberAndRouteUrlString String looking like "2:http://www.strava.com/routes/456|1:http://www.strava.com/routes/123"
      * @return string[]
      */
     private List<String> getRouteUrlLinksList(String pipeSeparatedStageNumberAndRouteUrlString) {

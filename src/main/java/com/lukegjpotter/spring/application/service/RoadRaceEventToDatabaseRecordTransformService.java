@@ -18,7 +18,8 @@ import java.util.List;
  * 
  * @author lukegjpotter
  */
-@Service public class RoadRaceEventToDatabaseRecordTransformService {
+@Service
+public class RoadRaceEventToDatabaseRecordTransformService {
 
     @Autowired
     private StageDetailsRaceTypesService raceTypeService;
@@ -28,26 +29,26 @@ import java.util.List;
     public List<RoadRaceEventDatabaseRecord> transform(List<RoadRaceEvent> roadRaces) {
         
         List<RoadRaceEventDatabaseRecord> databaseRecords = new ArrayList<>();
-        
-        roadRaces.forEach(roadRace -> {
+
+        roadRaces.forEach(roadRaceEvent -> {
             RoadRaceEventDatabaseRecord databaseRecord = new RoadRaceEventDatabaseRecord();
-            
-            databaseRecord.setId(roadRace.getId());
-            databaseRecord.setBookingsCloseDate(roadRace.getBookingsCloseDate());
-            databaseRecord.setBookingsOpenDate(roadRace.getBookingsOpenDate());
-            databaseRecord.setEventName(roadRace.getEventName());
-            databaseRecord.setLocation(roadRace.getLocation());
-            databaseRecord.setOrganiser(roadRace.getOrganiser());
-            databaseRecord.setOrganiserEmail(roadRace.getOrganiserEmail());
-            databaseRecord.setOrganiserPhoneNumber(roadRace.getOrganiserPhoneNumber());
-            databaseRecord.setPromotingClub(roadRace.getPromotingClub());
-            databaseRecord.setProvince(roadRace.getProvince());
-            databaseRecord.setRegistrationLink(roadRace.getRegistrationLink());
-            databaseRecord.setStageDetails(roadRace.getStageDetails());
-            databaseRecord.setStartDate(roadRace.getStartDate());
-            databaseRecord.setMonthNumber(utils.extractMonthNumberFromDate(roadRace.getStartDate()));
-            
-            RaceTypesHolder raceTypes = raceTypeService.determineRaceTypes(roadRace.getStageDetails());
+
+            databaseRecord.setId(roadRaceEvent.getId());
+            databaseRecord.setBookingsCloseDate(roadRaceEvent.getBookingsCloseDate());
+            databaseRecord.setBookingsOpenDate(roadRaceEvent.getBookingsOpenDate());
+            databaseRecord.setEventName(roadRaceEvent.getEventName());
+            databaseRecord.setLocation(roadRaceEvent.getLocation());
+            databaseRecord.setOrganiser(roadRaceEvent.getOrganiser());
+            databaseRecord.setOrganiserEmail(roadRaceEvent.getOrganiserEmail());
+            databaseRecord.setOrganiserPhoneNumber(roadRaceEvent.getOrganiserPhoneNumber());
+            databaseRecord.setPromotingClub(roadRaceEvent.getPromotingClub());
+            databaseRecord.setProvince(roadRaceEvent.getProvince());
+            databaseRecord.setRegistrationLink(roadRaceEvent.getRegistrationLink());
+            databaseRecord.setStageDetails(roadRaceEvent.getStageDetails());
+            databaseRecord.setStartDate(roadRaceEvent.getStartDate());
+            databaseRecord.setMonthNumber(utils.extractMonthNumberFromDate(roadRaceEvent.getStartDate()));
+
+            RaceTypesHolder raceTypes = raceTypeService.determineRaceTypes(roadRaceEvent.getStageDetails());
             databaseRecord.addRaceTypes(raceTypes);
             
             databaseRecords.add(databaseRecord);
@@ -55,5 +56,4 @@ import java.util.List;
         
         return databaseRecords;
     }
-
 }

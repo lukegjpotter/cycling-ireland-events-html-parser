@@ -25,9 +25,9 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
      * @return {@code RoadRaceEvent} with the ID and EventName filled out.
      */
     @Override public RoadRaceEvent parse(Element htmlElementToParse) {
-        
-        long eventId = stripOnClick(htmlElementToParse.attr("onclick"));
-        String eventName = stripTime(htmlElementToParse.text());
+
+        long eventId = extractEventId(htmlElementToParse.attr("onclick"));
+        String eventName = extractEventName(htmlElementToParse.text().trim());
         
         RoadRaceEvent roadRaceEvent = new RoadRaceEvent();
         roadRaceEvent.setId(eventId);
@@ -45,24 +45,24 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
      * @param eventIdAndOnClick String with Event ID to parse
      * @return The Event ID in long.
      */
-    private long stripOnClick(String eventIdAndOnClick) {
+    private long extractEventId(String eventIdAndOnClick) {
         return Long.parseLong(eventIdAndOnClick.replace("epopup(\'", "").replace("\'); return false;", "").trim());
     }
     
     /**
      * Extracts the Event's Name from the Text of the HTML Element.
-     * Example: Extracts "Phoenix GP" from {@code " Phoenix GP 9:30 am "}.
+     * Example: Extracts "Phoenix GP" from {@code " Phoenix GP 9:30am "}.
      *
      * @param eventNameAndTime String to Parse
      * @return Event Name
      */
-    private String stripTime(String eventNameAndTime) {
-        
-        // -8 because it will at least be " x:yz tm" and text the next character.
-        int startIndexOfTime = eventNameAndTime.length() - 8;
-        
-        if (Character.isDigit(eventNameAndTime.charAt(eventNameAndTime.length() - 8))) {
-            startIndexOfTime = eventNameAndTime.length() - 9;
+    private String extractEventName(String eventNameAndTime) {
+
+        // -8 because it will at least be " x:yztm" and text the next character.
+        int startIndexOfTime = eventNameAndTime.length() - 7;
+
+        if (Character.isDigit(eventNameAndTime.charAt(eventNameAndTime.length() - 7))) {
+            startIndexOfTime = eventNameAndTime.length() - 8;
         }
 
         return eventNameAndTime.substring(0, startIndexOfTime).trim();

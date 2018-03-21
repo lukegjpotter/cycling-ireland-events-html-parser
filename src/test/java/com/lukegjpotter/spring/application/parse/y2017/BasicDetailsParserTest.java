@@ -1,9 +1,7 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.junit.Before;
+import com.lukegjpotter.spring.application.testresources.BasicDetailsParserTestResources;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +16,34 @@ public class BasicDetailsParserTest {
 
     @Autowired
     private BasicDetailsParser basicDetailsParser;
-
-    @Before
-    public void setUp() {
-    }
+    @Autowired
+    private BasicDetailsParserTestResources tr;
 
     @Test public void testParseOneDigitHourTime() {
 
-        Element anchor = Jsoup.parseBodyFragment("<a title=\"Click for event details\" class=\"cat163473\" href=\"#\" onclick=\"epopup('107619903'); return false;\"> Phoenix GP 9:30 am </a>").body().getElementsByClass("cat163473").first();
-        RoadRaceEvent roadRaceEvent = basicDetailsParser.parse(anchor);
+        RoadRaceEvent roadRaceEvent = basicDetailsParser.parse(tr.anchorElementWithOneDigitTime());
 
-        assertTrue(roadRaceEvent.getId() == 107619903);
-        assertTrue(roadRaceEvent.getEventName().equals("Phoenix GP"));
+        long expectedId = 120368236;
+        String expectedName = "South of Ireland, International Youth 3 Day";
+
+        String idFailMessage = String.format("ID: Expected: %d, Actual: %d", expectedId, roadRaceEvent.getId());
+        String nameFailMessage = String.format("Name: Expected: %s, Actual: %s", expectedName, roadRaceEvent.getEventName());
+
+        assertTrue(idFailMessage, roadRaceEvent.getId() == expectedId);
+        assertTrue(nameFailMessage, roadRaceEvent.getEventName().equals(expectedName));
     }
 
     @Test public void testParseTwoDigitHourTime() {
 
-        Element anchor = Jsoup.parseBodyFragment("<a title=\"Click for event details\" class=\"cat163473\" href=\"#\" onclick=\"epopup('107619903'); return false;\"> Phoenix GP 10:30 am </a>").body().getElementsByClass("cat163473").first();
-        RoadRaceEvent roadRaceEvent = basicDetailsParser.parse(anchor);
+        RoadRaceEvent roadRaceEvent = basicDetailsParser.parse(tr.anchorElementWithTwoDigitTime());
 
-        assertTrue(roadRaceEvent.getId() == 107619903);
-        assertTrue(roadRaceEvent.getEventName().equals("Phoenix GP"));
+        long expectedId = 120368130;
+        String expectedName = "Errigal International Youth Tour 3 Day";
+
+        String idFailMessage = String.format("ID: Expected: %d, Actual: %d", expectedId, roadRaceEvent.getId());
+        String nameFailMessage = String.format("Name: Expected: %s, Actual: %s", expectedName, roadRaceEvent.getEventName());
+
+        assertTrue(idFailMessage, roadRaceEvent.getId() == expectedId);
+        assertTrue(nameFailMessage, roadRaceEvent.getEventName().equals(expectedName));
     }
 }

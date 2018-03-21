@@ -26,7 +26,8 @@ public class ParsingLoop2017Test {
 
     @InjectMocks
     private ParsingLoop2017 parsingLoop;
-    //@Mock BasicDetailsParser basicDetailParser;
+    @Mock
+    private BasicDetailsParser basicDetailParser;
     @Mock
     private PopupDetailsParser popupDetailsParser;
     @Mock
@@ -36,23 +37,37 @@ public class ParsingLoop2017Test {
 
     @Before public void setup() {
         MockitoAnnotations.initMocks(this);
+        when(basicDetailParser.parse(any(Element.class))).thenReturn(tr.getMockBasicDetails());
         when(popupDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockPopupDetails());
         when(stageDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockStageDetails());
     }
 
-    //@Ignore // Ignoring until I can find the file 20170225-Popup-DWCCOpenRace.html
+    /**
+     * The aim of this test is to ensure that the Loop through the HTML works.
+     * This has nothing to do with the actual data that is returned, as this is dealt with in the individual Parser Tests.
+     */
     @Test public void testStartParseLoopLocal() {
 
-        // TODO Add some proper mocking and testing to this Test.
-        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("src/test/resources/201808-RoadEvents.html");
+        parsingLoop.setUrlPopupWithPlaceholder(tr.mockPopupUrl());
+        parsingLoop.setLocalPopupFile(tr.localPopupFile());
+        parsingLoop.setLocalStagesFile(tr.localStagesFile());
 
-        assertTrue(roadRaces.get(1).getEventName().equals("Connacht A4 2 Day"));
+        List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop(tr.localBasicFile());
+
+        int expectedSize = tr.localBasicFileExpectedSize();
+        int actualSize = roadRaces.size();
+        String failMessage = String.format("Size: Actual: %d, Expected: %d.", actualSize, expectedSize);
+
+        assertTrue(failMessage, actualSize == expectedSize);
     }
 
+    /**
+     * The aim of this test is to ensure that the Loop through the Remote HTML works.
+     * This has nothing to do with the actual data that is returned, as this is dealt with in the individual Parser Tests.
+     */
     @Ignore // Ignoring until app is able to parse from remote.
     @Test public void testStartParseLoopRemote() {
 
-        // TODO Add some proper mocking and testing to this Test.
         List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("");
 
         // Problem with the HTML being returned in the remote, it doesn't have the "cat163472" in the HTML.

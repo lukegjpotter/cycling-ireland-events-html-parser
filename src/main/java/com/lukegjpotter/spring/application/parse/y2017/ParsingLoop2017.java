@@ -38,6 +38,7 @@ public class ParsingLoop2017 implements ParsingLoop {
     private StageDetailsParser stageDetailsParser;
     
     @Value("${url.popup}") private String urlPopupWithPlaceholder;
+    private String localPopupFile, localStagesFile;
 
     private String fileLocation;
     private boolean isRemote;
@@ -60,7 +61,7 @@ public class ParsingLoop2017 implements ParsingLoop {
                 RoadRaceEvent roadRace = basicDetailsParser.parse(event);
 
                 // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
-                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(urlPopupWithPlaceholder, roadRace.getId()));
+                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(getUrlPopupWithPlaceholder(), roadRace.getId()));
                 Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
                 PopupDetails popupDetails = popupDetailsParser.parse(popupElement);
                 roadRace.addPopupDetails(popupDetails);
@@ -82,9 +83,9 @@ public class ParsingLoop2017 implements ParsingLoop {
 
         try {
             if (isRemote) {
-                return Jsoup.connect(String.format(urlPopupWithPlaceholder, eventId)).get();
+                return Jsoup.connect(String.format(getUrlPopupWithPlaceholder(), eventId)).get();
             }
-            return Jsoup.parse(new File("src/test/resources/20170225-Popup-DWCCOpenRace.html"), Constants.FILE_FORMAT);
+            return Jsoup.parse(new File(getLocalPopupFile()), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;
@@ -96,7 +97,7 @@ public class ParsingLoop2017 implements ParsingLoop {
             if (isRemote) {
                 return Jsoup.connect(moreInfoUrl.toString()).get();
             }
-            return Jsoup.parse(new File("src/test/resources/20170225-Stages-DWCCOpenRace.html"), Constants.FILE_FORMAT);
+            return Jsoup.parse(new File(getLocalStagesFile()), Constants.FILE_FORMAT);
         } catch (IOException e) { e.printStackTrace(); }
         
         return null;
@@ -139,5 +140,30 @@ public class ParsingLoop2017 implements ParsingLoop {
         }
 
         return documents;
+    }
+
+    // ----- Getters and Setters Needed For The Unit Tests ----- //
+    private String getUrlPopupWithPlaceholder() {
+        return urlPopupWithPlaceholder;
+    }
+
+    public void setUrlPopupWithPlaceholder(String url) {
+        this.urlPopupWithPlaceholder = url;
+    }
+
+    private String getLocalPopupFile() {
+        return localPopupFile;
+    }
+
+    public void setLocalPopupFile(String path) {
+        this.localPopupFile = path;
+    }
+
+    private String getLocalStagesFile() {
+        return localStagesFile;
+    }
+
+    public void setLocalStagesFile(String localStagesFile) {
+        this.localStagesFile = localStagesFile;
     }
 }

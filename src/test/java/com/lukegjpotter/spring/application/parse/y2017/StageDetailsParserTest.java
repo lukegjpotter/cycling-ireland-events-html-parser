@@ -1,10 +1,7 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
 import com.lukegjpotter.spring.application.model.StageDetail;
-import com.lukegjpotter.spring.application.util.Constants;
-import com.lukegjpotter.spring.application.util.UtilsService;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
+import com.lukegjpotter.spring.application.testresources.StageDetailsParserTestResources;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
@@ -27,7 +21,7 @@ public class StageDetailsParserTest {
     @Autowired
     private StageDetailsParser stageDetailsParser;
     @Autowired
-    private UtilsService utils;
+    private StageDetailsParserTestResources tr;
 
     @Before
     public void setUp() {
@@ -35,39 +29,49 @@ public class StageDetailsParserTest {
 
     @Test public void testParse() {
 
-        List<StageDetail> stageDetails = stageDetailsParser.parse(getJsoupElementFromPopup());
+        List<StageDetail> actualStageDetails = stageDetailsParser.parse(tr.getJsoupElementFromPopup());
 
-        Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
+        StageDetail actual = actualStageDetails.get(0);
+        StageDetail expected = tr.getExpectedOldcastleStageDetail();
 
-        StageDetail stageDetail = stageDetails.get(0);
-        assertTrue("Location", stageDetail.getLocation().equals("TBC, Oldcastle"));
-        assertTrue("Date", stageDetail.getDate().equals(expectedDate));
-        assertTrue("Race Number", stageDetail.getRaceNumber() == 1);
-        assertTrue("Stage Number", stageDetail.getStageNumber().equals("1"));
-        assertTrue("Race Type", stageDetail.getRaceType().equals("APlus,A1,A2,A3,A4,Women"));
-        assertTrue("Kilometers", stageDetail.getKilometers().equals(100.0));
-        assertTrue("Miles", stageDetail.getMiles().equals(62.1));
-        assertTrue("Category", stageDetail.getCategory().equals("Road"));
-        assertTrue("Sign on Time", stageDetail.getSignOnTime().equals("09:00"));
-        assertTrue("Start Time", stageDetail.getStartTime().equals("12:00"));
-        assertTrue("Route URL", stageDetail.getRouteLinkUrl().equals(""));
-        assertTrue("Additional Info", stageDetail.getAdditionalInfo().equals(getOldcastleAdditionalInfo()));
+        String failDate = String.format("Date: Actual: %s, Expected: %s", actual.getDate(), expected.getDate());
+        String failLocation = String.format("Location: Actual: %s, Expected: %s", actual.getVenue(), expected.getVenue());
+        String failRaceNumber = String.format("RaceNumber: Actual: %s, Expected: %s", actual.getRaceNumber(), expected.getRaceNumber());
+        String failStageNumber = String.format("StageNumber: Actual: %s, Expected: %s", actual.getStageNumber(), expected.getStageNumber());
+        String failRaceType = String.format("RaceType: Actual: %s, Expected: %s", actual.getRaceType(), expected.getRaceType());
+        String failKilometers = String.format("Kilometers: Actual: %s, Expected: %s", actual.getKilometers(), expected.getKilometers());
+        String failMiles = String.format("Miles: Actual: %s, Expected: %s", actual.getMiles(), expected.getMiles());
+        String failCategory = String.format("Category: Actual: %s, Expected: %s", actual.getCategory(), expected.getCategory());
+        String failSignOnTime = String.format("SignOnTime: Actual: %s, Expected: %s", actual.getSignOnTime(), expected.getSignOnTime());
+        String failStartTime = String.format("StartTime: Actual: %s, Expected: %s", actual.getStartTime(), expected.getStartTime());
+        String failRouteLinkUrl = String.format("RouteLinkUrl: Actual: %s, Expected: %s", actual.getRouteLinkUrl(), expected.getRouteLinkUrl());
+        String failStageName = String.format("StageName: Actual: %s, Expected: %s", actual.getStageName(), expected.getStageName());
+
+        assertTrue(failDate, actual.getDate().equals(expected.getDate()));
+        assertTrue(failStartTime, actual.getStartTime().equals(expected.getStartTime()));
+        assertTrue(failStageName, actual.getStageName().equals(expected.getStageName()));
+        assertTrue(failKilometers, actual.getKilometers().equals(expected.getKilometers()));
+        assertTrue(failCategory, actual.getCategory().equals(expected.getCategory()));
+        assertTrue(failRaceType, actual.getRaceType().equals(expected.getRaceType()));
+        assertTrue(failLocation, actual.getVenue().equals(expected.getVenue()));
+
+//        assertTrue(failRaceNumber,actual.getRaceNumber() == 1);
+//        assertTrue(failStageNumber, actual.getStageNumber().equals("1"));
+//        assertTrue(failMiles, actual.getMiles().equals(62.1));
+//        assertTrue(failSignOnTime, actual.getSignOnTime().equals("09:00"));
+//        assertTrue(failRouteLinkUrl, actual.getRouteLinkUrl().equals(""));
+    }
+
+    @Test public void testParseAddress() {
+        String actual = stageDetailsParser.parseAddress(tr.getJsoupElementFromPopup());
+        String expected = tr.getExpectedOldcastleAddress();
+
+        String failMessage = String.format("Actual: %s, Expected: %s", actual, expected);
+
+        assertTrue(failMessage, actual.equals(expected));
     }
 
     @Ignore @Test public void testParseWithErrorPage() {
         // TODO: Use the file "StagesError.html" to ensure that the content loaded is of the correct format.
-    }
-
-    private Element getJsoupElementFromPopup() {
-
-        try {
-            return Jsoup.parse(new File("src/test/resources/20180805-Stages-OldcastleGP.html"), Constants.FILE_FORMAT);
-        } catch (IOException e) { e.printStackTrace(); }
-
-        return null;
-    }
-
-    private String getOldcastleAdditionalInfo() {
-        return "Ideally this will be a 100-120km race for all cats. It would be great to have on this date as the Mountnugent GP is on the previous night in same area and riders will stay locally and race the next day.";
     }
 }

@@ -7,7 +7,6 @@ import com.lukegjpotter.spring.application.service.UrlMonthService;
 import com.lukegjpotter.spring.application.util.Constants;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -21,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -49,16 +49,12 @@ public class ParsingLoop2017 implements ParsingLoop {
         this.fileLocation = fileLocation;
         isRemote = fileLocation.isEmpty();
 
-        List<Element> documents = populateListOfElementsWithHtmlForRemainingMonthsInYear();
-        
-        for (Element document : documents) {
-            
-            Elements allAnchors = document.getElementsByClass("cat163473");
-            
-            for (Element event : allAnchors) {
+        populateListOfElementsWithHtmlForRemainingMonthsInYear().forEach((Element calendarMonthElement) -> {
+
+            calendarMonthElement.getElementsByClass("cat163473").forEach((Element raceEventElement) -> {
                 
                 // Get Basic Details; ID and Name.
-                RoadRaceEvent roadRace = basicDetailsParser.parse(event);
+                RoadRaceEvent roadRace = basicDetailsParser.parse(raceEventElement);
 
                 // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
                 log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(getUrlPopupWithPlaceholder(), roadRace.getId()));
@@ -70,11 +66,11 @@ public class ParsingLoop2017 implements ParsingLoop {
                 log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
                 Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
                 roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
-                roadRace.setLocation(roadRace.getStageDetails().get(0).getLocation());
+                roadRace.setLocation(stageDetailsParser.parseAddress(stageDetailsElement));
                 
                 roadRaceEvents.add(roadRace);
-            }
-        }
+            });
+        });
 
         return roadRaceEvents;
     }
@@ -104,20 +100,16 @@ public class ParsingLoop2017 implements ParsingLoop {
     }
 
     private List<Element> populateListOfElementsWithHtmlForRemainingMonthsInYear() {
-        
-        List<Element> documents = new ArrayList<>();
-        
-        if (isRemote) {
-            // Populate the list of Documents with Remote URLs.
-            List<String> urls = urlMonthService.compileUrlsForRemainingYearMonths();
-            
+
+        if (isRemote) { // Populate the list of Documents with Remote URLs.
+            List<Element> documents = new ArrayList<>();
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setJavascriptEnabled(true);
             WebDriver driver = new PhantomJSDriver(caps);
-            
-            for (String url : urls) {
-                
-                log.info("Url: {}", url);
+
+            urlMonthService.compileUrlsForRemainingYearMonths().forEach((String url) -> {
+
+                log.info("Calendar Month Url: {}", url);
                 
                 // Load the URL with PhantomJs, as the initial page loads JavaScipt, PhantomJS will load the HTML.
                 driver.get(url);
@@ -126,20 +118,18 @@ public class ParsingLoop2017 implements ParsingLoop {
                 // Use Jsoup to parse the HTML.
                 Element remoteDocument = Jsoup.parseBodyFragment(sourceHtml);
                 documents.add(remoteDocument);
-            }
+            });
             
             driver.close();
-        } else {
-            // Populate the list of Documents with the file path.
-            Element localDocument;
-            
+
+            return documents;
+        } else { // Populate the list of Documents with the file path.
             try {
-                localDocument = Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT);
-                documents.add(localDocument);
+                return Collections.singletonList(Jsoup.parse(new File(fileLocation), Constants.FILE_FORMAT));
             } catch (IOException e) { e.printStackTrace(); }
         }
 
-        return documents;
+        return Collections.emptyList();
     }
 
     // ----- Getters and Setters Needed For The Unit Tests ----- //

@@ -44,8 +44,6 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         popupDetails.setOrganiserPhoneNumber(extractOrganiserPhoneNumber(popupElement));
         popupDetails.setMoreInfoUrl(extractMoreInfoURL(popupElement));
 
-        log.info("Stages URL: {}", popupDetails.getMoreInfoUrl().toString());
-        
         return popupDetails;
     }
 

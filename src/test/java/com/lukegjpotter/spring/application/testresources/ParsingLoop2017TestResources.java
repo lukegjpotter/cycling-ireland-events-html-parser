@@ -39,13 +39,13 @@ public class ParsingLoop2017TestResources {
     public List<StageDetail> getMockStageDetails() {
         StageDetail stageDetail = new StageDetail();
 
-        stageDetail.setAdditionalInfo("blah");
+        stageDetail.setStageName("blah");
         stageDetail.setCategory("A4");
         stageDetail.setDate(new Date());
         stageDetail.setId(123L);
         stageDetail.setKilometers(16D);
         stageDetail.setMiles(10D);
-        stageDetail.setLocation("Parish Pump");
+        stageDetail.setVenue("Parish Pump");
         stageDetail.setRaceNumber(1);
         stageDetail.setRaceType("Time Trial");
         stageDetail.setRouteLinkUrl("http://strava.com/route/123");

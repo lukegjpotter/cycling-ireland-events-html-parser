@@ -1,13 +1,13 @@
 package com.lukegjpotter.spring.application.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UtilsService {
@@ -20,6 +20,10 @@ public class UtilsService {
     
     public Date convertMMMDDYYYYToDate(String date) {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_MMM_DD_YYYY);
+    }
+
+    public Date convertDDMMMYYYYToDate(String date) {
+        return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MMM_YYYY);
     }
 
     public Date convertDDMMMYYToDate(String date) {
@@ -51,14 +55,18 @@ public class UtilsService {
     public String formatLocation(String location) {
         
         location = location.trim();
-        if (nullCheckUtilsService.stringNullCheck(location) == null) return null;
+
+        if (nullCheckUtilsService.stringNullCheck(location).isEmpty()) return "";
+
         int i = 0;
         
         if (!location.isEmpty() && ((Character)location.charAt(i)).equals(',')) {
             
             try {
                 for (; !Character.isLetter(location.charAt(i)); ++i) ;
-            } catch (StringIndexOutOfBoundsException e) {}
+            } catch (StringIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
                 
             return location.substring(i);
         }

@@ -7,6 +7,7 @@ public class Constants {
     public static final String FILE_FORMAT = "UTF-8";
     public static final String DATE_FORMAT_MMMM_DD_YYYY = "MMMM dd, yyyy";
     public static final String DATE_FORMAT_MMM_DD_YYYY = "MMM dd, yyyy";
+    public static final String DATE_FORMAT_DD_MMM_YYYY = "dd MMM yyyy";
     public static final String DATE_FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
     public static final String DATE_FORMAT_DD_MMM_YY = "dd-MMM-yy";
     public static final List<String> YOUTH_RACE_TYPES = Arrays.asList("u16", "u14", "u12", "u10");

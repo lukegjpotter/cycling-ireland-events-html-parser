@@ -6,7 +6,13 @@ import org.springframework.stereotype.Service;
 public class NullCheckUtilsService {
 
     public String timeNullCheck(String time) {
-        return stringNullCheck(time.trim().replace(".", ":"));
+        time = time.trim().replace(".", ":");
+
+        // If the format is 13:0, add an additional 0 to the time.
+        if (time.length() == 4) {
+            time += "0";
+        }
+        return stringNullCheck(time);
     }
     
     public String stringNullCheck(String string) {
@@ -20,7 +26,7 @@ public class NullCheckUtilsService {
         try {
             return Double.parseDouble(string.trim());
         } catch (NumberFormatException e) {
-            return new Double(0);
+            return (double) 0;
         }
     }
     
@@ -28,7 +34,7 @@ public class NullCheckUtilsService {
         try {
             return Integer.parseInt(string.trim());
         } catch (NumberFormatException e) {
-            return new Integer(0);
+            return 0;
         }
     }
 }

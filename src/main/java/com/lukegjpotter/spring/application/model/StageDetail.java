@@ -13,15 +13,15 @@ public class StageDetail {
     private long id;
     private Date date;
     private Integer raceNumber;
-    private String stageNumber, location, raceType, category, signOnTime, startTime, routeLinkUrl, additionalInfo;
+    private String stageNumber, venue, raceType, category, signOnTime, startTime, routeLinkUrl, stageName;
     private Double kilometers, miles;
 
-    public StageDetail(Date date, String location, Integer raceNumber, String stageNumber, String raceType,
+    public StageDetail(Date date, String venue, Integer raceNumber, String stageNumber, String raceType,
                        Double kilometers, Double miles, String category, String signOnTime, String startTime,
-                       String routeLinkUrl, String additionalInfo) {
+                       String routeLinkUrl, String stageName) {
 
         setDate(date);
-        setLocation(location);
+        setVenue(venue);
         setRaceNumber(raceNumber);
         setStageNumber(stageNumber);
         setRaceType(raceType);
@@ -31,12 +31,12 @@ public class StageDetail {
         setSignOnTime(signOnTime);
         setStartTime(startTime);
         setRouteLinkUrl(routeLinkUrl);
-        setAdditionalInfo(additionalInfo);
+        setStageName(stageName);
     }
 
     public StageDetail() {
         setDate(new Date(0L));
-        setLocation("");
+        setVenue("");
         setRaceNumber(0);
         setStageNumber("0");
         setRaceType("");
@@ -46,7 +46,7 @@ public class StageDetail {
         setSignOnTime("");
         setStartTime("");
         setRouteLinkUrl("");
-        setAdditionalInfo("");
+        setStageName("");
     }
     
     public long getId() {
@@ -65,12 +65,12 @@ public class StageDetail {
         this.date = date;
     }
 
-    public String getLocation() {
-        return location;
+    public String getVenue() {
+        return venue;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public Integer getRaceNumber() {
@@ -145,12 +145,12 @@ public class StageDetail {
         this.miles = miles;
     }
 
-    public String getAdditionalInfo() {
-        return additionalInfo;
+    public String getStageName() {
+        return stageName;
     }
 
-    public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
     }
 
     @Override public boolean equals(Object obj) {
@@ -159,7 +159,7 @@ public class StageDetail {
             StageDetail other = (StageDetail) obj;
 
             return this.getDate().equals(other.getDate())
-                    && this.getLocation().equals(other.getLocation())
+                    && this.getVenue().equals(other.getVenue())
                     && this.getRaceNumber().equals(other.getRaceNumber())
                     && this.getStageNumber().equals(other.getStageNumber())
                     && this.getRaceType().equals(other.getRaceType())
@@ -169,7 +169,7 @@ public class StageDetail {
                     && this.getRouteLinkUrl().equals(other.getRouteLinkUrl())
                     && this.getKilometers().equals(other.getKilometers())
                     && this.getMiles().equals(other.getMiles())
-                    && this.additionalInfo.equals(other.getAdditionalInfo());
+                    && this.stageName.equals(other.getStageName());
         }
 
         return false;

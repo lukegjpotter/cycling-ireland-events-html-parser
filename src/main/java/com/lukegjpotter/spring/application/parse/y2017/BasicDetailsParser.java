@@ -3,8 +3,6 @@ package com.lukegjpotter.spring.application.parse.y2017;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.parse.Parsable;
 import org.jsoup.nodes.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     /**
      * This method will extract the ID and Name of the Race from the HMTL Element.
      * The Input Element will be as follows:
@@ -26,15 +22,11 @@ class BasicDetailsParser implements Parsable<Element, RoadRaceEvent> {
      */
     @Override public RoadRaceEvent parse(Element htmlElementToParse) {
 
-        long eventId = extractEventId(htmlElementToParse.attr("onclick"));
-        String eventName = extractEventName(htmlElementToParse.text().trim());
-        
         RoadRaceEvent roadRaceEvent = new RoadRaceEvent();
-        roadRaceEvent.setId(eventId);
-        roadRaceEvent.setEventName(eventName);
 
-        log.info("Parsing Road Race: {}, Popup ID: {}", eventName, eventId);
-        
+        roadRaceEvent.setId(extractEventId(htmlElementToParse.attr("onclick")));
+        roadRaceEvent.setEventName(extractEventName(htmlElementToParse.text().trim()));
+
         return roadRaceEvent;
     }
 

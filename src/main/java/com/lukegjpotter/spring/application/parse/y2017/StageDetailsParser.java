@@ -20,34 +20,35 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
 
     @Override public List<StageDetail> parse(Element htmlToParse) {
         
-        String location = htmlToParse.getElementsByAttributeValueContaining("onclick", "showEventMapByAddress").first().text().trim();
-        String additionalInfo = htmlToParse.getElementsByTag("td").last().text().replace("Additional Info", "").trim();
-        Elements tableRows = htmlToParse.getElementsByClass("trCourseItem");
         List<StageDetail> stageDetails = new ArrayList<>();
-        
-         // The first two rows of the table are not stages, starts from 2.
-        for (int i = 2; i < tableRows.size(); i++) {
-            
-            Elements rowData = tableRows.get(i).getElementsByTag("td");
+
+        htmlToParse.getElementsByClass("az-lite-grid-table-row").forEach((Element tableRow) -> {
+
+            Elements rowData = tableRow.getElementsByTag("td");
             
             StageDetail stageDetail = new StageDetail();
-            stageDetail.setLocation(location);
-            stageDetail.setAdditionalInfo(additionalInfo);
-            stageDetail.setDate(utils.convertDDMMYYYYToDate(rowData.get(0).text()));
-            stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
-            stageDetail.setStageNumber(nullCheckUtils.stringNullCheck(rowData.get(2).text()));
-            stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(3).text()));
-            stageDetail.setKilometers(nullCheckUtils.doubleNullCheck(rowData.get(4).text()));
-            stageDetail.setMiles(nullCheckUtils.doubleNullCheck(rowData.get(5).text()));
-            stageDetail.setCategory(nullCheckUtils.stringNullCheck(rowData.get(6).text()));
-            stageDetail.setSignOnTime(nullCheckUtils.timeNullCheck(rowData.get(7).text()));
-            stageDetail.setStartTime(nullCheckUtils.timeNullCheck(rowData.get(8).text()));
-            stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(9)));
+            stageDetail.setDate(utils.convertDDMMMYYYYToDate(rowData.get(0).text().trim()));
+            stageDetail.setStartTime(nullCheckUtils.timeNullCheck(rowData.get(1).text()));
+            stageDetail.setStageName(nullCheckUtils.stringNullCheck(rowData.get(2).text()));
+            stageDetail.setKilometers(nullCheckUtils.doubleNullCheck(rowData.get(3).text()));
+            stageDetail.setCategory(nullCheckUtils.stringNullCheck(rowData.get(4).text()));
+            stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(5).text()));
+            stageDetail.setVenue(nullCheckUtils.stringNullCheck(rowData.get(6).text()));
+
+            //stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
+            //stageDetail.setStageNumber(nullCheckUtils.stringNullCheck(rowData.get(2).text()));
+            //stageDetail.setMiles(nullCheckUtils.doubleNullCheck(rowData.get(5).text()));
+            //stageDetail.setSignOnTime(nullCheckUtils.timeNullCheck(rowData.get(7).text()));
+            //stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(9)));
             
             stageDetails.add(stageDetail);
-        }
+        });
         
         return stageDetails;
+    }
+
+    public String parseAddress(Element htmlToParse) {
+        return htmlToParse.getElementById("h4Address").text().trim();
     }
     
     private String parseRouteLinkUrl(Element link) {
@@ -59,5 +60,4 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
                 .replace("\"", "")
                 .trim());
     }
-
 }

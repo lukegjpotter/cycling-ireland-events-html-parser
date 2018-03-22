@@ -18,8 +18,9 @@ import java.util.List;
 public class StageDetailsCsvReaderService {
 
     @Autowired UtilsService utils;
-    
-    @Value("${allroutelinks2017csvfile.location}") private String csvFileLocation;
+
+    @Value("${allroutelinkscsvfilepath}")
+    private String csvFileLocation;
 
     public StageRouteMappingHolder readStageRouteFromCsvFile() {
         

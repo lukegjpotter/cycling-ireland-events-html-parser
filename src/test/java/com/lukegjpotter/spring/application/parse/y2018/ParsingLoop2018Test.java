@@ -1,8 +1,8 @@
-package com.lukegjpotter.spring.application.parse.y2017;
+package com.lukegjpotter.spring.application.parse.y2018;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
 import com.lukegjpotter.spring.application.service.UrlMonthService;
-import com.lukegjpotter.spring.application.testresources.ParsingLoop2017TestResources;
+import com.lukegjpotter.spring.application.testresources.ParsingLoop2018TestResources;
 import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class ParsingLoop2017Test {
+public class ParsingLoop2018Test {
 
     @InjectMocks
-    private ParsingLoop2017 parsingLoop;
+    private ParsingLoop2018 parsingLoop;
     @Mock
     private BasicDetailsParser basicDetailParser;
     @Mock
@@ -35,7 +35,7 @@ public class ParsingLoop2017Test {
     @Mock
     private UrlMonthService urlMonthService;
     @Autowired
-    private ParsingLoop2017TestResources tr;
+    private ParsingLoop2018TestResources tr;
 
     @Before public void setup() {
         MockitoAnnotations.initMocks(this);

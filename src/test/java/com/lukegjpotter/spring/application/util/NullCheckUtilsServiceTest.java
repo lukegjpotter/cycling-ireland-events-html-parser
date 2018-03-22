@@ -23,6 +23,10 @@ public class NullCheckUtilsServiceTest {
         assertTrue(nullCheckUtilsService.timeNullCheck(" 12.34 ").equals("12:34"));
     }
 
+    @Test public void testTimeNullCheckThreeCharacters() {
+        assertTrue(nullCheckUtilsService.timeNullCheck("9:3").equals("09:30"));
+    }
+
     @Test public void testStringNullCheckNull() {
         assertTrue(nullCheckUtilsService.stringNullCheck("").equals(""));
     }

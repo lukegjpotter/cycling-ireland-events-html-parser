@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse.y2017;
+package com.lukegjpotter.spring.application.parse.y2018;
 
 import com.lukegjpotter.spring.application.model.StageDetail;
 import com.lukegjpotter.spring.application.parse.Parsable;

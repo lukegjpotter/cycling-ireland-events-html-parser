@@ -1,4 +1,4 @@
-package com.lukegjpotter.spring.application.parse.y2017;
+package com.lukegjpotter.spring.application.parse.y2018;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class ParsingLoop2017 implements ParsingLoop {
+public class ParsingLoop2018 implements ParsingLoop {
     
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -49,28 +49,26 @@ public class ParsingLoop2017 implements ParsingLoop {
         this.fileLocation = fileLocation;
         isRemote = fileLocation.isEmpty();
 
-        populateListOfElementsWithHtmlForRemainingMonthsInYear().forEach((Element calendarMonthElement) -> {
+        populateListOfElementsWithHtmlForRemainingMonthsInYear().forEach((Element calendarMonthElement) ->
+                calendarMonthElement.getElementsByClass("cat163473").forEach((Element raceEventElement) -> {
 
-            calendarMonthElement.getElementsByClass("cat163473").forEach((Element raceEventElement) -> {
-                
-                // Get Basic Details; ID and Name.
-                RoadRaceEvent roadRace = basicDetailsParser.parse(raceEventElement);
+                    // Get Basic Details; ID and Name.
+                    RoadRaceEvent roadRace = basicDetailsParser.parse(raceEventElement);
 
-                // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
-                log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(getUrlPopupWithPlaceholder(), roadRace.getId()));
-                Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
-                PopupDetails popupDetails = popupDetailsParser.parse(popupElement);
-                roadRace.addPopupDetails(popupDetails);
-                
-                // Get More Information Link Details AKA StageDetails.
-                log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
-                Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
-                roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
-                roadRace.setLocation(stageDetailsParser.parseAddress(stageDetailsElement));
-                
-                roadRaceEvents.add(roadRace);
-            });
-        });
+                    // Get Popup Details; Date, Province, Category, Promoting Club, Contact Person, More Info.
+                    log.info("Parsing Road Race: {}, Popup URL: {}", roadRace.getEventName(), String.format(getUrlPopupWithPlaceholder(), roadRace.getId()));
+                    Element popupElement = makePopupDetailsElementFromRoadRaceId(roadRace.getId());
+                    PopupDetails popupDetails = popupDetailsParser.parse(popupElement);
+                    roadRace.addPopupDetails(popupDetails);
+
+                    // Get More Information Link Details AKA StageDetails.
+                    log.info("Parsing Road Race: {}, Stages URL: {}", roadRace.getEventName(), popupDetails.getMoreInfoUrl().toString());
+                    Element stageDetailsElement = makeStageDetailsElementFromMoreInfoUrl(popupDetails.getMoreInfoUrl());
+                    roadRace.setStageDetails(stageDetailsParser.parse(stageDetailsElement));
+                    roadRace.setLocation(stageDetailsParser.parseAddress(stageDetailsElement));
+
+                    roadRaceEvents.add(roadRace);
+                }));
 
         return roadRaceEvents;
     }

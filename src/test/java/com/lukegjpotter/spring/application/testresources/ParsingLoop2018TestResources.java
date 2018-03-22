@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class ParsingLoop2017TestResources {
+public class ParsingLoop2018TestResources {
 
     public PopupDetails getMockPopupDetails() {
 

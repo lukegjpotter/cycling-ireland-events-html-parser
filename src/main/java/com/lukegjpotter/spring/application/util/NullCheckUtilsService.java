@@ -9,8 +9,14 @@ public class NullCheckUtilsService {
         time = time.trim().replace(".", ":");
 
         // If the format is 13:0, add an additional 0 to the time.
-        if (time.length() == 4) {
-            time += "0";
+        if (time.length() <= 5 && time.length() > 0) {
+            String hours = time.split(":")[0];
+            String minutes = time.split(":")[1];
+
+            if (hours.length() < 2) hours = "0" + hours;
+            if (minutes.length() < 2) minutes += "0";
+
+            time = hours + ":" + minutes;
         }
         return stringNullCheck(time);
     }

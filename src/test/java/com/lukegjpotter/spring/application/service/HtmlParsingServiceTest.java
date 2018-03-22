@@ -1,7 +1,7 @@
 package com.lukegjpotter.spring.application.service;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
-import com.lukegjpotter.spring.application.parse.y2017.ParsingLoop2017;
+import com.lukegjpotter.spring.application.parse.y2018.ParsingLoop2018;
 import com.lukegjpotter.spring.application.testresources.RoadRaceEventToDatabaseRecordTransformServiceTestResources;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class HtmlParsingServiceTest {
     @InjectMocks
     private HtmlParsingService htmlParsingService;
     @Mock
-    private ParsingLoop2017 parsingLoop2017;
+    private ParsingLoop2018 parsingLoop2018;
     @Autowired
     private RoadRaceEventToDatabaseRecordTransformServiceTestResources tr;
 
@@ -36,14 +36,14 @@ public class HtmlParsingServiceTest {
 
     @Test public void testParseOneDayRace() {
         List<RoadRaceEvent> expected = tr.getOneDayRaceList();
-        when(parsingLoop2017.startParseLoop(any(String.class))).thenReturn(expected);
+        when(parsingLoop2018.startParseLoop(any(String.class))).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }
 
     @Test public void testParseStageRace() {
         List<RoadRaceEvent> expected = tr.getStageRaceList();
-        when(parsingLoop2017.startParseLoop(any(String.class))).thenReturn(expected);
+        when(parsingLoop2018.startParseLoop(any(String.class))).thenReturn(expected);
         List<RoadRaceEvent> actual = htmlParsingService.parse();
         assertTrue(expected.equals(actual));
     }

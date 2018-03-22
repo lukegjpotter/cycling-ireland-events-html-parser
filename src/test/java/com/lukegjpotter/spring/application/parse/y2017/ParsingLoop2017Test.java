@@ -1,10 +1,10 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
 import com.lukegjpotter.spring.application.model.RoadRaceEvent;
+import com.lukegjpotter.spring.application.service.UrlMonthService;
 import com.lukegjpotter.spring.application.testresources.ParsingLoop2017TestResources;
 import org.jsoup.nodes.Element;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,6 +32,8 @@ public class ParsingLoop2017Test {
     private PopupDetailsParser popupDetailsParser;
     @Mock
     private StageDetailsParser stageDetailsParser;
+    @Mock
+    private UrlMonthService urlMonthService;
     @Autowired
     private ParsingLoop2017TestResources tr;
 
@@ -40,6 +42,8 @@ public class ParsingLoop2017Test {
         when(basicDetailParser.parse(any(Element.class))).thenReturn(tr.getMockBasicDetails());
         when(popupDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockPopupDetails());
         when(stageDetailsParser.parse(any(Element.class))).thenReturn(tr.getMockStageDetails());
+        when(urlMonthService.compileUrlsForRemainingYearMonths()).thenReturn(tr.mockAugust2018Urls());
+        parsingLoop.setUrlPopupWithPlaceholder(tr.mockPopupUrl());
     }
 
     /**
@@ -48,7 +52,6 @@ public class ParsingLoop2017Test {
      */
     @Test public void testStartParseLoopLocal() {
 
-        parsingLoop.setUrlPopupWithPlaceholder(tr.mockPopupUrl());
         parsingLoop.setLocalPopupFile(tr.localPopupFile());
         parsingLoop.setLocalStagesFile(tr.localStagesFile());
 
@@ -65,13 +68,16 @@ public class ParsingLoop2017Test {
      * The aim of this test is to ensure that the Loop through the Remote HTML works.
      * This has nothing to do with the actual data that is returned, as this is dealt with in the individual Parser Tests.
      */
-    @Ignore // Ignoring until app is able to parse from remote.
+    //@Ignore // Ignoring until app is able to parse from remote.
     @Test public void testStartParseLoopRemote() {
 
         List<RoadRaceEvent> roadRaces = parsingLoop.startParseLoop("");
 
-        // Problem with the HTML being returned in the remote, it doesn't have the "cat163472" in the HTML.
-        assertTrue(roadRaces.get(roadRaces.size() - 1).getEventName().equals("Festive Time Trial"));
+        int expectedSize = tr.localBasicFileExpectedSize();
+        int actualSize = roadRaces.size();
+        String failMessage = String.format("Size: Actual: %d, Expected: %d.", actualSize, expectedSize);
+
+        assertTrue(failMessage, actualSize == expectedSize);
     }
 
 }

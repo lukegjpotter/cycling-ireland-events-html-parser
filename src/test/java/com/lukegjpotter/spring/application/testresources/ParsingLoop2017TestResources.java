@@ -18,7 +18,7 @@ public class ParsingLoop2017TestResources {
 
         URL moreInfoURL = null;
         try {
-            moreInfoURL = new URL("http://more.info/url?id=123");
+            moreInfoURL = new URL("https://cyclingireland.azolve.com/Workbench.mvc/public/eventDetails?EventId=1079148");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -65,7 +65,7 @@ public class ParsingLoop2017TestResources {
     }
 
     public String mockPopupUrl() {
-        return "http://ci.ie/popup/?id=%s";
+        return "http://www.calendarwiz.com/calendars/popup.php?op=view&id=%s&crd=CyclingirelandRoad";
     }
 
     public String localPopupFile() {
@@ -82,5 +82,9 @@ public class ParsingLoop2017TestResources {
 
     public int localBasicFileExpectedSize() {
         return 30;
+    }
+
+    public List<String> mockAugust2018Urls() {
+        return Collections.singletonList("http://www.calendarwiz.com/calendars/calendar.php?crd=CyclingirelandRoad&op=cal&month=8&year=2018");
     }
 }

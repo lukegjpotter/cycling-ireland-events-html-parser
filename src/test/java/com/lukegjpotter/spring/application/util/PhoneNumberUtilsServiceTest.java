@@ -111,4 +111,10 @@ public class PhoneNumberUtilsServiceTest {
         String actual = phoneNumberUtilsService.formatPhoneNumber("07714696789");
         assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
     }
+
+    @Test public void testFormatPhoneNumberIrishMobile087() {
+        String expected = "+353874686123";
+        String actual = phoneNumberUtilsService.formatPhoneNumber("087 4686123");
+        assertTrue("Expected: " + expected + ". Actual: " + actual, expected.equals(actual));
+    }
 }

@@ -52,7 +52,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
         
         String dateStringRaw = popupElement.getElementById("event_date").text();
         int indexOfComma = dateStringRaw.indexOf(",") + 1;
-        int indexOfSeperator = dateStringRaw.indexOf("2017") + 4;
+        int indexOfSeperator = dateStringRaw.indexOf("2018") + 4;
         String dateString = "";
         
         try {
@@ -69,7 +69,7 @@ class PopupDetailsParser implements Parsable<Element, PopupDetails> {
     }
     
     private String extractCategory(Element popupElement) {
-        return popupElement.getElementById("cw_category_span").text().trim().replace("Category:  ", "");
+        return popupElement.getElementById("cw_category_span").text().trim().replace("Category:", "").trim();
     }
     
     private String extractPromotingClub(Element popupElement) {

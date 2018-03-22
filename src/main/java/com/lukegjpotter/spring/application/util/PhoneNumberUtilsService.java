@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PhoneNumberUtilsService {
-    
-    @Autowired NullCheckUtilsService nullCheckUtilsService;
+
+    @Autowired
+    private NullCheckUtilsService nullCheckUtilsService;
 
     public String formatPhoneNumber(String phoneNumber) {
         
@@ -40,6 +41,8 @@ public class PhoneNumberUtilsService {
             return phoneNumber.replace(Prefix.N_IRELAND_ZERO.code, Prefix.N_IRELAND.code);
         } else if (phoneNumber.startsWith(Prefix.N_IRELAND_NO_COUNTRY_CODE.code)) {
             return phoneNumber.replace(Prefix.N_IRELAND_NO_COUNTRY_CODE.code, Prefix.N_IRELAND + "7");
+        } else if (phoneNumber.startsWith(Prefix.IRELAND_MOBILE.code)) {
+            return phoneNumber.replace(Prefix.IRELAND_MOBILE.code, Prefix.IRELAND.code + "8");
         } else if (!phoneNumber.startsWith(Prefix.PLUS.code)) {
             return Prefix.IRELAND + phoneNumber;
         }
@@ -50,11 +53,11 @@ public class PhoneNumberUtilsService {
     private enum Prefix {
         PLUS("+"), IRELAND("+353"), N_IRELAND("+44"),
         IRELAND_DOUBLE("+353+353"), IRELAND_DOUBLE_ZERO("+353+3530"), IRELAND_DOUBLE_NO_SECOND_PLUS_SIGN("+353353"), IRELAND_ZERO("+3530"), IRELAND_N_IRELAND("+353+44"), IRELAND_EXTRA_PLUS("+353+"),
-        N_IRELAND_DOUBLE("+44+44"), N_IRELAND_IRELAND_ZERO("+44+3530"), N_IRELAND_DOUBLE_ZERO("+44+440"), N_IRELAND_ZERO("+440"), N_IRELAND_IRELAND("+44+353"), N_IRELAND_NO_COUNTRY_CODE("07");
+        N_IRELAND_DOUBLE("+44+44"), N_IRELAND_IRELAND_ZERO("+44+3530"), N_IRELAND_DOUBLE_ZERO("+44+440"), N_IRELAND_ZERO("+440"), N_IRELAND_IRELAND("+44+353"), N_IRELAND_NO_COUNTRY_CODE("07"), IRELAND_MOBILE("08");
         
         private String code;
-        
-        private Prefix(String code) {
+
+        Prefix(String code) {
             this.code = code;
         }
         

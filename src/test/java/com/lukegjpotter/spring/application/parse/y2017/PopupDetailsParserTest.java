@@ -1,20 +1,14 @@
 package com.lukegjpotter.spring.application.parse.y2017;
 
 import com.lukegjpotter.spring.application.model.PopupDetails;
-import com.lukegjpotter.spring.application.util.Constants;
+import com.lukegjpotter.spring.application.testresources.PopupDetailsParserTestResources;
 import com.lukegjpotter.spring.application.util.UtilsService;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
 
@@ -26,6 +20,8 @@ public class PopupDetailsParserTest {
     private PopupDetailsParser popupDetailsParser;
     @Autowired
     private UtilsService utils;
+    @Autowired
+    private PopupDetailsParserTestResources tr;
 
     @Before
     public void setUp() {
@@ -33,36 +29,34 @@ public class PopupDetailsParserTest {
 
     @Test public void testParse() {
 
-        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20180805-Popup-OldcastleGP.html"));
+        PopupDetails actual = popupDetailsParser.parse(tr.popupElement());
+        PopupDetails expected = tr.popupDetails();
 
-        Date expectedDate = utils.convertMMMDDYYYYToDate("Aug 6, 2017");
+        String failStartDate = String.format("StartDate: Expected: %s, Actual: %s", expected.getStartDate(), actual.getStartDate());
+        String failProvince = String.format("Province: Expected: %s, Actual: %s", expected.getProvince(), actual.getProvince());
+        String failCategory = String.format("Category: Expected: %s, Actual: %s", expected.getCategory(), actual.getCategory());
+        String failPromotingClub = String.format("PromotingClub: Expected: %s, Actual: %s", expected.getPromotingClub(), actual.getPromotingClub());
+        String failOrganiserName = String.format("OrganiserName: Expected: %s, Actual: %s", expected.getOrganiserName(), actual.getOrganiserName());
+        String failOrganiserEmail = String.format("OrganiserEmail: Expected: %s, Actual: %s", expected.getOrganiserEmail(), actual.getOrganiserEmail());
+        String failOrganiserPhoneNumber = String.format("OrganiserPhoneNumber: Expected: %s, Actual: %s", expected.getOrganiserPhoneNumber(), actual.getOrganiserPhoneNumber());
+        String failMoreInfoUrl = String.format("MoreInfoUrl: Expected: %s, Actual: %s", expected.getMoreInfoUrl(), actual.getMoreInfoUrl());
 
-        assertTrue(expectedDate.equals(popup.getStartDate()));
-        assertTrue(popup.getProvince().equals("Leinster"));
-        assertTrue(popup.getCategory().equals("Road"));
-        assertTrue(popup.getPromotingClub().equals("Oldcastle CC"));
-        assertTrue(popup.getOrganiserName().equals("Alan Surname"));
-        assertTrue(popup.getOrganiserEmail().equals("racing1team@gmail.com"));
-        assertTrue(popup.getOrganiserPhoneNumber().equals("+353879349161"));
-        assertTrue(popup.getMoreInfoUrl().getAuthority().equals("cyclingirelandlegacy.azolve.com"));
-        assertTrue(popup.getMoreInfoUrl().getFile().equals("/portal/Moreeventdetails.aspx?EventId=298400"));
+        assertTrue(failStartDate, actual.getStartDate().equals(expected.getStartDate()));
+        assertTrue(failProvince, actual.getProvince().equals(expected.getProvince()));
+        assertTrue(failCategory, actual.getCategory().equals(expected.getCategory()));
+        assertTrue(failPromotingClub, actual.getPromotingClub().equals(expected.getPromotingClub()));
+        assertTrue(failOrganiserName, actual.getOrganiserName().equals(expected.getOrganiserName()));
+        assertTrue(failOrganiserEmail, actual.getOrganiserEmail().equals(expected.getOrganiserEmail()));
+        assertTrue(failOrganiserPhoneNumber, actual.getOrganiserPhoneNumber().equals(expected.getOrganiserPhoneNumber()));
+        assertTrue(failMoreInfoUrl, actual.getMoreInfoUrl().equals(expected.getMoreInfoUrl()));
     }
 
     @Test public void testParseNoOrganiserEmail() {
 
-        PopupDetails popup = popupDetailsParser.parse(getJsoupElementFromPopup("src/test/resources/20170701-Popup-BolivarGP-NoOrgEmail.html"));
+        PopupDetails popup = popupDetailsParser.parse(tr.popupElementNoOrganiserEmail());
 
         assertTrue("Organiser Name", popup.getOrganiserName().equals("Alan Surname"));
         assertTrue("Organiser Email", popup.getOrganiserEmail().equals(""));
         assertTrue("Phone Number", popup.getOrganiserPhoneNumber().equals("+353872727811"));
-    }
-
-    private Element getJsoupElementFromPopup(String fileName) {
-
-        try {
-            return Jsoup.parse(new File(fileName), Constants.FILE_FORMAT);
-        } catch (IOException e) { e.printStackTrace(); }
-
-        return null;
     }
 }

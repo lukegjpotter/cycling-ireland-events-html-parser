@@ -1,13 +1,13 @@
 package com.lukegjpotter.spring.application.testresources;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
+import com.lukegjpotter.spring.application.util.UtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lukegjpotter.spring.application.model.StageRouteMappingHolder;
-import com.lukegjpotter.spring.application.util.UtilsService;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This class is to reduce the boilerplate needed to create CSV File
@@ -30,7 +30,7 @@ public class StageDetailsCsvReaderServiceTestResources {
 
         // One Stage.
         Long eventId = 107619921L;
-        List<String> routes = Arrays.asList("http://www.strava.com/routes/123456");
+        List<String> routes = Collections.singletonList("http://www.strava.com/routes/123456");
         holder.putRouteUrlMapping(eventId, routes);
         
         // Multi Stage.
@@ -39,7 +39,7 @@ public class StageDetailsCsvReaderServiceTestResources {
         holder.putRouteUrlMapping(eventId, routes);
         
         // No Stages.
-        holder.putRouteUrlMapping(107619923L, Arrays.asList(""));
+        holder.putRouteUrlMapping(107619923L, Collections.singletonList(""));
         
         return holder;
     }

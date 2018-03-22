@@ -189,6 +189,7 @@ public class RoadRaceEvent {
         sb.append(this.getEventName()).append(" by ").append(this.getPromotingClub());
         sb.append(" in ").append(this.getLocation());
         sb.append(". Stages: ").append(this.getStageDetails().size()).append(".");
+        if (!this.getStageDetails().isEmpty()) sb.append("\n\t");
         this.getStageDetails().forEach(stagedetail -> sb.append(stagedetail.toString()));
         return sb.toString();
     }

@@ -13,10 +13,6 @@ import java.util.List;
 public class UtilsService {
     
     @Autowired private NullCheckUtilsService nullCheckUtilsService;
-
-    public Date convertMMMMDDYYYYToDate(String date) {
-        return convertDateUsingFormat(date, Constants.DATE_FORMAT_MMMM_DD_YYYY);
-    }
     
     public Date convertMMMDDYYYYToDate(String date) {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_MMM_DD_YYYY);
@@ -24,14 +20,6 @@ public class UtilsService {
 
     public Date convertDDMMMYYYYToDate(String date) {
         return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MMM_YYYY);
-    }
-
-    public Date convertDDMMMYYToDate(String date) {
-        return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MMM_YY);
-    }
-
-    public Date convertDDMMYYYYToDate(String date) {
-        return convertDateUsingFormat(date, Constants.DATE_FORMAT_DD_MM_YYYY);
     }
 
     private Date convertDateUsingFormat(String date, String format) {

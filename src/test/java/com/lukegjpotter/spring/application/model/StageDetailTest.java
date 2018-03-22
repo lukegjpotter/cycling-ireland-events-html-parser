@@ -20,16 +20,18 @@ public class StageDetailTest {
     @Before
     public void setUp() {
         stage = new StageDetail();
-        stage.setRaceNumber(1);
-        stage.setStageNumber("1");
+        stage.setStageName("Stage 1");
         stage.setCategory("A4");
-        stage.setKilometers(50.0);
+        stage.setKilometers(50D);
     }
 
     @Test public void testToString() {
-        String expected = "\n\tRace 1: Stage 1: A4 - 50.0km";
+        String expected = "Stage 1: A4 - 50.0km";
         String actual = stage.toString();
-        assertTrue(expected.equals(actual));
+
+        String failMessage = String.format("Expected: %s\nActual: %s", expected, actual);
+
+        assertTrue(failMessage, expected.equals(actual));
     }
 
     @Test public void testEqualsOtherObject() {

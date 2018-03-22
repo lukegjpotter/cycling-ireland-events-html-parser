@@ -44,13 +44,9 @@ public class ParsingLoop2018TestResources {
         stageDetail.setDate(new Date());
         stageDetail.setId(123L);
         stageDetail.setKilometers(16D);
-        stageDetail.setMiles(10D);
         stageDetail.setVenue("Parish Pump");
-        stageDetail.setRaceNumber(1);
         stageDetail.setRaceType("Time Trial");
         stageDetail.setRouteLinkUrl("http://strava.com/route/123");
-        stageDetail.setSignOnTime("09:30");
-        stageDetail.setStageNumber("1");
         stageDetail.setStartTime("10:30");
 
         return Collections.singletonList(stageDetail);

@@ -35,12 +35,6 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
             stageDetail.setRaceType(nullCheckUtils.stringNullCheck(rowData.get(5).text()));
             stageDetail.setVenue(nullCheckUtils.stringNullCheck(rowData.get(6).text()));
 
-            //stageDetail.setRaceNumber(nullCheckUtils.integerNullCheck(rowData.get(1).text()));
-            //stageDetail.setStageNumber(nullCheckUtils.stringNullCheck(rowData.get(2).text()));
-            //stageDetail.setMiles(nullCheckUtils.doubleNullCheck(rowData.get(5).text()));
-            //stageDetail.setSignOnTime(nullCheckUtils.timeNullCheck(rowData.get(7).text()));
-            //stageDetail.setRouteLinkUrl(parseRouteLinkUrl(rowData.get(9)));
-            
             stageDetails.add(stageDetail);
         });
         
@@ -49,15 +43,5 @@ class StageDetailsParser implements Parsable<Element, List<StageDetail>> {
 
     public String parseAddress(Element htmlToParse) {
         return htmlToParse.getElementById("h4Address").text().trim();
-    }
-    
-    private String parseRouteLinkUrl(Element link) {
-
-        return nullCheckUtils.stringNullCheck(link
-                .getElementsByTag("a")
-                .attr("onclick")
-                .replace("window.top.location = \"", "")
-                .replace("\"", "")
-                .trim());
     }
 }

@@ -22,21 +22,6 @@ public class UtilsServiceTest {
 
     private List<String> elements = Arrays.asList("one", "two", "three");
 
-    @Test public void testConvertMMMMDDYYYYToDateEmptyStringCheck() {
-        Date npeDate =  utilsService.convertMMMMDDYYYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date(0L)));
-    }
-
-    @Test public void testConvertDDMMMYYToDateEmptyStringCheck() {
-        Date npeDate =  utilsService.convertDDMMMYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date(0L)));
-    }
-
-    @Test public void testConvertDDMMYYYYToDateEmptyStringCheck() {
-        Date npeDate =  utilsService.convertDDMMYYYYToDate("Contiune-Commit-Streak");
-        assertTrue(npeDate.equals(new Date(0L)));
-    }
-
     @Test public void testIsListElementInStringElementsMatch() {
         String string = "one,two,three";
         assertTrue(utilsService.isListElementInString(string, elements));

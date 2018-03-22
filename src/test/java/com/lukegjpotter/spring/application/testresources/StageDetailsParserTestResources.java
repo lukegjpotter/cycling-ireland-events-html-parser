@@ -32,13 +32,9 @@ public class StageDetailsParserTestResources {
         StageDetail stageDetail = new StageDetail();
         stageDetail.setDate(utils.convertDDMMMYYYYToDate("5 Aug 2018"));
         stageDetail.setVenue("Show Hall Oldcastle");
-        stageDetail.setRaceNumber(1);
-        stageDetail.setStageNumber("1");
         stageDetail.setRaceType("Road Race");
         stageDetail.setKilometers(60D);
-        stageDetail.setMiles(62.1);
         stageDetail.setCategory("Women");
-        stageDetail.setSignOnTime("09:00");
         stageDetail.setStartTime("13:00");
         stageDetail.setRouteLinkUrl("");
         stageDetail.setStageName("Oldcastle GP");

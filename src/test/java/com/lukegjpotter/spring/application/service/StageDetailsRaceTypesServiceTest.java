@@ -48,7 +48,10 @@ public class StageDetailsRaceTypesServiceTest {
     @Test public void testDetermineRaceTypesMultipleRaceTypesSeparateStageDetails() {
         RaceTypesHolder expected = tr.getRaceTypesAllEnabled();
         RaceTypesHolder actual = raceTypeService.determineRaceTypes(tr.getStageDetailsAllTypes());
-        assertTrue(expected.equals(actual));
+
+        String failMessage = String.format("\nExpected: %s\n  Actual: %s", expected, actual);
+
+        assertTrue(failMessage, expected.equals(actual));
     }
 
     @Test public void testDetermineRaceTypesStringYouthRaces() {

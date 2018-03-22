@@ -117,5 +117,19 @@ public class RaceTypesHolder {
 
         return false;
     }
-    
+
+    @Override public String toString() {
+        return "RaceTypesHolder{" +
+                "isAPlus=" + isAPlus +
+                ", isA1=" + isA1 +
+                ", isA2=" + isA2 +
+                ", isA3=" + isA3 +
+                ", isA4=" + isA4 +
+                ", isVets=" + isVets +
+                ", isWoman=" + isWoman +
+                ", isJunior=" + isJunior +
+                ", isYouth=" + isYouth +
+                ", isParacycling=" + isParacycling +
+                '}';
+    }
 }

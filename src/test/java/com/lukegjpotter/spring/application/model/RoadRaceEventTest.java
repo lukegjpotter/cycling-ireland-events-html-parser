@@ -26,10 +26,9 @@ public class RoadRaceEventTest {
         roadRace.setLocation("Location");
 
         stageDetail = new StageDetail();
-        stageDetail.setRaceNumber(1);
-        stageDetail.setStageNumber("1");
+        stageDetail.setStageName("Stage 1");
         stageDetail.setCategory("A1");
-        stageDetail.setKilometers(120.0);
+        stageDetail.setKilometers(120D);
     }
 
     @Test public void testToStringNoStages() {
@@ -41,9 +40,12 @@ public class RoadRaceEventTest {
     @Test public void testToStringOneStage() {
         roadRace.addStageDetail(stageDetail);
         String expected = "Event by PromotingClub in Location. Stages: 1."
-                + "\n\tRace 1: Stage 1: A1 - 120.0km";
+                + "\n\tStage 1: A1 - 120.0km";
         String actual = roadRace.toString();
-        assertTrue(expected.equals(actual));
+
+        String failMessage = String.format("Expected: %s\nActual: %s", expected, actual);
+
+        assertTrue(failMessage, expected.equals(actual));
     }
 
     @Test public void testEqualsOtherObject() {

@@ -48,11 +48,50 @@ public class MappingHolderToStageDetailsServiceTestResources {
 
     private List<StageDetail> getStageRaceMappedStageDetails() {
         List<StageDetail> stageDetails = new ArrayList<>();
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("30/07/2016"), "HEARNS HOTEL", 1, "1", "APlus,A1,A2,A3", 120.0, 74.6, "Road", "9:30", "13:00", "http://www.strava.com/routes/111", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, "2", "APlus,A1,A2,A3", 92.0, 57.2, "Road", "9:30", "11:00", "http://www.strava.com/routes/222", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("31/07/2016"), "HEARNS HOTEL", 1, "3", "APlus,A1,A2,A3", 35.0, 21.7, "Criterium", "18:00", "19:00", "http://www.strava.com/routes/333", ""));
-        stageDetails.add(new StageDetail(utils.convertDDMMYYYYToDate("01/08/2016"), "HEARNS HOTEL", 1, "4", "APlus,A1,A2,A3", 122.0, 75.8, "Road", "9:30", "11:00", "http://www.strava.com/routes/444", ""));
-        
+        StageDetail stageDetail = new StageDetail();
+        stageDetail.setDate(utils.convertDDMMMYYYYToDate("30 Jul 2016"));
+        stageDetail.setVenue("HEARNS HOTEL");
+        stageDetail.setRaceType("Road Race");
+        stageDetail.setKilometers(60D);
+        stageDetail.setCategory("A1,A2,A3");
+        stageDetail.setStartTime("13:00");
+        stageDetail.setRouteLinkUrl("http://www.strava.com/routes/111");
+        stageDetail.setStageName("Stage 1");
+        stageDetails.add(stageDetail);
+
+        stageDetail = new StageDetail();
+        stageDetail.setDate(utils.convertDDMMMYYYYToDate("31 Jul 2016"));
+        stageDetail.setVenue("HEARNS HOTEL");
+        stageDetail.setRaceType("Road Race");
+        stageDetail.setKilometers(60D);
+        stageDetail.setCategory("A1,A2,A3");
+        stageDetail.setStartTime("13:00");
+        stageDetail.setRouteLinkUrl("http://www.strava.com/routes/222");
+        stageDetail.setStageName("Stage 2");
+        stageDetails.add(stageDetail);
+
+        stageDetail = new StageDetail();
+        stageDetail.setDate(utils.convertDDMMMYYYYToDate("1 Aug 2016"));
+        stageDetail.setVenue("HEARNS HOTEL");
+        stageDetail.setRaceType("Road Race");
+        stageDetail.setKilometers(60D);
+        stageDetail.setCategory("A1,A2,A3");
+        stageDetail.setStartTime("13:00");
+        stageDetail.setRouteLinkUrl("http://www.strava.com/routes/333");
+        stageDetail.setStageName("Stage 3");
+        stageDetails.add(stageDetail);
+
+        stageDetail = new StageDetail();
+        stageDetail.setDate(utils.convertDDMMMYYYYToDate("2 Aug 2016"));
+        stageDetail.setVenue("HEARNS HOTEL");
+        stageDetail.setRaceType("Road Race");
+        stageDetail.setKilometers(60D);
+        stageDetail.setCategory("A1,A2,A3");
+        stageDetail.setStartTime("13:00");
+        stageDetail.setRouteLinkUrl("http://www.strava.com/routes/444");
+        stageDetail.setStageName("Stage 4");
+        stageDetails.add(stageDetail);
+
         return stageDetails;
     }
 }

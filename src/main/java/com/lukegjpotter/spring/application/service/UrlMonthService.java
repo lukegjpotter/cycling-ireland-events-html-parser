@@ -15,11 +15,12 @@ public class UrlMonthService {
     public List<String> compileUrlsForRemainingYearMonths() {
         
         List<String> urls = new ArrayList<>();
-        
-        int currentMonthNumber = Calendar.getInstance().get(Calendar.MONTH) + 1;
+
+        Calendar calendar = Calendar.getInstance();
+        int currentMonthNumber = calendar.get(Calendar.MONTH) + 1;
+        int currentYear = calendar.get(Calendar.YEAR);
         int maxMonthNumber = 12;
-        int currentYear = 2017;
-        
+
         while (currentMonthNumber <= maxMonthNumber) {
             
             String formattedUrl = String.format(urlBasicWithPlaceholders, currentMonthNumber, currentYear);

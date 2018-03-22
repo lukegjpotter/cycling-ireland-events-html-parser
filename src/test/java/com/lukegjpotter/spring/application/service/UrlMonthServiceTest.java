@@ -1,6 +1,5 @@
 package com.lukegjpotter.spring.application.service;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +17,14 @@ public class UrlMonthServiceTest {
     @Autowired
     private UrlMonthService urlMonthService;
 
-    @Before
-    public void setUp() {
-    }
-
     @Test public void testCompileUrlsForRemainYearMonths() {
 
-        String expectedDecemberUrl = "http://www.calendarwiz.com/calendars/calendar.php?crd=CyclingirelandRoad&op=cal&month=12&year=2017";
+        String expectedDecemberUrl = "http://www.calendarwiz.com/calendars/calendar.php?crd=CyclingirelandRoad&op=cal&month=12&year=2018";
         List<String> actualUrls = urlMonthService.compileUrlsForRemainingYearMonths();
 
-        assertTrue(actualUrls.contains(expectedDecemberUrl));
+        String failMessage = String.format("Expected: %s\nActual List: %s", expectedDecemberUrl, actualUrls);
+
+        assertTrue(failMessage, actualUrls.contains(expectedDecemberUrl));
     }
 
 }

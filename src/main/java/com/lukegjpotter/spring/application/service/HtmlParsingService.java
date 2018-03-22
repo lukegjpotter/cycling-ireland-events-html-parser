@@ -12,7 +12,6 @@ public class HtmlParsingService {
 
     @Autowired private ParsingLoop2017 parsingLoop;
     
-    //@Value("${allcievents2017file.location}")
     private String htmlFileLocation = "";
     
     public List<RoadRaceEvent> parse() {
